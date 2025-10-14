@@ -7,7 +7,7 @@
 # include <stdbool.h>
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 # include "../lib/libft/libft.h"
-# include "../lib/get_next_line"
+# include "../lib/get_next_line/get_next_line.h"
 
 typedef struct s_rgb
 {
