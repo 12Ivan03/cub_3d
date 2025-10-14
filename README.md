@@ -6,7 +6,7 @@ cub_3d
 
 ```bash
 git clone --recurse-submodules https://github.com/12Ivan03/cub_3d.git
-cd libft
+cd cun_3d
 make 
 ```
 ---
