@@ -4,6 +4,3 @@
 [submodule "code/lib/MLX42"]
 	path = code/lib/MLX42
 	url = https://github.com/codam-coding-college/MLX42.git
-[submodule "get_next_line_42"]
-	path = get_next_line_42
-	url = https://github.com/12Ivan03/get_next_line_42.git
