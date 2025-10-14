@@ -1,31 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   check_line.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/14 17:14:05 by ipavlov          ###   ########.fr       */
+/*   Created: 2025/10/14 15:56:43 by ipavlov           #+#    #+#             */
+/*   Updated: 2025/10/14 16:08:31 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	main(int argc, char *argv[])
+int	check_line(char *line, t_game *game)
 {
-	t_game *game;
-
-	init_game(game);
-	if (argc != 2)
-		return (error_handler(1));
-	if (!valid_file_name(argv))
-	{
-		if(!valid_file_content(argv, &game))
-			return(1); //free_game(game), 
-		// fill the array
-	}
-
-	// free the array
-	return (0);
+	
 }

@@ -2,9 +2,11 @@ CC = cc
 CFLAGS = -Wall -Werror -Wextra -I. -I$(INC_DIR) -I$(LIB_DIR) -I$(MLX_DIR)/include
 MLX_FLAGS = ./lib/MLX42/build/libmlx42.a -I./lib/MLX42/include -ldl -lglfw -pthread -lm
 
-SRC_FILES = error_handler/error_handler.c \
+SRC_FILES = src/error_handler/error_handler.c \
 src/main.c \
-parse_map/valid_file.c
+src/parse_map/valid_file.c \
+src/free/ft_free.c \
+src/utils/check_line.c
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
