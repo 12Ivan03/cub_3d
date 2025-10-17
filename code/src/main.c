@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/14 17:14:05 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/17 17:18:29 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,17 +15,23 @@
 int	main(int argc, char *argv[])
 {
 	t_game *game;
-
-	init_game(game);
+	
 	if (argc != 2)
 		return (error_handler(1));
+	game = init_game();
+	game->mlx = mlx_init(game->width_window, game->height_window, "cun3d", false);
+	printf("1\n");
 	if (!valid_file_name(argv))
 	{
-		if(!valid_file_content(argv, &game))
+		if(valid_file_content(argv, &game))
+		{
+			free_game(&game);
 			return(1); //free_game(game), 
+		}
 		// fill the array
 	}
-
+	if (game != NULL)
+		free_game(&game);
 	// free the array
 	return (0);
 }

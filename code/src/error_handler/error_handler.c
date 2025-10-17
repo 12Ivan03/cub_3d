@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:25:03 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/14 15:43:22 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/17 11:20:32 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int error_handler_msg(int er, char *msg) {
 	printf("Error\n");
 	if (er == 1)
 		printf("Could not open file: %s No such file or directory\n", msg);
+	if (er == 2)
+		printf("%s\n", msg);
 
 	return -1;
 }

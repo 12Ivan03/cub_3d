@@ -10,6 +10,15 @@
 # define HEIGHT_WINDOWS 800;
 # define WIDTH_WINDOWS 1024;
 # define CELL_SIZE 100;
+# define IS_EMPTY_SPACE(c) ((c) == ' ' || (c) == '\t')
+# define NO 0;
+# define EA 1;
+# define SO 2;
+# define WE 3;
+# define R 0;
+# define G 1;
+# define B 2;
+
 
 typedef struct s_coordinates
 {
@@ -26,31 +35,26 @@ typedef struct s_player {
 
 typedef struct s_rgb
 {
-	int r;
-	int g;
-	int b;
+	int rgb[3];
 } t_rgb;
 
 typedef struct s_graph
 {
 	t_rgb F;
 	t_rgb C;
-	mlx_texture_t *no_wall;
-	mlx_texture_t *so_wall;
-	mlx_texture_t *we_wall;
-	mlx_texture_t *ea_wall;
+	mlx_image_t *walls[4];
 } t_graph;
 
 typedef struct s_game
 {
-	mlx_t *mlx;
-	int *map;
-	int	height;
-	int width;
-	int fov;
-	int	height_window;
-	int width_window;
-	t_graph *graph;
+	mlx_t	*mlx;
+	int		*map;
+	int		height;
+	int		width;
+	int		fov;
+	int		height_window;
+	int		width_window;
+	t_graph	*graph;
 	
 
 

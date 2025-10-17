@@ -32,40 +32,38 @@ int	open_file(char *file)
 	return (fd);
 }
 
-int	no_map(char *line)
-{
-	int i = 0;
-	while (line[i])
-	{
-		
-	}
-	return 0
-}
-
-int	valid_direc_fc(int fd, t_game *game)
+int	valid_direc_fc(int fd, t_game **game)
 {
 	// (void)fd;
+	(void)game;
 	char *line;
 
+	// printf("2\n");
 	line = get_next_line(fd);
-	while (line != NULL && no_map(line))
+
+	printf("one: %s\n", line);
+	while (line != NULL)
 	{
-		check_line(line, game);
-			
+		if (check_line(line, game) == -1)
+			return (free(line), 1);
 		free(line);
 		line = get_next_line(fd);
+		printf("loop line : %s\n", line);
 	}
-
-	// came to map
-
-	// eval the graph
-
-	// if the grap is wrong 
-	// clean 
+	// 1. eval the graph is correct!
+	if (eval_graph(game))
+		return(free(line), -1);
+	// 2. continue reading file for map;
+	// while(line != NULL)
+	// {
+	// 	//parse maps
+	// }
+	//3. eval if map is currect;
+	
 	return 0;
 }
 
-int	valid_file_content(char *argv[], t_game *game) {
+int	valid_file_content(char *argv[], t_game **game) {
 
 	int fd;
 
@@ -73,7 +71,8 @@ int	valid_file_content(char *argv[], t_game *game) {
 	if (fd == -1)
 		return (-1);
 	// printf("here\n");
-	valid_direc_fc(fd, game);
+	if (valid_direc_fc(fd, game))
+		return (close(fd), 1);
 	// copy_map();
 	// validate_map();
 	close(fd);
