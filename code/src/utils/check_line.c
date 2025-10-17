@@ -37,7 +37,7 @@ t_rgb extract_color(char *str)
 	cstr = str;
 	// printf("HERE -> %p\n", str);
 	if (ft_strchr(cstr, ',') == ft_strrchr(cstr, ','))
-		return ((t_rgb){ .rgb = {-1,-1,-1}});// we have ap roblem!!!
+		return ((t_rgb){ .rgb = {-1,-1,-1}});// just return rgb... its already define as -1-1-1we have ap roblem!!!
 	for (int i = 0; i < 3; i++)
 	{
 		// printf("HERE%d\n",i);
