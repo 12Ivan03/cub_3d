@@ -16,8 +16,9 @@ int	eval_graph(t_game **game)
 {
 	// (void)game;
 	for (int i = 0; i < 3; i++)
-		if ((*game)->graph->F.rgb[i] == -1 && (*game)->graph->F.rgb[i] < 256)
+		if ((*game)->graph->F.rgb[i] < 0 && (*game)->graph->F.rgb[i] < 256)
 			return (error_handler_msg(2,"Missing floor colours"));
+		// check if th mumber is between rgb[i] < 0 and 255 
 	for (int i = 0; i < 3; i++)
 		if ((*game)->graph->C.rgb[i] == -1 && (*game)->graph->C.rgb[i] < 256)
 			return (error_handler_msg(2,"Missing celing colours"));
