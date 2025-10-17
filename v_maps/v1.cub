@@ -1,7 +1,7 @@
-NO ../texture/trip.png
-SO ../texture/trip.png
-WE ../texture/trip.png
-EA ../texture/trip.png
+NO ../texture/nort.png
+SO ../texture/south.png
+WE ../texture/west.png
+EA ../texture/east.png
 
 
 

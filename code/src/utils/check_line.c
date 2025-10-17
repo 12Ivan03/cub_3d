@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:56:43 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/17 17:26:05 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/17 17:45:29 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,7 @@ int	check_line(char *line, t_game **game)
 	printf("Line after trip: >%s<\n", trim_line);
 	if (!trim_line)
 		return (error_handler_msg(2, "Malloc error"));
-	if (*trim_line == '\n')
+	if (*trim_line == '\n') // and add here eval that the map has started so we have a line full of 1,0,n,e,a,s,' ',(2)...
 		return (1);
 	int i = eval_dirs(trim_line);
 	if (i == -1)
