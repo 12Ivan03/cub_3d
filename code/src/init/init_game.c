@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:02:42 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/17 17:17:12 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/20 16:33:38 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,13 @@ t_game *init_game(void)
 	ft_memset(game, 0, sizeof(*game));
 	
 	game->mlx = NULL;
+	game->copy_map = NULL;
 	game->height = HEIGHT_WALL;
 	game->width = WIDTH_WALL;
 	game->fov = FOV;
+	game->map = NULL;
+	game->player.position.x = -1;
+	game->player.position.y = -1;
 	game->height_window = HEIGHT_WINDOWS;
 	game->width_window = WIDTH_WINDOWS;
 	game->graph = malloc(sizeof(*game->graph));

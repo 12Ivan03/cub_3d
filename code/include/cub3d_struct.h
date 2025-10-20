@@ -19,7 +19,6 @@
 # define G 1;
 # define B 2;
 
-
 typedef struct s_coordinates
 {
 	int	x;
@@ -48,7 +47,9 @@ typedef struct s_graph
 typedef struct s_game
 {
 	mlx_t	*mlx;
-	int		*map;
+	char	**map;
+	t_list	*copy_map;
+	t_player player;
 	int		height;
 	int		width;
 	int		fov;

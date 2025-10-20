@@ -21,19 +21,24 @@ int error_handler_msg(int er, char *msg);
 
 // free 
 void	free_game(t_game **game);
+void	free_map(char **arr, int i);
 
 // init
 t_game	*init_game(void);
 
 // lib
 
-// parse_map
+// parse_file
 int	valid_file_name(char *argv[], char *str);
-int	valid_file_content(char *argv[], t_game **game);
+int	read_file_content(char *argv[], t_game **game);
 int	eval_graph(t_game **game);
+//----> map proccesing
+int	handle_map(t_game **game);
 
 // utils
 int	check_line(char *line, t_game **game);
+int	check_map_line(t_game **game, char *line);
+int	copy_map_to_game_struct(t_game **game, char **line, int fd);
 
 
 

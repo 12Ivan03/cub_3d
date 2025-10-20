@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:25:03 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/20 11:58:36 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/20 14:08:31 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@ int error_handler(int er) {
 		printf("EOF: missing map\n");
 	else if (er == 3)
 		printf("er == 3\n");
+	else if (er == 4)
+		printf("Malloc error\n");
 
 	return -1;
 }

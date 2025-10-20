@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_line.c                                       :+:      :+:    :+:   */
+/*   check_settings_line.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:56:43 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/20 13:34:20 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/20 14:57:24 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,11 +81,11 @@ int	check_line(char *line, t_game **game)
 	if (!trim_line)
 		return (error_handler_msg(2, "Malloc error"));
 	if (*trim_line == '\n')
-		return (1);
+		return (free(trim_line), 1);
 		
 	int i = eval_dirs(trim_line);
 	if (i == -1)
-		return (2);
+		return (free(trim_line), 2);
 	extract = ft_strtrim(trim_line + 1 + (i < 4), " \n\r");
 	if (!extract)
 		return (free(trim_line), error_handler_msg(2, "Malloc error"));
