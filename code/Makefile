@@ -1,5 +1,6 @@
 CC = cc 
 CFLAGS = -Wall -Werror -Wextra -I. -I$(INC_DIR) -I$(LIB_DIR) -I$(MLX_DIR)/include -g
+# 3 -fsanitize=address
 MLX_FLAGS = ./lib/MLX42/build/libmlx42.a -I./lib/MLX42/include -ldl -lglfw -pthread -lm 
 
 SRC_FILES = src/error_handler/error_handler.c \

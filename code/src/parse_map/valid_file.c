@@ -12,14 +12,16 @@
 
 #include <cub3d.h>
 
-int valid_file_name(char *argv[])
+int valid_file_name(char *argv[], char *str)
 {	
 	char *c;
 	
-	c = ft_strnstr(argv[1], ".cub", ft_strlen(argv[1]));
-	if (c && c[4] == '\0')
+	c = ft_strnstr(argv[1], str, ft_strlen(argv[1]));
+	if (c && c[ft_strlen(str)] == '\0')
 		return (0);
-	return (error_handler(2));
+	if (ft_strncmp(str, ".png", 4))
+		return (error_handler_msg(4, str));
+	return (error_handler_msg(3, str));
 }
 
 int	open_file(char *file)
@@ -37,6 +39,7 @@ int	valid_direc_fc(int fd, t_game **game)
 	// (void)fd;
 	(void)game;
 	char *line;
+	int		check;
 
 	// printf("2\n");
 	line = get_next_line(fd);
@@ -44,21 +47,35 @@ int	valid_direc_fc(int fd, t_game **game)
 	printf("one: %s\n", line);
 	while (line != NULL)
 	{
-		if (check_line(line, game) == -1)
+		check = check_line(line, game);
+		if (check == -1)
 			return (free(line), 1);
+		else if (check == 2)
+			break;
 		free(line);
 		line = get_next_line(fd);
 		printf("loop line : %s\n", line);
 	}
-	// 1. eval the graph is correct!
-	if (eval_graph(game))
+	if (check != 2)
+		return (error_handler(2)); //EOF 
+
+	if (!eval_graph(game))
 		return(free(line), -1);
+
+	while (line != NULL)
+	{
+		printf("%s",line);
+
+		free(line);
+		line = get_next_line(fd);
+	}
+
 	// 2. continue reading file for map;
 	// while(line != NULL)
 	// {
 	// 	//parse maps
 	// }
-	//3. eval if map is currect;
+	// 3. eval if map is currect;
 	
 	return 0;
 }

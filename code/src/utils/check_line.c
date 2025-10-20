@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:56:43 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/17 17:45:29 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/20 12:34:38 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int eval_dirs(char *trim_line) {
 	const char *dirs[6]= {"NO ", "EA ", "SO ", "WE ", "F ","C "};
-	
+
 	for (int i = 0; i < 4; i++) {
 		if (!ft_strncmp(trim_line, dirs[i], 3))
 			return (i);
@@ -30,14 +30,13 @@ t_rgb extract_color(char *str)
 {
 	t_rgb temp_color;
 	char *substr;
-	int pos;
 	char *cstr;
+	int pos;
 
-	
 	cstr = str;
 	// printf("HERE -> %p\n", str);
 	if (ft_strchr(cstr, ',') == ft_strrchr(cstr, ','))
-		return ((t_rgb){ .rgb = {-1,-1,-1}});// we have ap roblem!!!
+		return ((t_rgb){ .rgb = {-1,-1,-1}}); // we have ap roblem!!!
 	for (int i = 0; i < 3; i++)
 	{
 		// printf("HERE%d\n",i);
@@ -58,6 +57,9 @@ t_rgb extract_color(char *str)
 		else
 		{
 			temp_color.rgb[i] = ft_atoi(cstr);
+			// free(cstr);
+			if (temp_color.rgb[i] > 255)
+				return ((t_rgb){ .rgb = {-1,-1,-1}});
 			// printf("TEMO_COLOR PRINTSNGFJD ______> %d\n",temp_color.rgb[i]);
 		}
 	}
@@ -75,32 +77,28 @@ int	check_line(char *line, t_game **game)
 	mlx_texture_t *tex;
 	t_rgb temp_col;
 	
-	trim_line = ft_strtrim(line, "  ");
-	printf("Line after trip: >%s<\n", trim_line);
+	trim_line = ft_strtrim(line, " ");
 	if (!trim_line)
 		return (error_handler_msg(2, "Malloc error"));
-	if (*trim_line == '\n') // and add here eval that the map has started so we have a line full of 1,0,n,e,a,s,' ',(2)...
+	if (*trim_line == '\n')
 		return (1);
+		
 	int i = eval_dirs(trim_line);
 	if (i == -1)
-		return (free(trim_line), error_handler_msg(2, "Incomplete map"));
+		return (2);
 	extract = ft_strtrim(trim_line + 1 + (i < 4), " \n\r");
 	if (!extract)
 		return (free(trim_line), error_handler_msg(2, "Malloc error"));
 	free(trim_line);
+	
 	if (i < 4)
 	{
-		// printf(">two: %s<\n", extract);
-		if (access(extract, R_OK) != 0)
+		if (access(extract, R_OK) != 0 && valid_file_name(&extract, ".png") == -1)
         {
             int err = errno;
-            free(extract);
-			// printf("HERE\n");
-            return (error_handler_msg(2, strerror(err)));
+            return (free(extract), error_handler_msg(2, strerror(err)));
         }
 		tex = mlx_load_png(extract);
-		// printf("three: %p\n", tex);
-
 		free(extract);		
 		if (!tex)
 			return (error_handler_msg(2, "Failed to load png"));
@@ -114,19 +112,14 @@ int	check_line(char *line, t_game **game)
 		else
 			return (error_handler_msg(2, "Incorrect map file"));
 	}
+	
 	if (i >= 4 && i < 6)
 	{
-		// printf(">R G B : <\n");
-		// printf(">%s<\n", exract);
 		temp_col = extract_color(extract);
-		// printf("tHERE -> 1\n");
 		if (i == 4)
 			(*game)->graph->F = temp_col;
-		// printf("tHERE -> 2\n");
 		if (i == 5)
 			(*game)->graph->C = temp_col;
-		// printf("tHERE -> 3\n");
-
 		free(extract);	
 	}
 	

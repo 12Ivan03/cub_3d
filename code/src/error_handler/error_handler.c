@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:25:03 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/17 11:20:32 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/20 11:58:36 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int error_handler(int er) {
 	if (er == 1) {
 		printf("Invalid arguments. Expected 2 arguments.\n");
 	} else if (er == 2)
-		printf("Invalid file extension. Expected a .cub file.\n");
+		printf("EOF: missing map\n");
 	else if (er == 3)
 		printf("er == 3\n");
 
@@ -32,6 +32,11 @@ int error_handler_msg(int er, char *msg) {
 		printf("Could not open file: %s No such file or directory\n", msg);
 	if (er == 2)
 		printf("%s\n", msg);
+	if (er == 3)
+		printf("Invalid file extension. Expected a %s file.\n", msg);
+	if (er == 4)
+		printf("Invalid texture file extension. Expected a %s file.\n", msg);
+	
 
 	return -1;
 }

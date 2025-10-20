@@ -28,7 +28,7 @@ t_game	*init_game(void);
 // lib
 
 // parse_map
-int	valid_file_name(char *argv[]);
+int	valid_file_name(char *argv[], char *str);
 int	valid_file_content(char *argv[], t_game **game);
 int	eval_graph(t_game **game);
 
