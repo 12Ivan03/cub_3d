@@ -78,7 +78,7 @@ int	read_file_content(char *argv[], t_game **game) {
 	if (valid_direc_fc(fd, game))
 		return (close(fd), 1);
 	close(fd);
-	if (handle_map(game))
+	if (!handle_map(game))
 		return (-1);
 	// validate_map();
 	return 0;
