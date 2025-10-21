@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:25:03 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/20 14:08:31 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/21 12:19:58 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int error_handler(int er) {
 	else if (er == 4)
 		printf("Malloc error\n");
 
-	return -1;
+	return 1;
 }
 
 int error_handler_msg(int er, char *msg) {
@@ -40,5 +40,5 @@ int error_handler_msg(int er, char *msg) {
 		printf("Invalid texture file extension. Expected a %s file.\n", msg);
 	
 
-	return -1;
+	return 1;
 }

@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 12:58:54 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/20 17:54:50 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/21 11:49:29 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,23 +41,21 @@ void	free_link_list(t_list *list)
 	// free(list);
 }
 
-void	free_map(char **arr, int i)
+void	free_map(char ***arr, int i)
 {
-	if (i > 0 && arr != NULL)
+	if (*arr)
 	{
 		while (--i >= 0)
 		{
-			if (arr[i] != NULL)
+			if ((*arr)[i] != NULL)
 			{
-				free(arr[i]);
-				arr[i] = NULL;
+				free((*arr)[i]);
+				(*arr)[i] = NULL;
 			}
 		}
-		// if ()
-		free(arr);
-		arr = NULL;
+		free(*arr);
+		*arr = NULL;
 	}
-	// (*arr) = NULL;
 }
 
 void	free_game(t_game **game)
@@ -67,7 +65,7 @@ void	free_game(t_game **game)
 	if ((*game)->copy_map != NULL)
 		free_link_list((*game)->copy_map);
 	if ((*game)->map != NULL)
-		free_map((*game)->map, (*game)->height);
+		free_map(&(*game)->map, (*game)->height);
 	free(*game);
 	*game = NULL;
 }

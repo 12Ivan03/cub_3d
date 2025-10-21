@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:33:32 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/20 14:37:45 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/21 12:37:21 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	eval_graph(t_game **game)
 {	
 	int	result;
 
-	result = 1;
+	result = 0;
 	for (int i = 0; i < 3; i++)
 		if ((*game)->graph->F.rgb[i] == -1 && (*game)->graph->F.rgb[i] < 256)
 			result = error_handler_msg(2,"Missing floor colours");

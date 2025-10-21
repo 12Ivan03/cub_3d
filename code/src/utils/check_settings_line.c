@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:56:43 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/20 14:57:24 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/21 16:56:26 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ t_rgb extract_color(char *str)
 			// printf("Substr -> %s\n", substr);
 			temp_color.rgb[i] = ft_atoi(substr);
 			free(substr);
-			if (temp_color.rgb[i] > 255)
+			if (temp_color.rgb[i] > 255 || temp_color.rgb[i] < 0)
 				return ((t_rgb){ .rgb = {-1,-1,-1}});
 			cstr += (pos + 1);
 			// printf("TEMO_COLOR PRINTSNGFJD ______> %d\n",temp_color.rgb[i]);
@@ -81,7 +81,7 @@ int	check_line(char *line, t_game **game)
 	if (!trim_line)
 		return (error_handler_msg(2, "Malloc error"));
 	if (*trim_line == '\n')
-		return (free(trim_line), 1);
+		return (free(trim_line), 0);
 		
 	int i = eval_dirs(trim_line);
 	if (i == -1)
@@ -93,7 +93,7 @@ int	check_line(char *line, t_game **game)
 	
 	if (i < 4)
 	{
-		if (access(extract, R_OK) != 0 && valid_file_name(&extract, ".png") == -1)
+		if (access(extract, R_OK) == -1 && !valid_file_name(extract, ".png"))
         {
             int err = errno;
             return (free(extract), error_handler_msg(2, strerror(err)));
@@ -123,7 +123,7 @@ int	check_line(char *line, t_game **game)
 		free(extract);	
 	}
 	
-	return 1;
+	return 0;
 }
 
 // "10 NWSE" 

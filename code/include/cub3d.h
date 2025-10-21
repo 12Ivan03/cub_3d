@@ -21,7 +21,7 @@ int error_handler_msg(int er, char *msg);
 
 // free 
 void	free_game(t_game **game);
-void	free_map(char **arr, int i);
+void	free_map(char ***arr, int i);
 
 // init
 t_game	*init_game(void);
@@ -29,7 +29,7 @@ t_game	*init_game(void);
 // lib
 
 // parse_file
-int	valid_file_name(char *argv[], char *str);
+int	valid_file_name(char *argv, char *str);
 int	read_file_content(char *argv[], t_game **game);
 int	eval_graph(t_game **game);
 //----> map proccesing
