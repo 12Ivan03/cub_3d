@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:25:03 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/21 12:19:58 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/24 14:05:44 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,10 @@ int error_handler(int er) {
 		printf("er == 3\n");
 	else if (er == 4)
 		printf("Malloc error\n");
+	else if (er == 5)
+		printf("Open map\n");
+	else if (er == 6)
+		printf("An error occurred in the MXL42 library\n");
 
 	return 1;
 }
@@ -38,6 +42,8 @@ int error_handler_msg(int er, char *msg) {
 		printf("Invalid file extension. Expected a %s file.\n", msg);
 	if (er == 4)
 		printf("Invalid texture file extension. Expected a %s file.\n", msg);
+	if (er == 5)
+		printf("Invalid file information. Expected %s.\n", msg);
 	
 
 	return 1;

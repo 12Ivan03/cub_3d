@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:40:35 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/21 13:43:06 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/24 14:29:32 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	handle_map(t_game **game)
 		j = find_start_position(game, i);
 		if (j != -1)
 		{
-			printf("3\n");
+			// printf("3\n");
 			if ((*game)->player.position.x != -1 || (*game)->player.position.y != -1)
 				return (free_map(&(*game)->map, i + 1), 1);
 			set_position(game, j, i);
@@ -104,7 +104,7 @@ int	handle_map(t_game **game)
 		}
 		if (eval_map_line((*game)->map[i]))
 			return (free_map(&(*game)->map, i + 1), 1);
-		printf("%s\n", (*game)->map[i]);
+		// printf("%s\n", (*game)->map[i]);
 		iter = iter->next;
 		i++;
 	}

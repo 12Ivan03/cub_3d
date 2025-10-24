@@ -41,7 +41,7 @@ int	valid_direc_fc(int fd, t_game **game)
 	int		check;
 
 	line = get_next_line(fd);
-	printf("First line: %s", line);
+	// printf("First line: %s", line);
 	while (line != NULL)
 	{
 		check = check_line(line, game);
@@ -51,10 +51,10 @@ int	valid_direc_fc(int fd, t_game **game)
 			break;
 		free(line);
 		line = get_next_line(fd);
-		printf("loop line : %s", line);
+		// printf("loop line : %s", line);
 	}
 	if (check != 2)
-		return (error_handler(2)); //EOF 
+		return (error_handler(2));
 
 	if (eval_graph(game))
 		return(free(line), 1);
@@ -116,11 +116,9 @@ int	validate_map(t_game **game)
 int	validate_struct(t_game **game)
 {
 	if ((*game)->player.position.x == -1)// || (*game)->player.position.y == -1)
-		return (1);
+		return (error_handler_msg(5, "a player"));
 	if ((*game)->graph->C.rgb[0] == -1 || (*game)->graph->F.rgb[0] == -1)
-		return (1);
-	// if ((*game)->width == 0 || (*game)->height == 0)
-	// 	return(1);
+		return (error_handler_msg(5, "colors"));
 	return (0);
 }
 
@@ -136,9 +134,9 @@ int	read_file_content(char *argv[], t_game **game) {
 	close(fd);
 	if (handle_map(game))
 		return (1);
-	if (validate_map(game))
-		return (1);
 	if (validate_struct(game))
 		return (1);
+	if (validate_map(game))
+		return (error_handler(5));
 	return (0);
 }

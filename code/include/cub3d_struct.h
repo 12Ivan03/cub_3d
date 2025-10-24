@@ -52,6 +52,8 @@ typedef struct s_game
 	t_player player;
 	int		height;
 	int		width;
+	int 	height_wall;
+	int 	width_wall;
 	int		fov;
 	int		height_window;
 	int		width_window;

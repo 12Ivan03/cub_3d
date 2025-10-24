@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:02:42 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/20 16:33:38 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/10/24 13:48:51 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,10 @@ t_game *init_game(void)
 	
 	game->mlx = NULL;
 	game->copy_map = NULL;
-	game->height = HEIGHT_WALL;
-	game->width = WIDTH_WALL;
+	game->height = 0;
+	game->width = 0;
+	game->height_wall = HEIGHT_WALL;
+	game->width_wall = WIDTH_WALL;
 	game->fov = FOV;
 	game->map = NULL;
 	game->player.position.x = -1;
