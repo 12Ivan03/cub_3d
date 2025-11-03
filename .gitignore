@@ -11,6 +11,7 @@
 
 # Executables
 a.out
+cub3d
 *.exe
 
 # Build directories
