@@ -37,7 +37,7 @@ int	count_height(t_game **game)
 	return (ft_lstsize((*game)->copy_map));
 }
 
-int	find_start_position(t_game **game, int i)`
+int	find_start_position(t_game **game, int i)
 {
 	int	j;
 

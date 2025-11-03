@@ -1,0 +1,24 @@
+# Object files
+*.o
+*.obj
+
+# Libraries / archives
+*.a
+*.so
+*.dll
+*.dylib
+*.lib
+
+# Executables
+a.out
+*.exe
+
+# Build directories
+/build/
+/bin/
+/dist/
+
+# Editor/OS clutter
+.DS_Store
+Thumbs.db
+*.swp
