@@ -15,12 +15,12 @@
 int	count_width(t_game **game)
 {
 	int 	counter;
-	int		i;
+	// int		i;
 	t_list	*tmp;
 	int		len;
 
 	counter = 0;
-	i = 0;
+	// i = 0;
 	tmp = (*game)->copy_map; 
 	while (tmp != NULL)
 	{
@@ -37,7 +37,7 @@ int	count_height(t_game **game)
 	return (ft_lstsize((*game)->copy_map));
 }
 
-int	find_start_position(t_game **game, int i)
+int	find_start_position(t_game **game, int i)`
 {
 	int	j;
 
