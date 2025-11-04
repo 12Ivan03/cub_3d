@@ -11,10 +11,10 @@
 # define WIDTH_WINDOWS 1024;
 # define CELL_SIZE 100;
 # define IS_EMPTY_SPACE(c) ((c) == ' ' || (c) == '\t')
-# define NO 0;
-# define EA 1;
-# define SO 2;
-# define WE 3;
+# define NO 90;
+# define EA 0;
+# define SO 270;
+# define WE 180;
 # define R 0;
 # define G 1;
 # define B 2;
@@ -23,6 +23,8 @@ typedef struct s_coordinates
 {
 	int	x;
 	int	y;
+	int x_grid; // x/64 = floor(res); 
+	int y_grid; // y/64 = floor(res);
 } t_coordinates;
 
 typedef struct s_player {
