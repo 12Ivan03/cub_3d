@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
+/*   By: aerokhin <aerokhin@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/11/04 14:26:26 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/11/04 17:45:43 by aerokhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,51 +14,65 @@
 
 int	start_game(t_game **game)
 {
-	// (void)game;
 	int				ray;
 	float			curr_ang;
 	float			alpha;
-	t_coordinates	a;
-	t_coordinates	b;
+	t_line			line;
+	t_line			draw_line;
 	t_grid			t;
-	// int				exit_loop;
-	
+	float			dist;
+	int			hit;
+
 	ray = 0;
-	// exit_loop = 0;
-	while (ray < (*game)->width_window)
+	while (ray < WW)
 	{
 		curr_ang = ray + (FOV / WW);
 		alpha = PLAYER.angle_alpha - (FOV / 2) + curr_ang;
 		if (alpha < 180)
-			a.y = roundf(PLAYER.position.y / WL_H) * WL_H;
+			line.a.y = roundf(PLAYER.position.y / GRID_SIZE) * GRID_SIZE;
 		else
-			a.y = roundf(PLAYER.position.y / WL_H + 1) * WL_H;
-		a.x = PLAYER.position.x + (PLAYER.position.y - a.y) / (float)tan(alpha);
+			line.a.y = roundf(PLAYER.position.y / GRID_SIZE + 1) * GRID_SIZE;
+		line.a.x = PLAYER.position.x + (PLAYER.position.y - line.a.y) / (float)tan(alpha);
 		if (alpha >= 90 && alpha < 270)
-			b.x = roundf(PLAYER.position.x / WL_W) * WL_W;
+			line.b.x = roundf(PLAYER.position.x / GRID_SIZE) * GRID_SIZE;
 		else
-			b.x = roundf(PLAYER.position.x / WL_W + 1) * WL_W;
-		b.y = PLAYER.position.y + (PLAYER.position.x - b.x) / (float)tan(alpha);
+			line.b.x = roundf(PLAYER.position.x / GRID_SIZE + 1) * GRID_SIZE;
+		line.b.y = PLAYER.position.y + (PLAYER.position.x - line.b.x) / (float)tan(alpha);
 		while (1)
 		{
+			if (distance(PLAYER.position, line.a) < distance(PLAYER.position, line.b))
 			{
-				/* code */
-			}
-			
-			if (distance(PLAYER.position, a) < distance(PLAYER.position, b))
-			{
-				t.x = (int)(a.x / WL_W);
-				t.y = (int)(a.y / WL_H);
+				t.x = (int)(line.a.x / GRID_SIZE);
+				t.y = (int)(line.a.y / GRID_SIZE) - (alpha > 179 && alpha < 360);
+				dist = distance(PLAYER.position, line.a);
+				hit = 1 + 2 * (alpha > 179 && alpha < 360);
 			}
 			else
 			{
-				t.x = (int)(b.x / WL_W);
-				t.y = (int)(b.y / WL_H);
+				t.x = (int)(line.b.x / GRID_SIZE) - !(alpha > 90 && alpha < 279);
+				t.y = (int)(line.b.y / GRID_SIZE);
+				dist = distance(PLAYER.position, line.b);
+				hit = 2 * !(alpha > 90 && alpha < 279);
 			}
-			if ((*game)->map[t.x][t.y] = '1')
-				break; // ????????
-		
+			if ((*game)->map[t.x][t.y] == '1')// TODO:: check (our logic) is t.x and t.y real tile's number???
+				break ;
+			if (distance(PLAYER.position, line.a) < distance(PLAYER.position, line.b))
+			{
+				line.a.x = line.a.x + GRID_SIZE / tan(alpha);
+				line.a.y = line.a.y + GRID_SIZE;
+			}
+			else
+			{
+				line.b.x = line.b.x + GRID_SIZE;
+				line.b.y = line.b.y + GRID_SIZE * tan(alpha);
+			}
+		}
+		draw_line = (t_line)\
+{{ray, (int)((WH - WW / dist) / 2)}, \
+{ray, (int)((WH + WW / dist) / 2)}, \
+alpha, hit};
+		draw_col(game, draw_line, line);
 		ray++;
 	}
-	return 0;
+	return (0);
 }

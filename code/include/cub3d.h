@@ -45,6 +45,10 @@ int	copy_map_to_game_struct(t_game **game, char **line, int fd);
 float	projection_distance(t_game **game);
 float	distance(t_coordinates a, t_coordinates b);
 
+// graph
+int	draw_col(t_game **game, t_line col, t_line line);
+
+
 // game
 int	start_game(t_game **game);
 

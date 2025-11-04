@@ -6,6 +6,7 @@
 
 # define HEIGHT_WALL 64
 # define WIDTH_WALL 64
+# define GRID_SIZE 64
 # define INIT_FOV 60
 # define HEIGHT_WINDOWS 800
 # define WIDTH_WINDOWS 1024
@@ -20,23 +21,31 @@
 # define IS_EMPTY_SPACE(c) ((c) == ' ' || (c) == '\t')
 # define FOV (*game)->fov
 # define WW (*game)->width_window
+# define WH (*game)->height_window
 # define PLAYER (*game)->player
 # define WL_H (*game)->height_wall
 # define WL_W (*game)->width_wall
-# define OUR_TYPE int
 
 
 typedef struct s_coordinates
 {
 	float	x;
 	float	y;
-} t_coordinates;
+}	t_coordinates;
 
-typedef struct s_grid
+typedef struct	s_grid
 {
 	int	x;
 	int	y;
-} t_grid;
+}	t_grid;
+
+typedef struct s_line
+{
+	t_coordinates	a;
+	t_coordinates	b;
+	float			angle;
+	int				hit;
+}	t_line;
 
 typedef struct s_player {
 	

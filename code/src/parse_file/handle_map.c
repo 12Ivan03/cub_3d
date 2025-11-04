@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
+/*   By: aerokhin <aerokhin@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:40:35 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/11/04 13:11:18 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/11/04 15:58:23 by aerokhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,11 @@ void set_position(t_game **game, int x, int y, char angle)
 {
 	(*game)->player.position.x = x;
 	(*game)->player.position.y = y;
-	(*game)->player.angle_alpha =
-								EA * (angle == 'E') + 
-								NO * (angle == 'N') +
-	 							WE * (angle == 'W') + 
-								SO * (angle == 'S');
+	(*game)->player.angle_alpha = \
+EA * (angle == 'E') + \
+NO * (angle == 'N') + \
+WE * (angle == 'W') + \
+SO * (angle == 'S');
 }
 
 int	eval_map_line(char *arr)
