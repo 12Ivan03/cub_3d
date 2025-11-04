@@ -14,6 +14,8 @@ src/free/ft_free.c \
 src/utils/check_settings_line.c \
 src/utils/check_map_line.c \
 src/init/init_game.c \
+src/math/game_math.c \
+src/game_loop/start_game.c \
 lib/get_next_line/get_next_line.c \
 lib/get_next_line/get_next_line_utils.c \
 

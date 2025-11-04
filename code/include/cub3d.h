@@ -12,6 +12,7 @@
 # include "../lib/libft/libft.h"
 # include "../lib/get_next_line/get_next_line.h"
 # include "cub3d_struct.h" 
+# include "math.h"
 
 // src
 
@@ -40,6 +41,12 @@ int	check_line(char *line, t_game **game);
 int	check_map_line(t_game **game, char *line);
 int	copy_map_to_game_struct(t_game **game, char **line, int fd);
 
+// math
+float	projection_distance(t_game **game);
+float	distance(t_coordinates a, t_coordinates b);
+
+// game
+int	start_game(t_game **game);
 
 
 #endif

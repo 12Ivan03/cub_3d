@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:40:35 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/24 14:29:32 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/11/04 13:11:18 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,10 +51,15 @@ int	find_start_position(t_game **game, int i)
 	return (-1);
 }
 
-void set_position(t_game **game, int x, int y)
+void set_position(t_game **game, int x, int y, char angle)
 {
 	(*game)->player.position.x = x;
 	(*game)->player.position.y = y;
+	(*game)->player.angle_alpha =
+								EA * (angle == 'E') + 
+								NO * (angle == 'N') +
+	 							WE * (angle == 'W') + 
+								SO * (angle == 'S');
 }
 
 int	eval_map_line(char *arr)
@@ -99,7 +104,7 @@ int	handle_map(t_game **game)
 			// printf("3\n");
 			if ((*game)->player.position.x != -1 || (*game)->player.position.y != -1)
 				return (free_map(&(*game)->map, i + 1), 1);
-			set_position(game, j, i);
+			set_position(game, j, i, (*game)->map[i][j]);
 			(*game)->map[i][j] = '0';
 		}
 		if (eval_map_line((*game)->map[i]))

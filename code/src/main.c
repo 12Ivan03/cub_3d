@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/24 14:03:14 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/11/04 13:31:17 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	main(int argc, char *argv[])
 	// printf("1\n");
 	if (!valid_file_name(argv[1], ".cub"))
 	{
-		if(read_file_content(argv, &game))
+		if(read_file_content(argv, &game) || start_game(&game))
 		{
 			free_game(&game);
 			return(1);
