@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerokhin <aerokhin@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:40:35 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/11/04 15:58:23 by aerokhin         ###   ########.fr       */
+/*   Updated: 2025/11/29 17:47:23 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,8 @@ int	find_start_position(t_game **game, int i)
 
 void set_position(t_game **game, int x, int y, char angle)
 {
-	(*game)->player.position.x = x;
-	(*game)->player.position.y = y;
+	(*game)->player.position.x = (x + 0.5) * GRID_SIZE;
+	(*game)->player.position.y = (y + 0.5) * GRID_SIZE;
 	(*game)->player.angle_alpha = \
 EA * (angle == 'E') + \
 NO * (angle == 'N') + \

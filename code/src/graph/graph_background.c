@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 13:07:10 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/11/29 15:54:07 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/11/29 16:50:07 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,12 +22,13 @@ int background_f_c_draw(t_game **game)
 	if (!img)
 		return (error_handler(7));
 	
-	ceil_col = (((uint32_t)((*game)->graph->C.rgb[0]) << 16) |
-                 ((uint32_t)((*game)->graph->C.rgb[1]) << 8) |
-                 ((uint32_t)((*game)->graph->C.rgb[2])));
-    floor_col = (((uint32_t)((*game)->graph->F.rgb[0]) << 16) |
-                  ((uint32_t)((*game)->graph->F.rgb[1]) << 8) |
-                  ((uint32_t)((*game)->graph->F.rgb[2])));
+	ceil_col = (((uint32_t)((*game)->graph->C.rgb[0]) << 24) |
+                 ((uint32_t)((*game)->graph->C.rgb[1]) << 16) |
+                 ((uint32_t)((*game)->graph->C.rgb[2]) << 8) |
+				0xFF);
+    floor_col = (((uint32_t)((*game)->graph->F.rgb[0]) << 24) |
+                  ((uint32_t)((*game)->graph->F.rgb[1]) << 16) |
+                  ((uint32_t)((*game)->graph->F.rgb[2]) << 8) | 0xFF);
 
 	printf("Ceiling: %d, %d, %d\n", (*game)->graph->C.rgb[0], 
 					(*game)->graph->C.rgb[1], 
@@ -44,15 +45,16 @@ int background_f_c_draw(t_game **game)
 		{
 			mlx_put_pixel(img, x, y, col);
 			// printf("%d, %d: %d, \n", x, y, col);
-			if(x == 0 || x == WIDTH_WINDOWS - 1)
-				printf("-%d ", x);
+			// if(x == 0 || x == WIDTH_WINDOWS - 1)
+			// 	printf("-%d ", x);
 
 			x++;
 		}
-		printf("(%d), ", y);
+		// printf("(%d), ", y);
 		y++;
     }
-	printf("\nHELL");
+	// printf("\nHELL");
+	write(1, "\nHELL\n", 6);
 	// printf("\n Window:%d, %d", (*game)->width_window, (*game)->height_window);
 	mlx_image_to_window((*game)->mlx, img, 0 ,0);
 	return (0);
