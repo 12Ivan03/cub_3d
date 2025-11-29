@@ -6,11 +6,11 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:02:42 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/11/04 13:39:57 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/11/29 16:26:29 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <cub3d.h>
+#include "cub3d.h"
 
 t_game *init_game(void)
 {	
@@ -43,6 +43,6 @@ t_game *init_game(void)
 
 	game->graph->C = (t_rgb){ .rgb = {-1, -1, -1}};
 	game->graph->F = (t_rgb){ .rgb = {-1, -1, -1}};
-	
+
 	return (game);
 }

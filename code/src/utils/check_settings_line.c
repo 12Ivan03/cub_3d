@@ -6,14 +6,14 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:56:43 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/21 16:56:26 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/11/29 12:53:56 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
 int eval_dirs(char *trim_line) {
-	const char *dirs[6]= {"NO ", "EA ", "SO ", "WE ", "F ","C "};
+	const char *dirs[6]= {"EA ", "NO ", "WE ", "SO ", "F ","C "};
 
 	for (int i = 0; i < 4; i++) {
 		if (!ft_strncmp(trim_line, dirs[i], 3))

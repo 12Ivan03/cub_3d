@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/11/04 13:31:17 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/11/29 16:23:02 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		return (error_handler(1));
 	game = init_game();
-	game->mlx = mlx_init(game->width_window, game->height_window, "cub3d", false);
+	game->mlx = mlx_init(WIDTH_WINDOWS, HEIGHT_WINDOWS, "cub3d", true);
 	if (!game->mlx)
 		return (error_handler(6));
 	// printf("1\n");

@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:25:03 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/24 14:05:44 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/11/29 14:14:52 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,8 @@ int error_handler(int er) {
 		printf("Open map\n");
 	else if (er == 6)
 		printf("An error occurred in the MXL42 library\n");
-
+	else if (er == 7)
+		printf("Unable to create MLX42 object.\n");
 	return 1;
 }
 
@@ -44,7 +45,7 @@ int error_handler_msg(int er, char *msg) {
 		printf("Invalid texture file extension. Expected a %s file.\n", msg);
 	if (er == 5)
 		printf("Invalid file information. Expected %s.\n", msg);
-	
+
 
 	return 1;
 }

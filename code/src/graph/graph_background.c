@@ -1,0 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   graph_background.c                                 :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/29 13:07:10 by ipavlov           #+#    #+#             */
+/*   Updated: 2025/11/29 15:54:07 by ipavlov          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "cub3d.h"
+
+int background_f_c_draw(t_game **game)
+{
+	mlx_image_t *img;
+	uint32_t ceil_col;
+    uint32_t floor_col;
+
+	img = mlx_new_image((*game)->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
+	if (!img)
+		return (error_handler(7));
+	
+	ceil_col = (((uint32_t)((*game)->graph->C.rgb[0]) << 16) |
+                 ((uint32_t)((*game)->graph->C.rgb[1]) << 8) |
+                 ((uint32_t)((*game)->graph->C.rgb[2])));
+    floor_col = (((uint32_t)((*game)->graph->F.rgb[0]) << 16) |
+                  ((uint32_t)((*game)->graph->F.rgb[1]) << 8) |
+                  ((uint32_t)((*game)->graph->F.rgb[2])));
+
+	printf("Ceiling: %d, %d, %d\n", (*game)->graph->C.rgb[0], 
+					(*game)->graph->C.rgb[1], 
+					(*game)->graph->C.rgb[2]);
+	printf("Floor: %d, %d, %d\n", (*game)->graph->F.rgb[0], 
+					(*game)->graph->F.rgb[1], 
+					(*game)->graph->F.rgb[2]);
+	int y = 0;
+	while(y < HEIGHT_WINDOWS)
+	{
+		uint32_t col = (y < HEIGHT_WINDOWS / 2) ? ceil_col : floor_col;
+		int x = 0;
+		while(x < WIDTH_WINDOWS)
+		{
+			mlx_put_pixel(img, x, y, col);
+			// printf("%d, %d: %d, \n", x, y, col);
+			if(x == 0 || x == WIDTH_WINDOWS - 1)
+				printf("-%d ", x);
+
+			x++;
+		}
+		printf("(%d), ", y);
+		y++;
+    }
+	printf("\nHELL");
+	// printf("\n Window:%d, %d", (*game)->width_window, (*game)->height_window);
+	mlx_image_to_window((*game)->mlx, img, 0 ,0);
+	return (0);
+}
