@@ -6,15 +6,19 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/02 15:03:59 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/02 16:51:39 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
+#ifndef M_PI
+# define M_PI 3.141526
+#endif
+
 float ft_tan(float angle)
 {
-	return (angle * (float)M_PI / 180.0f);
+	return (tanf(angle * (float)M_PI / 180.0f));
 }
 
 // float ft_tan(float angle)
@@ -60,7 +64,7 @@ int	start_game(t_game **game)
 			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE;
 		else
 			line.a.y = floor(PLAYER.position.y / GRID_SIZE + 1.0f) * GRID_SIZE;
-		line.a.x = PLAYER.position.x + (PLAYER.position.y - line.a.y) / (float)ft_tan(alpha);
+		line.a.x = PLAYER.position.x - (-PLAYER.position.y + line.a.y) / (float)ft_tan(alpha);
 		printf("## line.a: (%f, %f)\n", line.a.x, line.a.y);
 		
 		// vertival
@@ -68,7 +72,7 @@ int	start_game(t_game **game)
 			line.b.x = floor(PLAYER.position.x / GRID_SIZE) * GRID_SIZE;
 		else
 			line.b.x = floor(PLAYER.position.x / GRID_SIZE + 1.0f) * GRID_SIZE;
-		line.b.y = PLAYER.position.y + ( PLAYER.position.x - line.b.x) / (float)ft_tan(alpha);
+		line.b.y = PLAYER.position.y - (-PLAYER.position.x + line.b.x) / (float)ft_tan(alpha);
 		printf("## line.b: (%f, %f)\n", line.b.x, line.b.y);
 		
 		while (1)
@@ -96,6 +100,7 @@ int	start_game(t_game **game)
 				dist = distance(PLAYER.position, line.b);
 				hit = 2 * !(alpha > 90.0f && alpha < 270.0f); // hit == 0 or 2
 			}
+			printf("map[%d][%d]\n",t.y, t.x );
 			// printf("---: alpha(%f), t(%d, %d), a(%f, %f), b(%f, %f)\n", alpha, t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
 			if ((*game)->map[t.y][t.x] == '1')// TODO:: check (our logic) is t.x and t.y real tile's number???
 				break ;
@@ -105,8 +110,7 @@ int	start_game(t_game **game)
 				line.a.y = line.a.y + GRID_SIZE;
 			}
 			else
-			{				
-
+			{
 				line.b.x = line.b.x + GRID_SIZE;
 				line.b.y = line.b.y + GRID_SIZE * ft_tan(alpha);
 			}
