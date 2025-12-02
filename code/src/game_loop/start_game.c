@@ -6,27 +6,22 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/02 16:51:39 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/02 17:08:08 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#define _USE_MATH_DEFINES
 #include "cub3d.h"
+#include <math.h>
 
 #ifndef M_PI
-# define M_PI 3.141526
+# define M_PI 3.14159265358979323846
 #endif
 
-float ft_tan(float angle)
+float deg_to_rad(float angle)
 {
 	return (tanf(angle * (float)M_PI / 180.0f));
 }
-
-// float ft_tan(float angle)
-// {
-// 	float rad;
-// 	rad = angle * (float)M_PI / 180.0f;
-// 	return tanf(rad);
-// }
 
 int	start_game(t_game **game)
 {
@@ -39,7 +34,7 @@ int	start_game(t_game **game)
 	float			dist;
 	int				hit;
 
-	printf("Player pos >> x:%f (%d), y: %f (%d)\n", PLAYER.position.x, (int)(PLAYER.position.x / GRID_SIZE), PLAYER.position.y, (int)(PLAYER.position.y / GRID_SIZE));
+	printf("Player pos >> x:%f (%d), y: %f (%d), Player angle: %f\n", PLAYER.position.x, (int)(PLAYER.position.x / GRID_SIZE), PLAYER.position.y, (int)(PLAYER.position.y / GRID_SIZE), PLAYER.angle_alpha);
 	printf("Size of map >> y:%d, x: %d\n", (*game)->height, (*game)->width);
 	// printf("test ft_tan for PI: %f, 2*PI: %f, PI/2:%f \n", ft_tan(180), ft_tan(360), ft_tan(90));
 	// if (background_f_c_draw(game))// shoudl call it once!
@@ -59,20 +54,22 @@ int	start_game(t_game **game)
 			alpha -=360.0f;
 		printf("FIRST ALTHPA after cal: (%f) CURR_ANG (%f)\n\n", alpha, curr_ang);
 
-		//  horizontal
-		if (alpha < 180.0f)
-			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE;
-		else
-			line.a.y = floor(PLAYER.position.y / GRID_SIZE + 1.0f) * GRID_SIZE;
-		line.a.x = PLAYER.position.x - (-PLAYER.position.y + line.a.y) / (float)ft_tan(alpha);
+		//  horizontal intersection
+		if (alpha < 180.0f)  // Ray looking up
+			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE - 0.0001f;
+		else  // Ray looking down
+			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
+		// ΔX = -ΔY / tan(alpha), where ΔY = line.a.y - PLAYER.position.y
+		line.a.x = PLAYER.position.x - (line.a.y - PLAYER.position.y) / tanf(deg_to_rad(alpha));
 		printf("## line.a: (%f, %f)\n", line.a.x, line.a.y);
 		
-		// vertival
-		if (alpha >= 90.0f && alpha < 270.0f)
-			line.b.x = floor(PLAYER.position.x / GRID_SIZE) * GRID_SIZE;
-		else
-			line.b.x = floor(PLAYER.position.x / GRID_SIZE + 1.0f) * GRID_SIZE;
-		line.b.y = PLAYER.position.y - (-PLAYER.position.x + line.b.x) / (float)ft_tan(alpha);
+		// vertical intersection
+		if (alpha >= 90.0f && alpha < 270.0f)  // Ray looking left
+			line.b.x = floor(PLAYER.position.x / GRID_SIZE) * GRID_SIZE - 0.0001f;
+		else  // Ray looking right
+			line.b.x = floor(PLAYER.position.x / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
+		// ΔY = -ΔX * tan(alpha), where ΔX = line.b.x - PLAYER.position.x
+		line.b.y = PLAYER.position.y - (line.b.x - PLAYER.position.x) * tanf(deg_to_rad(alpha));
 		printf("## line.b: (%f, %f)\n", line.b.x, line.b.y);
 		
 		while (1)
@@ -82,37 +79,49 @@ int	start_game(t_game **game)
 			{
 				printf("A < B: t(%d, %d), a(%f, %f), b(%f, %f)\n", t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
 				t.x = (int)(line.a.x / GRID_SIZE);
-				t.y = (int)(line.a.y / GRID_SIZE) - (alpha > 179.9f && alpha < 360.0f);
+				t.y = (int)(line.a.y / GRID_SIZE);
 				printf("after calculation --> A < B: t(%d, %d), a(%f, %f), b(%f, %f)\n", t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
 				
 				dist = distance(PLAYER.position, line.a);
-				hit = 1 + 2 * (alpha > 179.9f && alpha < 360.0f); // hit == 1 or 3
+				hit =  1 + 2 * (alpha < 180.0f); // 1 = North, 3 = South
 			}
 			else
 			{
 				printf("A > B: t(%d, %d), a(%f, %f), b(%f, %f)\n", t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
-
-				t.x = (int)(line.b.x / GRID_SIZE) - !(alpha > 90.0f && alpha < 270.0f);
-
+				t.x = (int)(line.b.x / GRID_SIZE);
 				t.y = (int)(line.b.y / GRID_SIZE);
 				printf("after calculation --> A > B: t(%d, %d), a(%f, %f), b(%f, %f)\n", t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
 
 				dist = distance(PLAYER.position, line.b);
-				hit = 2 * !(alpha > 90.0f && alpha < 270.0f); // hit == 0 or 2
+				hit = (alpha >= 90.0f && alpha < 270.0f) * 2; // 2 = West, 0 = East
 			}
 			printf("map[%d][%d]\n",t.y, t.x );
 			// printf("---: alpha(%f), t(%d, %d), a(%f, %f), b(%f, %f)\n", alpha, t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
+			
+			// Check bounds
+			if (t.x < 0 || t.x >= (*game)->width || t.y < 0 || t.y >= (*game)->height)
+				break ;
 			if ((*game)->map[t.y][t.x] == '1')// TODO:: check (our logic) is t.x and t.y real tile's number???
 				break ;
 			if (distance(PLAYER.position, line.a) < distance(PLAYER.position, line.b))
 			{
-				line.a.x = line.a.x + GRID_SIZE / ft_tan(alpha);
-				line.a.y = line.a.y + GRID_SIZE;
+				// Move to next horizontal grid line
+				// ΔX = -ΔY / tan(alpha)
+				float step_y = GRID_SIZE * (1 - 2 * (alpha < 180.0f));
+				float step_x = -step_y / tanf(deg_to_rad(alpha));
+				
+				line.a.y += step_y;
+				line.a.x += step_x;
 			}
 			else
 			{
-				line.b.x = line.b.x + GRID_SIZE;
-				line.b.y = line.b.y + GRID_SIZE * ft_tan(alpha);
+				// Move to next vertical grid line
+				// ΔY = -ΔX * tan(alpha)
+				float step_x = GRID_SIZE * (1 - 2 * (alpha >= 90.0f && alpha < 270.0f));
+				float step_y = -step_x * tanf(deg_to_rad(alpha));
+				
+				line.b.x += step_x;
+				line.b.y += step_y;
 			}
 			printf("+++B: a(%f, %f), b(%f, %f)\n", line.a.x, line.a.y, line.b.x, line.b.y);
 		}
