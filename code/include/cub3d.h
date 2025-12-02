@@ -47,7 +47,7 @@ float	projection_distance(t_game **game);
 float	distance(t_coordinates a, t_coordinates b);
 
 // graph
-int	draw_col(t_game **game, t_line col, t_line line);
+int	draw_col(t_game **game, t_line line);
 int background_f_c_draw(t_game **game);
 
 
