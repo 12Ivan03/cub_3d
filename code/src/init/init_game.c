@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:02:42 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/05 14:51:45 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/05 17:22:38 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,9 @@ t_game *init_game(void)
 	if (!game->graph)
 		return (free(game), NULL);
 	ft_memset(game->graph, 0, sizeof(*game->graph));
+		write(1, "1\n", 2);
+		game->graph->proj_dist = (WIDTH_WINDOWS / 2) / tan(deg_to_rad(game->fov / 2));
+		write(1, "2\n", 2);
 	
 	for (int i = 0; i < 4; i++)
 		game->graph->walls[i] = NULL;

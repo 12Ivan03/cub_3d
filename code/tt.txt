@@ -1,157 +1,17 @@
-
-HELL
+1
+2
 Ceiling: 253, 201, 169
 Floor: 220, 100, 30
-Player pos >> x:0.000000 (0), y: -806.250000 (-3), Player angle: 0.000000
-Size of map >> y:0, x: -1001267816
-break main loop 
-
-
-Player pos >> x:1188.000000 (4), y: 396.000000 (1), Player angle: 175.000000
+Player pos >> x:1188.000000 (4), y: 396.000000 (1), Player angle: 270.000000
 Size of map >> y:3, x: 6
-t(3, 2), ray: 0 >> ray: 205.000000, colonm_point: 133
- t(3, 2), ray: 1 >> ray: 204.399994, colonm_point: 125
- t(3, 2), ray: 2 >> ray: 203.800003, colonm_point: 116
- t(3, 2), ray: 3 >> ray: 203.199997, colonm_point: 107
- t(3, 2), ray: 4 >> ray: 202.600006, colonm_point: 97
- t(3, 2), ray: 5 >> ray: 202.000000, colonm_point: 87
- t(3, 2), ray: 6 >> ray: 201.399994, colonm_point: 76
- t(3, 2), ray: 7 >> ray: 200.800003, colonm_point: 65
- t(3, 2), ray: 8 >> ray: 200.199997, colonm_point: 53
- t(3, 2), ray: 9 >> ray: 199.600006, colonm_point: 41
- t(3, 2), ray: 10 >> ray: 199.000000, colonm_point: 27
- t(3, 2), ray: 11 >> ray: 198.399994, colonm_point: 13
- t(2, 2), ray: 12 >> ray: 197.800003, colonm_point: 263
- t(2, 2), ray: 13 >> ray: 197.199997, colonm_point: 247
- t(2, 2), ray: 14 >> ray: 196.600006, colonm_point: 230
- t(2, 2), ray: 15 >> ray: 196.000000, colonm_point: 212
- t(2, 2), ray: 16 >> ray: 195.399994, colonm_point: 192
- t(2, 2), ray: 17 >> ray: 194.800003, colonm_point: 172
- t(2, 2), ray: 18 >> ray: 194.199997, colonm_point: 149
- t(2, 2), ray: 19 >> ray: 193.600006, colonm_point: 125
- t(2, 2), ray: 20 >> ray: 193.000000, colonm_point: 98
- t(2, 2), ray: 21 >> ray: 192.399994, colonm_point: 69
- t(2, 2), ray: 22 >> ray: 191.800003, colonm_point: 37
- t(2, 2), ray: 23 >> ray: 191.199997, colonm_point: 2
- t(1, 2), ray: 24 >> ray: 190.600006, colonm_point: 226
- t(1, 2), ray: 25 >> ray: 190.000000, colonm_point: 183
- t(1, 2), ray: 26 >> ray: 189.399994, colonm_point: 133
- t(1, 2), ray: 27 >> ray: 188.800003, colonm_point: 78
- t(1, 2), ray: 28 >> ray: 188.199997, colonm_point: 14
- t(0, 1), ray: 29 >> ray: 187.600006, colonm_point: 7
- t(0, 1), ray: 30 >> ray: 187.000000, colonm_point: 17
- t(0, 1), ray: 31 >> ray: 186.399994, colonm_point: 27
- t(0, 1), ray: 32 >> ray: 185.800003, colonm_point: 37
- t(0, 1), ray: 33 >> ray: 185.199997, colonm_point: 47
- t(0, 1), ray: 34 >> ray: 184.600006, colonm_point: 57
- t(0, 1), ray: 35 >> ray: 184.000000, colonm_point: 67
- t(0, 1), ray: 36 >> ray: 183.399994, colonm_point: 77
- t(0, 1), ray: 37 >> ray: 182.800003, colonm_point: 86
- t(0, 1), ray: 38 >> ray: 182.199997, colonm_point: 96
- t(0, 1), ray: 39 >> ray: 181.600006, colonm_point: 106
- t(0, 1), ray: 40 >> ray: 181.000000, colonm_point: 115
- t(0, 1), ray: 41 >> ray: 180.399994, colonm_point: 125
- t(0, 1), ray: 42 >> ray: 179.800003, colonm_point: 135
- t(0, 1), ray: 43 >> ray: 179.199997, colonm_point: 144
- t(0, 1), ray: 44 >> ray: 178.600006, colonm_point: 154
- t(0, 1), ray: 45 >> ray: 178.000000, colonm_point: 164
- t(0, 1), ray: 46 >> ray: 177.399994, colonm_point: 173
- t(0, 1), ray: 47 >> ray: 176.800003, colonm_point: 183
- t(0, 1), ray: 48 >> ray: 176.199997, colonm_point: 193
- t(0, 1), ray: 49 >> ray: 175.600006, colonm_point: 203
- t(0, 1), ray: 50 >> ray: 175.000000, colonm_point: 213
- t(0, 1), ray: 51 >> ray: 174.399994, colonm_point: 222
- t(0, 1), ray: 52 >> ray: 173.800003, colonm_point: 232
- t(0, 1), ray: 53 >> ray: 173.199997, colonm_point: 242
- t(0, 1), ray: 54 >> ray: 172.600006, colonm_point: 252
- t(0, 1), ray: 55 >> ray: 172.000000, colonm_point: 262
- t(1, 0), ray: 56 >> ray: 171.399994, colonm_point: 206
- t(1, 0), ray: 57 >> ray: 170.800003, colonm_point: 147
- t(1, 0), ray: 58 >> ray: 170.199997, colonm_point: 96
- t(1, 0), ray: 59 >> ray: 169.600006, colonm_point: 51
- t(1, 0), ray: 60 >> ray: 169.000000, colonm_point: 10
- t(2, 0), ray: 61 >> ray: 168.399994, colonm_point: 237
- t(2, 0), ray: 62 >> ray: 167.800003, colonm_point: 204
- t(2, 0), ray: 63 >> ray: 167.199997, colonm_point: 174
- t(2, 0), ray: 64 >> ray: 166.600006, colonm_point: 147
- t(2, 0), ray: 65 >> ray: 166.000000, colonm_point: 122
- t(2, 0), ray: 66 >> ray: 165.399994, colonm_point: 99
- t(2, 0), ray: 67 >> ray: 164.800003, colonm_point: 77
- t(2, 0), ray: 68 >> ray: 164.199997, colonm_point: 57
- t(2, 0), ray: 69 >> ray: 163.600006, colonm_point: 39
- t(2, 0), ray: 70 >> ray: 163.000000, colonm_point: 22
- t(2, 0), ray: 71 >> ray: 162.399994, colonm_point: 6
- t(3, 0), ray: 72 >> ray: 161.800003, colonm_point: 254
- t(3, 0), ray: 73 >> ray: 161.199997, colonm_point: 240
- t(3, 0), ray: 74 >> ray: 160.600006, colonm_point: 227
- t(3, 0), ray: 75 >> ray: 160.000000, colonm_point: 214
- t(3, 0), ray: 76 >> ray: 159.399994, colonm_point: 202
- t(3, 0), ray: 77 >> ray: 158.800003, colonm_point: 191
- t(3, 0), ray: 78 >> ray: 158.199997, colonm_point: 180
- t(3, 0), ray: 79 >> ray: 157.600006, colonm_point: 169
- t(3, 0), ray: 80 >> ray: 157.000000, colonm_point: 160
- t(3, 0), ray: 81 >> ray: 156.399994, colonm_point: 150
- t(3, 0), ray: 82 >> ray: 155.800003, colonm_point: 141
- t(3, 0), ray: 83 >> ray: 155.199997, colonm_point: 133
- t(3, 0), ray: 84 >> ray: 154.600006, colonm_point: 124
- t(3, 0), ray: 85 >> ray: 154.000000, colonm_point: 116
- t(3, 0), ray: 86 >> ray: 153.399994, colonm_point: 109
- t(3, 0), ray: 87 >> ray: 152.800003, colonm_point: 101
- t(3, 0), ray: 88 >> ray: 152.199997, colonm_point: 94
- t(3, 0), ray: 89 >> ray: 151.600006, colonm_point: 87
- t(3, 0), ray: 90 >> ray: 151.000000, colonm_point: 81
- t(3, 0), ray: 91 >> ray: 150.399994, colonm_point: 74
- t(3, 0), ray: 92 >> ray: 149.800003, colonm_point: 68
- t(3, 0), ray: 93 >> ray: 149.199997, colonm_point: 62
- t(3, 0), ray: 94 >> ray: 148.600006, colonm_point: 56
- t(3, 0), ray: 95 >> ray: 148.000000, colonm_point: 51
- t(3, 0), ray: 96 >> ray: 147.399994, colonm_point: 45
- t(3, 0), ray: 97 >> ray: 146.800003, colonm_point: 40
- t(3, 0), ray: 98 >> ray: 146.199997, colonm_point: 34
- t(3, 0), ray: 99 >> ray: 145.600006, colonm_point: 29
- break main loop 
+t(4, 2), ray: 0 >> ray: 300.000000, colonm_point: 110
+ Height: 914
 
 
-Player pos >> x:1188.000000 (4), y: 396.000000 (1), Player angle: 170.000000
-Size of map >> y:3, x: 6
-t(3, 2), ray: 0 >> ray: 200.000000, colonm_point: 49
- t(3, 2), ray: 1 >> ray: 199.399994, colonm_point: 36
- t(3, 2), ray: 2 >> ray: 198.800003, colonm_point: 23
- t(3, 2), ray: 3 >> ray: 198.199997, colonm_point: 9
- t(2, 2), ray: 4 >> ray: 197.600006, colonm_point: 257
- t(2, 2), ray: 5 >> ray: 197.000000, colonm_point: 241
- t(2, 2), ray: 6 >> ray: 196.399994, colonm_point: 224
- t(2, 2), ray: 7 >> ray: 195.800003, colonm_point: 206
- t(2, 2), ray: 8 >> ray: 195.199997, colonm_point: 186
- t(2, 2), ray: 9 >> ray: 194.600006, colonm_point: 164
- t(2, 2), ray: 10 >> ray: 194.000000, colonm_point: 141
- t(2, 2), ray: 11 >> ray: 193.399994, colonm_point: 116
- t(2, 2), ray: 12 >> ray: 192.800003, colonm_point: 89
- t(2, 2), ray: 13 >> ray: 192.199997, colonm_point: 59
- t(2, 2), ray: 14 >> ray: 191.600006, colonm_point: 26
- t(1, 2), ray: 15 >> ray: 191.000000, colonm_point: 253
- t(1, 2), ray: 16 >> ray: 190.399994, colonm_point: 212
- t(1, 2), ray: 17 >> ray: 189.800003, colonm_point: 167
- t(1, 2), ray: 18 >> ray: 189.199997, colonm_point: 116
- t(1, 2), ray: 19 >> ray: 188.600006, colonm_point: 57
- t(0, 1), ray: 20 >> ray: 188.000000, colonm_point: 1
- t(0, 1), ray: 21 >> ray: 187.399994, colonm_point: 11
- t(0, 1), ray: 22 >> ray: 186.800003, colonm_point: 21
- t(0, 1), ray: 23 >> ray: 186.199997, colonm_point: 31
- t(0, 1), ray: 24 >> ray: 185.600006, colonm_point: 41
- t(0, 1), ray: 25 >> ray: 185.000000, colonm_point: 50
- t(0, 1), ray: 26 >> ray: 184.399994, colonm_point: 60
- t(0, 1), ray: 27 >> ray: 183.800003, colonm_point: 70
- t(0, 1), ray: 28 >> ray: 183.199997, colonm_point: 80
- t(0, 1), ray: 29 >> ray: 182.600006, colonm_point: 90
- t(0, 1), ray: 30 >> ray: 182.000000, colonm_point: 99
- t(0, 1), ray: 31 >> ray: 181.399994, colonm_point: 109
- t(0, 1), ray: 32 >> ray: 180.800003, colonm_point: 119
- t(0, 1), ray: 33 >> ray: 180.199997, colonm_point: 128
- t(0, 1), ray: 34 >> ray: 179.600006, colonm_point: 138
- t(0, 1), ray: 35 >> ray: 179.000000, colonm_point: 148
- t(0, 1), ray: 36 >> ray: 178.399994, colonm_point: 157
- t(0, 1), ray: 37 >> ray: 177.800003, colonm_point: 167
- t(0, 1), ray: 38 >> ray: 177.199997, colonm_point: 177
- t(0, 1), ray: 39 >> ray: 176.600006, colonm_point: 186
- t(0, 1), ray: 40 >> ray: 176.000000, colonm_poi
+(*game)->graph->walls[line.hit]->width =====> 2000 ; pos.x = 2000.000000 ; height = 914
+
+
+
+(*game)->graph->walls[line.hit]->width =====> 2000 ; pos.x = 2000.000000 ; height = 914
+
+no no no no... what are you doing ? hmmm

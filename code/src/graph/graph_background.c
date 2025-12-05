@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 13:07:10 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/05 14:49:23 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/05 16:57:24 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int background_f_c_draw(t_game **game)
 		y++;
     }
 	// printf("\nHELL");
-	write(1, "\nHELL\n", 6);
+	// write(1, "\nHELL\n", 6);
 	// printf("\n Window:%d, %d", (*game)->width_window, (*game)->height_window);
 	
 	return (0);

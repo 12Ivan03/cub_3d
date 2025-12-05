@@ -6,22 +6,13 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/05 15:26:33 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/05 17:14:06 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #define _USE_MATH_DEFINES
 #include "cub3d.h"
 #include <math.h>
-
-#ifndef M_PI
-# define M_PI 3.14159265358979323846
-#endif
-
-float deg_to_rad(float angle)
-{
-	return (tanf(angle * (float)M_PI / 180.0f));
-}
 
 void	start_game(void *param)
 {

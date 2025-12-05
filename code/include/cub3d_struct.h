@@ -8,9 +8,10 @@
 # define WIDTH_WALL 264
 # define GRID_SIZE 264
 # define INIT_FOV 60
-# define HEIGHT_WINDOWS 80
-# define WIDTH_WINDOWS 100
+# define HEIGHT_WINDOWS 400
+# define WIDTH_WINDOWS 600
 # define CELL_SIZE 100
+# define PROJ_DIST 400
 # define NO 90
 # define EA 0
 # define SO 270
@@ -26,6 +27,9 @@
 # define PLAYER (*game)->player
 # define WL_H (*game)->height_wall
 # define WL_W (*game)->width_wall
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
 
 
 typedef struct s_coordinates
@@ -64,9 +68,10 @@ typedef struct s_rgb
 
 typedef struct s_graph
 {
-	t_rgb F;
-	t_rgb C;
-	mlx_image_t *walls[4];
+	t_rgb 		F;
+	t_rgb 		C;
+	mlx_image_t	*walls[4];
+	float		proj_dist;
 } t_graph;
 
 typedef struct s_game

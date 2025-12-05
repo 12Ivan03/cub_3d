@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/05 15:05:58 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/05 17:26:57 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@ int	main(int argc, char *argv[])
 {
 	t_game *game;
 	
+	setvbuf(stdout, NULL, _IONBF, 0);
 	if (argc != 2)
 		return (error_handler(1));
 	game = init_game();
@@ -37,7 +38,7 @@ int	main(int argc, char *argv[])
 	if (background_f_c_draw(&game))// shoudl call it once!
 		return (1);
 	// mlx_loop_hook(game->mlx, &start_game, &game);
-	start_game(game);
+	start_game(&game);
 	mlx_key_hook(game->mlx, &key_stroks, &game);
 	mlx_loop(game->mlx);        // <<< THIS runs the render/event loop
     mlx_terminate(game->mlx);
