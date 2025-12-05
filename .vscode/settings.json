@@ -2,7 +2,8 @@
 	"files.associations": {
 		"mlx42.h": "c",
 		"unordered_map": "c",
-		"cub3d.h": "c"
+		"cub3d.h": "c",
+		"math.h": "c"
 	},
 	"cmake.sourceDirectory": "/home/ipavlov/Documents/cub_3d/code/lib/MLX42"
 }

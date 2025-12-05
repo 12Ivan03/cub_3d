@@ -48,6 +48,7 @@ int	copy_map_to_game_struct(t_game **game, char **line, int fd);
 // math
 float	projection_distance(t_game **game);
 float	distance(t_coordinates a, t_coordinates b);
+void	check_angle(float *angle);
 
 // graph
 int	draw_col(t_game **game, t_line line);

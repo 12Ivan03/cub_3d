@@ -4,12 +4,12 @@
 
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
-# define HEIGHT_WALL 64
-# define WIDTH_WALL 64
-# define GRID_SIZE 64
+# define HEIGHT_WALL 264
+# define WIDTH_WALL 264
+# define GRID_SIZE 264
 # define INIT_FOV 60
-# define HEIGHT_WINDOWS 200
-# define WIDTH_WINDOWS 600
+# define HEIGHT_WINDOWS 80
+# define WIDTH_WINDOWS 100
 # define CELL_SIZE 100
 # define NO 90
 # define EA 0
@@ -18,6 +18,7 @@
 # define R 0
 # define G 1
 # define B 2
+# define ROTATION_AGNLE 5.0f
 # define IS_EMPTY_SPACE(c) ((c) == ' ' || (c) == '\t')
 # define FOV (*game)->fov
 # define WW (*game)->width_window
@@ -71,6 +72,8 @@ typedef struct s_graph
 typedef struct s_game
 {
 	mlx_t	*mlx;
+	mlx_image_t *foreground;
+	mlx_image_t *background;
 	char	**map;
 	t_list	*copy_map;
 	t_player player;

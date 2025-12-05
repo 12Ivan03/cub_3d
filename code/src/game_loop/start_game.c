@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/05 13:11:48 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/05 15:26:33 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,10 +50,7 @@ void	start_game(void *param)
 		curr_ang = ((float)ray / (float)WW) * (float)(FOV) - (float)(FOV) / 2;
 		// TODO:: check later is it possible to use macroses like a PLAYER???
 		line.angle = PLAYER.angle_alpha - curr_ang;
-		if (line.angle < 0.0f)
-			line.angle +=360.0f;
-		else if (line.angle > 360.0f)
-			line.angle -=360.0f;
+		check_angle(&line.angle);
 		// printf("FIRST ALTHPA after cal: (%f) CURR_ANG (%f)\n\n", line.angle, curr_ang);
 
 		//  horizontal intersection

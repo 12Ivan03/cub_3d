@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/05 12:28:36 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/05 15:05:58 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,12 @@ int	main(int argc, char *argv[])
 		return (error_handler(1));
 	game = init_game();
 	game->mlx = mlx_init(WIDTH_WINDOWS, HEIGHT_WINDOWS, "cub3d", true);
+	game->foreground = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
+	game->background = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
+	mlx_image_to_window(game->mlx, game->background, 0 ,0);
+	mlx_image_to_window(game->mlx, game->foreground, 0 ,0);
 	if (!game->mlx)
 		return (error_handler(6));
-	// printf("1\n");
 	if (!valid_file_name(argv[1], ".cub"))
 	{
 		if(read_file_content(argv, &game)) // || start_game(&game))
@@ -33,7 +36,8 @@ int	main(int argc, char *argv[])
 	}
 	if (background_f_c_draw(&game))// shoudl call it once!
 		return (1);
-	mlx_loop_hook(game->mlx, &start_game, &game);
+	// mlx_loop_hook(game->mlx, &start_game, &game);
+	start_game(game);
 	mlx_key_hook(game->mlx, &key_stroks, &game);
 	mlx_loop(game->mlx);        // <<< THIS runs the render/event loop
     mlx_terminate(game->mlx);
