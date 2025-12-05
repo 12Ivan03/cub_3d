@@ -52,7 +52,7 @@ void	check_angle(float *angle);
 float	deg_to_rad(float angle);
 
 // graph
-int	draw_col(t_game **game, t_line line);
+int	draw_col(t_game **game, t_line line, int ray_x, float curr_ang);
 int background_f_c_draw(t_game **game);
 
 

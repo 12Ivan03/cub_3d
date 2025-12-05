@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graph.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
+/*   By: aerokhin <aerokhin@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:49:52 by aerokhin          #+#    #+#             */
-/*   Updated: 2025/12/05 17:30:33 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/05 17:38:03 by aerokhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,39 +21,59 @@ int32_t	take_pixel(t_game **game, int wall, int x, int y)
 	return (((int32_t)p[0] << 24) | (int32_t)(p[1] << 16) | (int32_t)p[2] << 8 | (int32_t)p[3]);
 }
 
-void draw_line(t_game **game, t_line line, int colonm_point, float dist)
+void draw_line(t_game **game, t_line line, int colonm_point, float dist, int ray_x)
 {
 	int				i;
 	int				height;
+	int				start_y;
+	int				end_y;
 	t_coordinates	pos;
 	
-	i = 0;
-	height = (int)(HEIGHT_WALL / floor(dist) * (*game)->graph->proj_dist);
-	printf("Height: %d\n", height);
-	pos.x = (int)(colonm_point / 64 * (*game)->graph->walls[line.hit]->width);
-	printf("\n\n(*game)->graph->walls[line.hit]->width =====> %d ; pos.x = %f ; height = %d\n\n", (*game)->graph->walls[line.hit]->width, pos.x, height);
-	if (height < 0 || height > HEIGHT_WINDOWS) {
-		
-		printf("\n\n(*game)->graph->walls[line.hit]->width =====> %d ; pos.x = %f ; height = %d\n\n", (*game)->graph->walls[line.hit]->width, pos.x, height);
-		
-		ft_putstr_fd("no no no no... what are you doing ? hmmm\n",1);
-		exit(1);
-	}
-	while (i < (height))
+	// Calculate projected wall height
+	if (dist < 0.1f)
+		dist = 0.1f;  // Prevent division by zero or negative values
+	height = (int)(HEIGHT_WALL / dist * (*game)->graph->proj_dist);
+	
+	// Texture X coordinate (already calculated correctly in colonm_point)
+	pos.x = colonm_point;
+	if (pos.x < 0)
+		pos.x = 0;
+	if (pos.x >= (*game)->graph->walls[line.hit]->width)
+		pos.x = (*game)->graph->walls[line.hit]->width - 1;
+	
+	// Calculate start and end Y positions on screen
+	start_y = (WH - height) / 2;
+	end_y = (WH + height) / 2;
+	
+	// Clamp to screen boundaries
+	if (start_y < 0)
+		start_y = 0;
+	if (end_y > WH)
+		end_y = WH;
+	
+	printf("ray_x: %d, height: %d, dist: %.2f, start_y: %d, end_y: %d\n", ray_x, height, dist, start_y, end_y);
+	
+	// Draw the wall column
+	for (i = start_y; i < end_y; i++)
 	{
-		pos.y = (int)(i / height * (*game)->graph->walls[line.hit]->height);
-		mlx_put_pixel((*game)->foreground, (WH - height) / 2 + pos.y, colonm_point, take_pixel(game, line.hit, pos.x, pos.y));
-		i++;
+		// Calculate texture Y coordinate
+		float ratio = (float)(i - (WH - height) / 2) / (float)height;
+		pos.y = (int)(ratio * (*game)->graph->walls[line.hit]->height);
+		
+		// Clamp texture Y coordinate
+		if (pos.y < 0)
+			pos.y = 0;
+		if (pos.y >= (*game)->graph->walls[line.hit]->height)
+			pos.y = (*game)->graph->walls[line.hit]->height - 1;
+		
+		// Put pixel at correct coordinates (x, y)
+		mlx_put_pixel((*game)->foreground, ray_x, i, take_pixel(game, line.hit, pos.x, pos.y));
 	}
-
 }
 
-int	draw_col(t_game **game, t_line line)
+int	draw_col(t_game **game, t_line line, int ray_x, float curr_ang)
 {
-	(void)game;
-	// (void)line;
-	// (void)col;
-	int	colonm_point;
+	int		colonm_point;
 	float	colonm_num;
 	float	dist;
 
@@ -61,20 +81,24 @@ int	draw_col(t_game **game, t_line line)
 	{
 		colonm_num = ((line.a.x - floor(line.a.x / GRID_SIZE) * GRID_SIZE) / GRID_SIZE);
 		dist = distance(PLAYER.position, line.a);
-		// colonm_point = (int)((colonm_num * (line.hit == 1) + (1 - colonm_num) * (line.hit == 3)) * WIDTH_WALL);
 	}
 	else
 	{
 		colonm_num = ((line.b.y - floor(line.b.y / GRID_SIZE) * GRID_SIZE) / GRID_SIZE);
 		dist = distance(PLAYER.position, line.b);
-		// colonm_point = (int)((colonm_num * (line.hit == 0) + (1 - colonm_num) * (line.hit == 2)) * WIDTH_WALL);
 	}
-	colonm_point = (int)((colonm_num * (line.hit <= 1) + (1 - colonm_num) * (line.hit >= 2)) * WIDTH_WALL);
-	printf("ray: %f, colonm_point: %d\n ", line.angle, colonm_point);
-	// printf("ray: %f, colonm_point: %d\n ", line.b.y, line.a.x);
-
-
 	
-	draw_line(game, line, colonm_point, dist);
+	// Correct fish-eye effect
+	dist = dist * cosf(deg_to_rad(curr_ang));
+	
+	colonm_point = (int)((colonm_num * (line.hit <= 1) + (1 - colonm_num) * (line.hit >= 2)) * WIDTH_WALL);
+	
+	// Clamp colonm_point to valid range
+	if (colonm_point < 0)
+		colonm_point = 0;
+	if (colonm_point >= WIDTH_WALL)
+		colonm_point = WIDTH_WALL - 1;
+	
+	draw_line(game, line, colonm_point, dist, ray_x);
 	return 0;
 }

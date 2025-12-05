@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
+/*   By: aerokhin <aerokhin@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/05 17:14:06 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/05 17:42:11 by aerokhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void	start_game(void *param)
 	// 	return (1);
 	ray = 0;
 	ft_memset(&t, 0, sizeof(t));
+	ft_bzero((*game)->foreground->pixels, (*game)->foreground->width * (*game)->foreground->height * 4);
 	// line.angle = 0.0f;
 	while (ray < WW)
 	{
@@ -117,11 +118,7 @@ void	start_game(void *param)
 		}
 		printf("t(%d, %d), ray: %d >> ",  t.x, t.y, ray);
 
-		// draw_line = (t_line) \
-		// 			{{ray, (float)((WH - WW / dist) / 2)}, \
-		// 			{ray, (float)((WH + WW / dist) / 2)}, \
-		// 			line.angle, hit};	
-		draw_col(game, line);
+		draw_col(game, line, ray, curr_ang);
 		
 		ray++;
 	}
