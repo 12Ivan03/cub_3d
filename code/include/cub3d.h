@@ -30,6 +30,9 @@ t_game	*init_game(void);
 
 // lib
 
+// hooks
+void	key_stroks(mlx_key_data_t keydata, void *params);
+
 // parse_file
 int	valid_file_name(char *argv, char *str);
 int	read_file_content(char *argv[], t_game **game);
@@ -52,7 +55,7 @@ int background_f_c_draw(t_game **game);
 
 
 // game
-int	start_game(t_game **game);
+void	start_game(void *param);
 
 
 #endif

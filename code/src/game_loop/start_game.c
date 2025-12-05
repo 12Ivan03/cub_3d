@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/02 17:37:01 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/05 13:11:48 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,9 @@ float deg_to_rad(float angle)
 	return (tanf(angle * (float)M_PI / 180.0f));
 }
 
-int	start_game(t_game **game)
+void	start_game(void *param)
 {
+	t_game **game;
 	int				ray;
 	float			curr_ang;
 	// float			line.angle;
@@ -34,6 +35,7 @@ int	start_game(t_game **game)
 	float			dist;
 	// int				hit;
 
+	game = (t_game **)param;
 	printf("Player pos >> x:%f (%d), y: %f (%d), Player angle: %f\n", PLAYER.position.x, (int)(PLAYER.position.x / GRID_SIZE), PLAYER.position.y, (int)(PLAYER.position.y / GRID_SIZE), PLAYER.angle_alpha);
 	printf("Size of map >> y:%d, x: %d\n", (*game)->height, (*game)->width);
 	// printf("test ft_tan for PI: %f, 2*PI: %f, PI/2:%f \n", ft_tan(180), ft_tan(360), ft_tan(90));
@@ -139,5 +141,5 @@ int	start_game(t_game **game)
 	
 	// mlx_loop((*game)->mlx);        // <<< THIS runs the render/event loop
     // mlx_terminate((*game)->mlx);
-	return (0);
+	// return (0);
 }
