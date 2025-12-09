@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:40:35 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/11/29 17:47:23 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/09 14:04:34 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ int	handle_map(t_game **game)
 		return (-1);
 	while (i < (*game)->height)
 	{
-		// printf("1\n");
+		// printf("1: i=%d \n", i);
 		(*game)->map[i] = (char *)ft_calloc(((*game)->width + 1), 1);
 		if (!(*game)->map[i])
 			return (free_map(&(*game)->map, i), error_handler(4));
@@ -101,14 +101,14 @@ int	handle_map(t_game **game)
 		j = find_start_position(game, i);
 		if (j != -1)
 		{
-			// printf("3\n");
+			// printf("3: i=%d <> j=%d\n", i, j);
 			if ((*game)->player.position.x != -1 || (*game)->player.position.y != -1)
-				return (free_map(&(*game)->map, i + 1), 1);
+				return (free_map(&(*game)->map, i + 1), printf("err1\n"),  1);
 			set_position(game, j, i, (*game)->map[i][j]);
 			(*game)->map[i][j] = '0';
 		}
 		if (eval_map_line((*game)->map[i]))
-			return (free_map(&(*game)->map, i + 1), 1);
+			return (free_map(&(*game)->map, i + 1), printf("err2\n"), 1);
 		// printf("%s\n", (*game)->map[i]);
 		iter = iter->next;
 		i++;

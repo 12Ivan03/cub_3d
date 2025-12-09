@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 13:07:10 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/05 16:57:24 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/09 14:22:55 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ int background_f_c_draw(t_game **game)
 					(*game)->graph->F.rgb[1], 
 					(*game)->graph->F.rgb[2]);
 	int y = 0;
-	while(y < HEIGHT_WINDOWS)
+	while(y < WH)
 	{
-		uint32_t col = (y < HEIGHT_WINDOWS / 2) ? ceil_col : floor_col;
+		uint32_t col = (y < WH / 2) ? ceil_col : floor_col;
 		int x = 0;
-		while(x < WIDTH_WINDOWS)
+		while(x < WW)
 		{
 			mlx_put_pixel((*game)->background, x, y, col);
 			// printf("%d, %d: %d, \n", x, y, col);

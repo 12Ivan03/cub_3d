@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   graph.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerokhin <aerokhin@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:49:52 by aerokhin          #+#    #+#             */
-/*   Updated: 2025/12/05 17:38:03 by aerokhin         ###   ########.fr       */
+/*   Updated: 2025/12/09 15:15:23 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void draw_line(t_game **game, t_line line, int colonm_point, float dist, int ray
 	if (end_y > WH)
 		end_y = WH;
 	
-	printf("ray_x: %d, height: %d, dist: %.2f, start_y: %d, end_y: %d\n", ray_x, height, dist, start_y, end_y);
+	// printf("ray_x: %d, height: %d, dist: %.2f, start_y: %d, end_y: %d\n", ray_x, height, dist, start_y, end_y);
 	
 	// Draw the wall column
 	for (i = start_y; i < end_y; i++)

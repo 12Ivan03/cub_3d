@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 12:50:17 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/09 12:20:14 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/09 15:15:23 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,3 +38,4 @@ float deg_to_rad(float angle)
 	// return (tanf(angle * (float)M_PI / 180.0f));
 	return (angle * (float)M_PI / 180.0f);
 }
+

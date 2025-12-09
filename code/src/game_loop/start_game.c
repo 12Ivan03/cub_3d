@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/09 13:06:21 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/09 17:00:04 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,8 @@ void	start_game(void *param)
 	// int				hit;
 
 	game = (t_game **)param;
-	printf("Player pos >> x:%f (%d), y: %f (%d), Player angle: %f\n", PLAYER.position.x, (int)(PLAYER.position.x / GRID_SIZE), PLAYER.position.y, (int)(PLAYER.position.y / GRID_SIZE), PLAYER.angle_alpha);
-	printf("Size of map >> y:%d, x: %d\n", (*game)->height, (*game)->width);
+	// printf("Player pos >> x:%f (%d), y: %f (%d), Player angle: %f\n", PLAYER.position.x, (int)(PLAYER.position.x / GRID_SIZE), PLAYER.position.y, (int)(PLAYER.position.y / GRID_SIZE), PLAYER.angle_alpha);
+	// printf("Size of map >> y:%d, x: %d\n", (*game)->height, (*game)->width);
 	// printf("test ft_tan for PI: %f, 2*PI: %f, PI/2:%f \n", ft_tan(180), ft_tan(360), ft_tan(90));
 	// if (background_f_c_draw(game))// shoudl call it once!
 	// 	return (1);
@@ -46,8 +46,8 @@ void	start_game(void *param)
 		// printf("FIRST ALTHPA after cal: (%f) CURR_ANG (%f)\n\n", line.angle, curr_ang);
 
 		//  horizontal intersection
-		if (line.angle < 180.0f && line.angle > 0.0f)  // Ray looking up
-			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE - 0.0001f;
+		if (line.angle <= 180.0f && line.angle > 0.0f)  // Ray looking up
+			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE - 1.0001f;
 		else  // Ray looking down
 			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
 		// ΔX = -ΔY / tan(line.angle), where ΔY = line.a.y - PLAYER.position.y
@@ -56,7 +56,7 @@ void	start_game(void *param)
 		
 		// vertical intersection
 		if (line.angle >= 90.0f && line.angle < 270.0f)  // Ray looking left
-			line.b.x = floor(PLAYER.position.x / GRID_SIZE) * GRID_SIZE - 0.0001f;
+			line.b.x = floor(PLAYER.position.x / GRID_SIZE) * GRID_SIZE - 1.0001f;
 		else  // Ray looking right
 			line.b.x = floor(PLAYER.position.x / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
 		// ΔY = -ΔX * tan(line.angle), where ΔX = line.b.x - PLAYER.position.x
@@ -116,13 +116,13 @@ void	start_game(void *param)
 			}
 			// printf("+++B: a(%f, %f), b(%f, %f)\n", line.a.x, line.a.y, line.b.x, line.b.y);
 		}
-		printf("t(%d, %d), ray: %d >> ",  t.x, t.y, ray);
+		// printf("t(%d, %d), ray: %d >> ",  t.x, t.y, ray);
 
 		draw_col(game, line, ray, curr_ang);
 		
 		ray++;
 	}
-	printf("break main loop \n\n\n");
+	// printf("break main loop \n\n\n");
 	
 	// mlx_loop((*game)->mlx);        // <<< THIS runs the render/event loop
     // mlx_terminate((*game)->mlx);

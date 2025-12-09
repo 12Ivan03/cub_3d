@@ -13,6 +13,7 @@ src/parse_file/eval_graph.c \
 src/parse_file/handle_map.c \
 src/free/ft_free.c \
 src/hooks/key_hook.c \
+src/hooks/resize_hook.c \
 src/utils/check_settings_line.c \
 src/utils/check_map_line.c \
 src/init/init_game.c \

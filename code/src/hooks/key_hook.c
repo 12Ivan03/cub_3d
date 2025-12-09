@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:24:18 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/09 13:00:13 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/09 17:16:57 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,9 @@ static int is_walkable(t_game **game, float x, float y)
     int tx = (int)(x / GRID_SIZE);
     int ty = (int)(y / GRID_SIZE);
 
-    if (tx < 0 || tx >= (*game)->width || ty < 0 || ty >= (*game)->height)
-        return 0;
+    if (tx < 0 || tx > (*game)->width || ty < 0 || ty > (*game)->height )
+		return 0;
+	printf("tx=> %d; ty=> %d, grid: %c\n",tx,ty, (*game)->map[ty][tx]);
     return ((*game)->map[ty][tx] != '1');
 }
 
@@ -61,6 +62,8 @@ void	key_up(t_game **game)
     {
         (*game)->player.position.x = nx;
         (*game)->player.position.y = ny;
+		printf(">player.position.x=> %f; >player.position.y=> %f,\n",(*game)->player.position.x,(*game)->player.position.y);
+
     }
     start_game(game);
 }
@@ -79,6 +82,8 @@ void	key_down(t_game **game)
     {
         (*game)->player.position.x = nx;
         (*game)->player.position.y = ny;
+		printf(">player.position.x=> %f; >player.position.y=> %f,\n",(*game)->player.position.x,(*game)->player.position.y);
+
     }
     start_game(game);
 }	
