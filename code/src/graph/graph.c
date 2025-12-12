@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:49:52 by aerokhin          #+#    #+#             */
-/*   Updated: 2025/12/12 13:27:10 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/12 15:43:36 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void draw_line(t_game **game, t_line line, int colonm_point, float dist, int ray
 	t_coordinates	pos;
 	
 	// Calculate projected wall height
-	if (dist < 0.1f)
-		dist = 0.1f;  // Prevent division by zero or negative values
+	if (dist < 0.001f)
+		dist = 0.001f;  // Prevent division by zero or negative values
 	height = (int)(HEIGHT_WALL / dist * (*game)->graph->proj_dist);
 	
 	// Texture X coordinate (already calculated correctly in colonm_point)
@@ -77,21 +77,24 @@ int	draw_col(t_game **game, t_line line, int ray_x, float curr_ang)
 	float	colonm_num;
 	float	dist;
 
-	if (line.hit % 2)
+		printf("ray: %d, hit: %d ",  ray_x, line.hit);
+	if (line.hit % 2 != 0)
 	{
-		colonm_num = ((line.a.x - floor(line.a.x / GRID_SIZE) * GRID_SIZE) / GRID_SIZE);
+		colonm_num = ((line.a.x - floor((line.a.x + 1.00f) / GRID_SIZE) * GRID_SIZE ) / GRID_SIZE);
 		dist = distance(PLAYER.position, line.a);
+		printf("odd  a.x: %f", line.a.x);
 	}
 	else
 	{
-		colonm_num = ((line.b.y - floor(line.b.y / GRID_SIZE) * GRID_SIZE) / GRID_SIZE);
+		colonm_num = ((line.b.y - floor((line.b.y + 1.00f) / GRID_SIZE) * GRID_SIZE) / GRID_SIZE);
 		dist = distance(PLAYER.position, line.b);
+		printf("even b.y: %f", line.b.y);
 	}
 	
 	// Correct fish-eye effect
 	dist = dist * cosf(deg_to_rad(curr_ang));
-	
-	colonm_point = (int)((colonm_num * (line.hit <= 1) + (1 - colonm_num) * (line.hit >= 2)) * (*game)->graph->walls[line.hit]->width);
+	// printf(" before ==>  %f \n", colonm_num);
+	colonm_point = floor((colonm_num * (line.hit <= 1) + (1 - colonm_num) * (line.hit >= 2)) * (*game)->graph->walls[line.hit]->width);
 	// colonm_point = (int)((colonm_num * (line.hit <= 1) + (1 - colonm_num) * (line.hit >= 2)) * WIDTH_WALL);
 	
 	// Clamp colonm_point to valid range
@@ -100,6 +103,7 @@ int	draw_col(t_game **game, t_line line, int ray_x, float curr_ang)
 	if (colonm_point >= (int)(*game)->graph->walls[line.hit]->width)
 		colonm_point = (int)(*game)->graph->walls[line.hit]->width - 1;
 	
+	printf(" >> %d <==> %f \n", colonm_point, colonm_num);
 	draw_line(game, line, colonm_point, dist, ray_x);
 	return 0;
 }

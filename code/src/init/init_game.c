@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:02:42 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/05 17:22:38 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/12 15:21:23 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ t_game *init_game(void)
 	game->player.angle_alpha = 0;
 	game->height_window = HEIGHT_WINDOWS;
 	game->width_window = WIDTH_WINDOWS;
+	game->move_speed = MOVE_SPEED;
 	game->graph = malloc(sizeof(*game->graph));
 	if (!game->graph)
 		return (free(game), NULL);

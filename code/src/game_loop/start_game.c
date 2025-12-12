@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/12 11:55:41 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/12 16:10:08 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ void	start_game(void *param)
 		// printf("FIRST ALTHPA after cal: (%f) CURR_ANG (%f)\n\n", line.angle, curr_ang);
 
 		//  horizontal intersection
-		if (line.angle <= 180.0f && line.angle > 0.0f)  // Ray looking up
-			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE - 1.0001f;
+		if (line.angle < 180.0f && line.angle > 0.0f)  // Ray looking up
+			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE - 1.0f;
 		else  // Ray looking down
 			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
 		// ΔX = -ΔY / tan(line.angle), where ΔY = line.a.y - PLAYER.position.y
@@ -55,8 +55,8 @@ void	start_game(void *param)
 		// printf("## line.a: (%f, %f)\n", line.a.x, line.a.y);
 		
 		// vertical intersection
-		if (line.angle >= 90.0f && line.angle < 270.0f)  // Ray looking left
-			line.b.x = floorf(PLAYER.position.x / GRID_SIZE) * GRID_SIZE - 1.0001f;
+		if (line.angle > 90.0f && line.angle < 270.0f)  // Ray looking left
+			line.b.x = floorf(PLAYER.position.x / GRID_SIZE) * GRID_SIZE - 1.0f;
 		else  // Ray looking right
 			line.b.x = floorf(PLAYER.position.x / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
 		// ΔY = -ΔX * tan(line.angle), where ΔX = line.b.x - PLAYER.position.x
@@ -66,7 +66,7 @@ void	start_game(void *param)
 		while (1)
 		{
 			// printf("Checking distance: \n");
-			if (distance(PLAYER.position, line.a) < distance(PLAYER.position, line.b))
+			if (distance(PLAYER.position, line.a) <= distance(PLAYER.position, line.b))
 			{
 				// printf("A < B: t(%d, %d), a(%f, %f), b(%f, %f)\n", t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
 				t.x = (int)(line.a.x / GRID_SIZE);
@@ -74,7 +74,7 @@ void	start_game(void *param)
 				// printf("after calculation --> A < B: t(%d, %d), a(%f, %f), b(%f, %f)\n", t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
 				
 				dist = distance(PLAYER.position, line.a);
-				line.hit =  1 + 2 * (line.angle < 180.0f && line.angle > 0.0f); // 1 = North, 3 = South
+				line.hit =  1 + 2 * (line.angle <= 180.0f && line.angle >= 0.0f); // 1 = North, 3 = South
 			}
 			else
 			{
@@ -84,16 +84,22 @@ void	start_game(void *param)
 				// printf("after calculation --> A > B: t(%d, %d), a(%f, %f), b(%f, %f)\n", t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
 
 				dist = distance(PLAYER.position, line.b);
-				line.hit = (line.angle >= 90.0f && line.angle < 270.0f) * 2; // 2 = West, 0 = East
+				line.hit = (line.angle >= 90.0f && line.angle <= 270.0f) * 2; // 2 = West, 0 = East
 			}
-			// printf("map[%d][%d]\n",t.y, t.x );
-			// printf("---: line.angle(%f), t(%d, %d), a(%f, %f), b(%f, %f)\n", line.angle, t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
 			
 			// Check bounds
 			if (t.x < 0 || t.x >= (*game)->width || t.y < 0 || t.y >= (*game)->height)
+			{
+				printf("map[%d][%d]\n",t.y, t.x );
+				printf("---: line.angle(%f), t(%d, %d), a(%f, %f), b(%f, %f)\n", line.angle, t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
 				break ;
+			}
 			if ((*game)->map[t.y][t.x] == '1')// TODO:: check (our logic) is t.x and t.y real tile's number???
+			{
+				printf("map[%d][%d]\n",t.y, t.x );
+				printf("---: line.angle(%f), t(%d, %d), a(%f, %f), b(%f, %f)\n", line.angle, t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
 				break ;
+			}
 			if (distance(PLAYER.position, line.a) < distance(PLAYER.position, line.b))
 			{
 				// Move to next horizontal grid line
@@ -113,15 +119,18 @@ void	start_game(void *param)
 				
 				line.b.x += step_x;
 				line.b.y += step_y;
+				if (step_y < 0)
+					printf("-------------- %f -------------\n", step_y);
 			}
-			// printf("+++B: a(%f, %f), b(%f, %f)\n", line.a.x, line.a.y, line.b.x, line.b.y);
+			printf("+++B: a(%f, %f), b(%f, %f)\n", line.a.x, line.a.y, line.b.x, line.b.y);
 		}
-		// printf("t(%d, %d), ray: %d >> ",  t.x, t.y, ray);
+		printf("ray: %d, hit: %d \n",  ray, line.hit);
 
 		draw_col(game, line, ray, curr_ang);
 		
 		ray++;
 	}
+	// exit(0);
 	// printf("break main loop \n\n\n");
 	
 	// mlx_loop((*game)->mlx);        // <<< THIS runs the render/event loop

@@ -12,6 +12,7 @@
 # define WIDTH_WINDOWS 1000
 # define CELL_SIZE 100
 # define PROJ_DIST 400
+# define MOVE_SPEED 8.0f 
 # define NO 90
 # define EA 0
 # define SO 270
@@ -19,7 +20,7 @@
 # define R 0
 # define G 1
 # define B 2
-# define ROTATION_AGNLE 5.0f
+# define ROTATION_AGNLE 1.0f
 # define IS_EMPTY_SPACE(c) ((c) == ' ' || (c) == '\t')
 # define FOV (*game)->fov
 # define WW (*game)->width_window
@@ -89,6 +90,7 @@ typedef struct s_game
 	int		fov;
 	int		height_window;
 	int		width_window;
+	float	move_speed;
 	t_graph	*graph;
 
 } t_game;
