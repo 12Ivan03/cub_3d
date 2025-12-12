@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:49:52 by aerokhin          #+#    #+#             */
-/*   Updated: 2025/12/09 15:15:23 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/12 13:27:10 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,13 +91,14 @@ int	draw_col(t_game **game, t_line line, int ray_x, float curr_ang)
 	// Correct fish-eye effect
 	dist = dist * cosf(deg_to_rad(curr_ang));
 	
-	colonm_point = (int)((colonm_num * (line.hit <= 1) + (1 - colonm_num) * (line.hit >= 2)) * WIDTH_WALL);
+	colonm_point = (int)((colonm_num * (line.hit <= 1) + (1 - colonm_num) * (line.hit >= 2)) * (*game)->graph->walls[line.hit]->width);
+	// colonm_point = (int)((colonm_num * (line.hit <= 1) + (1 - colonm_num) * (line.hit >= 2)) * WIDTH_WALL);
 	
 	// Clamp colonm_point to valid range
 	if (colonm_point < 0)
 		colonm_point = 0;
-	if (colonm_point >= WIDTH_WALL)
-		colonm_point = WIDTH_WALL - 1;
+	if (colonm_point >= (int)(*game)->graph->walls[line.hit]->width)
+		colonm_point = (int)(*game)->graph->walls[line.hit]->width - 1;
 	
 	draw_line(game, line, colonm_point, dist, ray_x);
 	return 0;

@@ -6,14 +6,14 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:24:18 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/09 17:16:57 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/12 13:46:57 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
 #define MOVE_SPEED 8.0f   /* tune this */
-#define COLLIDE_PAD 8.0f  /* keep a small buffer from walls */
+// #define COLLIDE_PAD 0.0f  /* keep a small buffer from walls */
 
 static int is_walkable(t_game **game, float x, float y)
 {
@@ -22,7 +22,7 @@ static int is_walkable(t_game **game, float x, float y)
 
     if (tx < 0 || tx > (*game)->width || ty < 0 || ty > (*game)->height )
 		return 0;
-	printf("tx=> %d; ty=> %d, grid: %c\n",tx,ty, (*game)->map[ty][tx]);
+	// printf("tx=> %d; ty=> %d, grid: %c\n",tx,ty, (*game)->map[ty][tx]);
     return ((*game)->map[ty][tx] != '1');
 }
 
@@ -37,14 +37,14 @@ void	key_right(t_game **game)
 {
 	(*game)->player.angle_alpha -= ROTATION_AGNLE;
 	check_angle(&(*game)->player.angle_alpha);
-	start_game(game);
+	// start_game(game);
 }
 
 void	key_left(t_game **game)
 {
 	(*game)->player.angle_alpha += ROTATION_AGNLE;
 	check_angle(&(*game)->player.angle_alpha);
-	start_game(game);
+	// start_game(game);
 }
 // UP AND DOWN
 void	key_up(t_game **game)
@@ -57,15 +57,15 @@ void	key_up(t_game **game)
     float ny = (*game)->player.position.y - sinf(rad) * MOVE_SPEED;
 
     /* optional small collision padding: test several probe points */
-    if (is_walkable(game, nx + COLLIDE_PAD, ny + COLLIDE_PAD) &&
-        is_walkable(game, nx - COLLIDE_PAD, ny - COLLIDE_PAD))
+    if (is_walkable(game, nx, ny))
+	// && is_walkable(game, nx - COLLIDE_PAD, ny - COLLIDE_PAD))
     {
         (*game)->player.position.x = nx;
         (*game)->player.position.y = ny;
-		printf(">player.position.x=> %f; >player.position.y=> %f,\n",(*game)->player.position.x,(*game)->player.position.y);
+		// printf(">player.position.x=> %f; >player.position.y=> %f,\n >>player>angel ==> %f \n\n",(*game)->player.position.x / GRID_SIZE,(*game)->player.position.y / GRID_SIZE, (*game)->player.angle_alpha);
 
     }
-    start_game(game);
+    // start_game(game);
 }
 
 void	key_down(t_game **game)
@@ -77,15 +77,14 @@ void	key_down(t_game **game)
     float nx = (*game)->player.position.x - cosf(rad) * MOVE_SPEED;
     float ny = (*game)->player.position.y + sinf(rad) * MOVE_SPEED;
 
-    if (is_walkable(game, nx + COLLIDE_PAD, ny + COLLIDE_PAD) &&
-        is_walkable(game, nx - COLLIDE_PAD, ny - COLLIDE_PAD))
+    if (is_walkable(game, nx, ny)) // && is_walkable(game, nx - COLLIDE_PAD, ny - COLLIDE_PAD))
     {
         (*game)->player.position.x = nx;
         (*game)->player.position.y = ny;
-		printf(">player.position.x=> %f; >player.position.y=> %f,\n",(*game)->player.position.x,(*game)->player.position.y);
+		// printf(">player.position.x=> %f; >player.position.y=> %f,\n >>player>angel ==> %f \n\n",(*game)->player.position.x  / GRID_SIZE,(*game)->player.position.y  / GRID_SIZE, (*game)->player.angle_alpha);
 
     }
-    start_game(game);
+    // start_game(game);
 }	
 
 

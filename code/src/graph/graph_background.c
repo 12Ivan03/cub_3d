@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 13:07:10 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/09 14:22:55 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/12 13:15:13 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,12 +30,12 @@ int background_f_c_draw(t_game **game)
                   ((uint32_t)((*game)->graph->F.rgb[1]) << 16) |
                   ((uint32_t)((*game)->graph->F.rgb[2]) << 8) | 0xFF);
 
-	printf("Ceiling: %d, %d, %d\n", (*game)->graph->C.rgb[0], 
-					(*game)->graph->C.rgb[1], 
-					(*game)->graph->C.rgb[2]);
-	printf("Floor: %d, %d, %d\n", (*game)->graph->F.rgb[0], 
-					(*game)->graph->F.rgb[1], 
-					(*game)->graph->F.rgb[2]);
+	// printf("Ceiling: %d, %d, %d\n", (*game)->graph->C.rgb[0], 
+					// (*game)->graph->C.rgb[1], 
+					// (*game)->graph->C.rgb[2]);
+	// printf("Floor: %d, %d, %d\n", (*game)->graph->F.rgb[0], 
+					// (*game)->graph->F.rgb[1], 
+					// (*game)->graph->F.rgb[2]);
 	int y = 0;
 	while(y < WH)
 	{

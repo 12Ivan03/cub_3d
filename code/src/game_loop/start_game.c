@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/09 17:00:04 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/12 11:55:41 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,9 +56,9 @@ void	start_game(void *param)
 		
 		// vertical intersection
 		if (line.angle >= 90.0f && line.angle < 270.0f)  // Ray looking left
-			line.b.x = floor(PLAYER.position.x / GRID_SIZE) * GRID_SIZE - 1.0001f;
+			line.b.x = floorf(PLAYER.position.x / GRID_SIZE) * GRID_SIZE - 1.0001f;
 		else  // Ray looking right
-			line.b.x = floor(PLAYER.position.x / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
+			line.b.x = floorf(PLAYER.position.x / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
 		// ΔY = -ΔX * tan(line.angle), where ΔX = line.b.x - PLAYER.position.x
 		line.b.y = PLAYER.position.y - (line.b.x - PLAYER.position.x) * tanf(deg_to_rad(line.angle));
 		// printf("## line.b: (%f, %f)\n", line.b.x, line.b.y);
@@ -74,7 +74,7 @@ void	start_game(void *param)
 				// printf("after calculation --> A < B: t(%d, %d), a(%f, %f), b(%f, %f)\n", t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
 				
 				dist = distance(PLAYER.position, line.a);
-				line.hit =  1 + 2 * (line.angle < 180.0f); // 1 = North, 3 = South
+				line.hit =  1 + 2 * (line.angle < 180.0f && line.angle > 0.0f); // 1 = North, 3 = South
 			}
 			else
 			{

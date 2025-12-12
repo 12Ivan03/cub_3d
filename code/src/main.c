@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/09 14:15:36 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/12 13:46:47 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,10 @@ int	main(int argc, char *argv[])
 	}
 	if (background_f_c_draw(&game))// shoudl call it once!
 		return (1);
-	// mlx_loop_hook(game->mlx, &start_game, &game);
 	start_game(&game);
 	mlx_key_hook(game->mlx, &key_stroks, &game);
 	mlx_resize_hook(game->mlx, rezise_window , &game);
+	mlx_loop_hook(game->mlx, &start_game, &game);
 	mlx_loop(game->mlx);        // <<< THIS runs the render/event loop
     mlx_terminate(game->mlx);
 	if (game != NULL)
