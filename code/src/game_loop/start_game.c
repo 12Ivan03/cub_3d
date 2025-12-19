@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aerokhin <aerokhin@student.codam.nl>       +#+  +:+       +#+        */
+/*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/19 14:05:05 by aerokhin         ###   ########.fr       */
+/*   Updated: 2025/12/19 14:31:07 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,9 +53,9 @@ void	start_game(void *param)
 		double side_dist_x;
 		double side_dist_y;
 		int side = 0;
-
-		step_x = (ray_dir_x >= 0.0) * 2 - 1;
-		step_y = (ray_dir_y >= 0.0) * 2 - 1;
+		// directions
+		step_x = (ray_dir_x >= 0.0) * 2 - 1; // left or right
+		step_y = (ray_dir_y >= 0.0) * 2 - 1; // up or down
 		side_dist_x = ((double)map_x + 1.0 * (step_x == 1) - pos_x) * delta_dist_x * step_x;
 		side_dist_y = ((double)map_y + 1.0 * (step_y == 1) - pos_y) * delta_dist_y * step_y;
 		// if (ray_dir_x < 0.0)
