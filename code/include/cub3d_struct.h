@@ -91,6 +91,7 @@ typedef struct s_game
 	int		height_window;
 	int		width_window;
 	float	move_speed;
+	double	mouse_y;
 	t_graph	*graph;
 
 } t_game;

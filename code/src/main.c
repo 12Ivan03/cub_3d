@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/12 14:38:35 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/19 12:01:13 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	// start_game(&game);
 	mlx_key_hook(game->mlx, &key_stroks, &game);
+	mlx_cursor_hook(game->mlx, cursor_cb, &game);
 	mlx_resize_hook(game->mlx, rezise_window , &game);
 	mlx_loop_hook(game->mlx, &start_game, &game);
 	mlx_loop(game->mlx);        // <<< THIS runs the render/event loop

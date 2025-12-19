@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/12 16:10:08 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/19 12:08:22 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,14 +90,14 @@ void	start_game(void *param)
 			// Check bounds
 			if (t.x < 0 || t.x >= (*game)->width || t.y < 0 || t.y >= (*game)->height)
 			{
-				printf("map[%d][%d]\n",t.y, t.x );
-				printf("---: line.angle(%f), t(%d, %d), a(%f, %f), b(%f, %f)\n", line.angle, t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
+				// printf("map[%d][%d]\n",t.y, t.x );
+				// printf("---: line.angle(%f), t(%d, %d), a(%f, %f), b(%f, %f)\n", line.angle, t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
 				break ;
 			}
 			if ((*game)->map[t.y][t.x] == '1')// TODO:: check (our logic) is t.x and t.y real tile's number???
 			{
-				printf("map[%d][%d]\n",t.y, t.x );
-				printf("---: line.angle(%f), t(%d, %d), a(%f, %f), b(%f, %f)\n", line.angle, t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
+				// printf("map[%d][%d]\n",t.y, t.x );
+				// printf("---: line.angle(%f), t(%d, %d), a(%f, %f), b(%f, %f)\n", line.angle, t.x, t.y, line.a.x, line.a.y, line.b.x, line.b.y);
 				break ;
 			}
 			if (distance(PLAYER.position, line.a) < distance(PLAYER.position, line.b))
@@ -119,12 +119,12 @@ void	start_game(void *param)
 				
 				line.b.x += step_x;
 				line.b.y += step_y;
-				if (step_y < 0)
-					printf("-------------- %f -------------\n", step_y);
+				// if (step_y < 0)
+					// printf("-------------- %f -------------\n", step_y);
 			}
-			printf("+++B: a(%f, %f), b(%f, %f)\n", line.a.x, line.a.y, line.b.x, line.b.y);
+			// printf("+++B: a(%f, %f), b(%f, %f)\n", line.a.x, line.a.y, line.b.x, line.b.y);
 		}
-		printf("ray: %d, hit: %d \n",  ray, line.hit);
+		// printf("ray: %d, hit: %d \n",  ray, line.hit);
 
 		draw_col(game, line, ray, curr_ang);
 		

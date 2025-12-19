@@ -33,6 +33,8 @@ t_game	*init_game(void);
 // hooks
 void	key_stroks(mlx_key_data_t keydata, void *params);
 void rezise_window(int32_t width, int32_t heigth, void *param);
+void cursor_cb(double xpos, double ypos, void *param);
+
 
 // parse_file
 int	valid_file_name(char *argv, char *str);

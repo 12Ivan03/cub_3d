@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:02:42 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/12 15:21:23 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/19 12:41:32 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,15 +38,16 @@ t_game *init_game(void)
 	if (!game->graph)
 		return (free(game), NULL);
 	ft_memset(game->graph, 0, sizeof(*game->graph));
-		write(1, "1\n", 2);
-		game->graph->proj_dist = (WIDTH_WINDOWS / 2) / tan(deg_to_rad(game->fov / 2));
-		write(1, "2\n", 2);
+		// write(1, "1\n", 2);
+	game->graph->proj_dist = (WIDTH_WINDOWS / 2) / tan(deg_to_rad(game->fov / 2));
+		// write(1, "2\n", 2);
 	
 	for (int i = 0; i < 4; i++)
 		game->graph->walls[i] = NULL;
 
 	game->graph->C = (t_rgb){ .rgb = {-1, -1, -1}};
 	game->graph->F = (t_rgb){ .rgb = {-1, -1, -1}};
+	game->mouse_y = -1;
 
 
 	

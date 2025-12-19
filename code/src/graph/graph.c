@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:49:52 by aerokhin          #+#    #+#             */
-/*   Updated: 2025/12/12 15:43:36 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/19 12:07:16 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,18 +77,18 @@ int	draw_col(t_game **game, t_line line, int ray_x, float curr_ang)
 	float	colonm_num;
 	float	dist;
 
-		printf("ray: %d, hit: %d ",  ray_x, line.hit);
+		// printf("ray: %d, hit: %d ",  ray_x, line.hit);
 	if (line.hit % 2 != 0)
 	{
 		colonm_num = ((line.a.x - floor((line.a.x + 1.00f) / GRID_SIZE) * GRID_SIZE ) / GRID_SIZE);
 		dist = distance(PLAYER.position, line.a);
-		printf("odd  a.x: %f", line.a.x);
+		// printf("odd  a.x: %f", line.a.x);
 	}
 	else
 	{
 		colonm_num = ((line.b.y - floor((line.b.y + 1.00f) / GRID_SIZE) * GRID_SIZE) / GRID_SIZE);
 		dist = distance(PLAYER.position, line.b);
-		printf("even b.y: %f", line.b.y);
+		// printf("even b.y: %f", line.b.y);
 	}
 	
 	// Correct fish-eye effect
@@ -103,7 +103,7 @@ int	draw_col(t_game **game, t_line line, int ray_x, float curr_ang)
 	if (colonm_point >= (int)(*game)->graph->walls[line.hit]->width)
 		colonm_point = (int)(*game)->graph->walls[line.hit]->width - 1;
 	
-	printf(" >> %d <==> %f \n", colonm_point, colonm_num);
+	// printf(" >> %d <==> %f \n", colonm_point, colonm_num);
 	draw_line(game, line, colonm_point, dist, ray_x);
 	return 0;
 }

@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:24:18 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/12 14:47:05 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/19 12:53:33 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,14 +97,40 @@ void	key_stroks(mlx_key_data_t keydata, void *params)
 
 	game = (t_game **)params;
 
-	if (mlx_is_key_down((*game)->mlx, MLX_KEY_UP))
+	if (mlx_is_key_down((*game)->mlx, MLX_KEY_UP) || mlx_is_key_down((*game)->mlx, MLX_KEY_W))
 		key_up(game);
-	if (mlx_is_key_down((*game)->mlx, MLX_KEY_DOWN))
+	if (mlx_is_key_down((*game)->mlx, MLX_KEY_DOWN) || mlx_is_key_down((*game)->mlx, MLX_KEY_S))
 		key_down(game);
-	if (mlx_is_key_down((*game)->mlx, MLX_KEY_LEFT))
+	if (mlx_is_key_down((*game)->mlx, MLX_KEY_LEFT) || mlx_is_key_down((*game)->mlx, MLX_KEY_A))
 		key_left(game);
-	if (mlx_is_key_down((*game)->mlx, MLX_KEY_RIGHT))
+	if (mlx_is_key_down((*game)->mlx, MLX_KEY_RIGHT) || mlx_is_key_down((*game)->mlx, MLX_KEY_D))
 		key_right(game);
 	if (mlx_is_key_down((*game)->mlx, MLX_KEY_ESCAPE))
 		close_game(game);
+}
+
+
+void cursor_cb(double xpos, double ypos, void *param)
+{
+	t_game **game;
+
+	game = (t_game **)param;
+	(void) ypos;
+	if ((*game)->mouse_y == -1)
+		(*game)->mouse_y = xpos;
+	
+	if (mlx_is_mouse_down((*game)->mlx, MLX_MOUSE_BUTTON_LEFT))
+	{
+		if ((*game)->mouse_y < xpos) {
+			(*game)->player.angle_alpha -= ROTATION_AGNLE;
+			(*game)->mouse_y = xpos;
+		} else {
+			(*game)->player.angle_alpha += ROTATION_AGNLE;
+			(*game)->mouse_y = xpos;
+		}
+		check_angle(&(*game)->player.angle_alpha);
+		// printf("xpos: %f, (*game)->mouse_y : %f\n", xpos, (*game)->mouse_y);
+		
+	}
+
 }
