@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:49:52 by aerokhin          #+#    #+#             */
-/*   Updated: 2025/12/19 17:36:03 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/19 17:39:14 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,8 +100,8 @@ int	draw_col(t_game **game, t_line line, int ray_x, float curr_ang)
 	// Clamp colonm_point to valid range
 	if (colonm_point < 0)
 		colonm_point = 0;
-	if (colonm_num < 0)
-		colonm_num = 0;
+	// if (colonm_num < 0)
+	// 	colonm_num = 0;
 	if (colonm_point >= (int)(*game)->graph->walls[line.hit]->width)
 		colonm_point = (int)(*game)->graph->walls[line.hit]->width - 1;
 	
