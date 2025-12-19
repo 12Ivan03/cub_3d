@@ -30,6 +30,12 @@ t_game	*init_game(void);
 
 // lib
 
+// hooks
+void	key_stroks(mlx_key_data_t keydata, void *params);
+void rezise_window(int32_t width, int32_t heigth, void *param);
+void cursor_cb(double xpos, double ypos, void *param);
+
+
 // parse_file
 int	valid_file_name(char *argv, char *str);
 int	read_file_content(char *argv[], t_game **game);
@@ -45,14 +51,16 @@ int	copy_map_to_game_struct(t_game **game, char **line, int fd);
 // math
 float	projection_distance(t_game **game);
 float	distance(t_coordinates a, t_coordinates b);
+void	check_angle(float *angle);
+float	deg_to_rad(float angle);
 
 // graph
-int	draw_col(t_game **game, t_line col, t_line line);
+int	draw_col(t_game **game, t_line line, int ray_x, float curr_ang);
 int background_f_c_draw(t_game **game);
 
 
 // game
-int	start_game(t_game **game);
+void	start_game(void *param);
 
 
 #endif

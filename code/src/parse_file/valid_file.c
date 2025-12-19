@@ -127,16 +127,27 @@ int	read_file_content(char *argv[], t_game **game) {
 	int fd;
 
 	fd = open_file(argv[1]);
+	// printf("error here1\n");
 	if (fd == -1)
 		return (1);
+
 	if (valid_direc_fc(fd, game))
 		return (close(fd), 1);
 	close(fd);
-	if (handle_map(game))
+		// printf("error her2e\n");
+
+	if (handle_map(game)) {
+		// printf("error here3\n");	
 		return (1);
-	if (validate_struct(game))
+	}
+	if (validate_struct(game)){
+		// printf("error here34\n");
 		return (1);
+	}
+	
 	if (validate_map(game))
 		return (error_handler(5));
+
+
 	return (0);
 }

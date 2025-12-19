@@ -4,13 +4,15 @@
 
 # include "../lib/MLX42/include/MLX42/MLX42.h"
 
-# define HEIGHT_WALL 64
-# define WIDTH_WALL 64
-# define GRID_SIZE 64
+# define HEIGHT_WALL 264
+# define WIDTH_WALL 264
+# define GRID_SIZE 264
 # define INIT_FOV 60
-# define HEIGHT_WINDOWS 200
-# define WIDTH_WINDOWS 600
+# define HEIGHT_WINDOWS 800
+# define WIDTH_WINDOWS 1000
 # define CELL_SIZE 100
+# define PROJ_DIST 400
+# define MOVE_SPEED 8.0f 
 # define NO 90
 # define EA 0
 # define SO 270
@@ -18,6 +20,7 @@
 # define R 0
 # define G 1
 # define B 2
+# define ROTATION_AGNLE 1.0f
 # define IS_EMPTY_SPACE(c) ((c) == ' ' || (c) == '\t')
 # define FOV (*game)->fov
 # define WW (*game)->width_window
@@ -25,6 +28,9 @@
 # define PLAYER (*game)->player
 # define WL_H (*game)->height_wall
 # define WL_W (*game)->width_wall
+# ifndef M_PI
+#  define M_PI 3.14159265358979323846
+# endif
 
 
 typedef struct s_coordinates
@@ -63,14 +69,17 @@ typedef struct s_rgb
 
 typedef struct s_graph
 {
-	t_rgb F;
-	t_rgb C;
-	mlx_image_t *walls[4];
+	t_rgb 		F;
+	t_rgb 		C;
+	mlx_image_t	*walls[4];
+	float		proj_dist;
 } t_graph;
 
 typedef struct s_game
 {
 	mlx_t	*mlx;
+	mlx_image_t *foreground;
+	mlx_image_t *background;
 	char	**map;
 	t_list	*copy_map;
 	t_player player;
@@ -81,6 +90,8 @@ typedef struct s_game
 	int		fov;
 	int		height_window;
 	int		width_window;
+	float	move_speed;
+	double	mouse_y;
 	t_graph	*graph;
 
 } t_game;
