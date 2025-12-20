@@ -21,14 +21,19 @@ void rezise_window(int32_t width, int32_t heigth, void *param)
 	// printf("wodth: %d height : %d \n",width, heigth);
 	(*game)->height_window = heigth;	
 	(*game)->width_window = width;	
-	mlx_delete_image((*game)->mlx, (*game)->foreground);
-	(*game)->foreground = mlx_new_image((*game)->mlx, WW, WH);
 	
+	// delete old image
+	mlx_delete_image((*game)->mlx, (*game)->foreground);
+	(*game)->foreground = mlx_new_image((*game)->mlx, WW, WH);	
 	mlx_delete_image((*game)->mlx, (*game)->background);
 	(*game)->background = mlx_new_image((*game)->mlx, WW, WH);
+	mlx_delete_image((*game)->mlx, (*game)->mini_map_image);
+	(*game)->mini_map_image = mlx_new_image((*game)->mlx, width / 5, width / 5);
 
+	// put new image
 	mlx_image_to_window((*game)->mlx, (*game)->background, 0 ,0);
 	mlx_image_to_window((*game)->mlx, (*game)->foreground, 0 ,0);
+	mlx_image_to_window((*game)->mlx, (*game)->mini_map_image, 0, 0);
 
 	background_f_c_draw(game);
 	start_game(game);

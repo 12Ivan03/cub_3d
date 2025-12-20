@@ -22,6 +22,7 @@ src/math/game_math.c \
 src/game_loop/start_game.c \
 src/graph/graph.c \
 src/graph/graph_background.c \
+src/mini_map/mini_map.c \
 lib/get_next_line/get_next_line.c \
 lib/get_next_line/get_next_line_utils.c \
 

@@ -58,6 +58,8 @@ float	deg_to_rad(float angle);
 int	draw_col(t_game **game, t_line line, int ray_x, float curr_ang);
 int background_f_c_draw(t_game **game);
 
+// mini map
+void    draw_mini_map(t_game **game);
 
 // game
 void	start_game(void *param);

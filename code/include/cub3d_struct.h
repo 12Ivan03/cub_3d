@@ -10,6 +10,8 @@
 # define INIT_FOV 60
 # define HEIGHT_WINDOWS 800
 # define WIDTH_WINDOWS 1000
+# define MINI_WINDOW_WIDTH 200
+# define MINI_WINWOD_HEIGHT 200
 # define CELL_SIZE 100
 # define PROJ_DIST 400
 # define MOVE_SPEED 8.0f 
@@ -75,11 +77,20 @@ typedef struct s_graph
 	float		proj_dist;
 } t_graph;
 
+typedef struct s_mini_map
+{
+	int mini_height;
+	int mini_width;
+} t_mini_map;
+
+
 typedef struct s_game
 {
 	mlx_t	*mlx;
 	mlx_image_t *foreground;
 	mlx_image_t *background;
+	mlx_image_t *mini_map_image;
+	t_mini_map	mini_map_info;
 	char	**map;
 	t_list	*copy_map;
 	t_player player;

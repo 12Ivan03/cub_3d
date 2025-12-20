@@ -23,17 +23,10 @@ int	main(int argc, char *argv[])
 	if (!game->mlx)
 		return (error_handler(6));
 	if (!valid_file_name(argv[1], ".cub"))
-	{
 		if(read_file_content(argv, &game)) // || start_game(&game))
-		{
-			free_game(&game);
-			printf("error here\n");
-			return(1);
-		}
-	}
+			return(free_game(&game), 1);
 	if (background_f_c_draw(&game))// shoudl call it once!
 		return (1);
-	// start_game(&game);
 	mlx_key_hook(game->mlx, &key_stroks, &game);
 	mlx_cursor_hook(game->mlx, cursor_cb, &game);
 	mlx_resize_hook(game->mlx, rezise_window , &game);
