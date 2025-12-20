@@ -17,15 +17,12 @@ void    draw_mini_map(t_game **game)
     int player_mm_y = (int)((*game)->mini_map_info.mini_height / 2);
     float start_px = (float)player_mm_x - (int)(*game)->mini_map_image->width/2.0f;
     float start_py = (float)player_mm_y - (int)(*game)->mini_map_image->height/2.0f;
-    int end_tile_x = (int)ceilf((start_px + (int)(*game)->mini_map_image->width) / 8.0f);
-    int end_tile_y = (int)ceilf((start_py + (int)(*game)->mini_map_image->height) / 8.0f);
-
 
     i = start_px;
-    while ( i <= end_tile_x)
+    while ( i <= (*game)->height)
     {
         j = start_py;
-        while (j <= end_tile_y)
+        while (j < (*game)->width)
         {
             int px = j * 8;
             int py = i * 8;
