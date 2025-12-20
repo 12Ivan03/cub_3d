@@ -20,11 +20,6 @@ int	main(int argc, char *argv[])
 	if (argc != 2)
 		return (error_handler(1));
 	game = init_game();
-	game->mlx = mlx_init(WIDTH_WINDOWS, HEIGHT_WINDOWS, "cub3d", true);
-	game->foreground = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
-	game->background = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
-	mlx_image_to_window(game->mlx, game->background, 0 ,0);
-	mlx_image_to_window(game->mlx, game->foreground, 0 ,0);
 	if (!game->mlx)
 		return (error_handler(6));
 	if (!valid_file_name(argv[1], ".cub"))

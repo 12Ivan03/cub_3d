@@ -48,6 +48,11 @@ t_game *init_game(void)
 	game->graph->C = (t_rgb){ .rgb = {-1, -1, -1}};
 	game->graph->F = (t_rgb){ .rgb = {-1, -1, -1}};
 	game->mouse_y = -1;
+	game->mlx = mlx_init(WIDTH_WINDOWS, HEIGHT_WINDOWS, "cub3d", true);
+	game->foreground = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
+	game->background = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
+	mlx_image_to_window(game->mlx, game->background, 0 ,0);
+	mlx_image_to_window(game->mlx, game->foreground, 0 ,0);
 
 
 	
