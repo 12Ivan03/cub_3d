@@ -53,13 +53,13 @@ t_game *init_game(void)
 	game->mlx = mlx_init(WIDTH_WINDOWS, HEIGHT_WINDOWS, "cub3d", true);
 	game->foreground = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
 	game->background = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
-	game->mini_map_image = mlx_new_image(game->mlx, MINI_WINDOW_WIDTH, MINI_WINWOD_HEIGHT);
+	game->mini_map_image = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
 	if (game->mlx == NULL || game->foreground == NULL || \
 		game->background == NULL || game->mini_map_image  == NULL)
 		return NULL;
 	if (mlx_image_to_window(game->mlx, game->background, 0 ,0) || \
 		mlx_image_to_window(game->mlx, game->foreground, 0 ,0) || \
-		mlx_image_to_window(game->mlx, game->mini_map_image, WIDTH_WINDOWS - MINI_WINDOW_WIDTH, 20))
+		mlx_image_to_window(game->mlx, game->mini_map_image, 50, 20))
 		return NULL;
 	return (game);
 }

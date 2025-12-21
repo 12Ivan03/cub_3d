@@ -13,15 +13,10 @@ void    draw_mini_map(t_game **game)
     int i;
     int j;
 
-    int player_mm_x = (int)((*game)->mini_map_info.mini_width / 2);
-    int player_mm_y = (int)((*game)->mini_map_info.mini_height / 2);
-    float start_px = (float)player_mm_x - (int)(*game)->mini_map_image->width/2.0f;
-    float start_py = (float)player_mm_y - (int)(*game)->mini_map_image->height/2.0f;
-
-    i = start_px;
-    while ( i <= (*game)->height)
+    i = 0;
+    while (i < (*game)->height)
     {
-        j = start_py;
+        j = 0;
         while (j < (*game)->width)
         {
             int px = j * 8;
@@ -31,13 +26,14 @@ void    draw_mini_map(t_game **game)
             if (cell == '1')
                 mm_fill_rect((*game)->mini_map_image, px, py, 8, 8, 0x777777FF);
             else
-                mm_fill_rect((*game)->mini_map_image, px, py, 8, 8, 0x111111AA);
+                mm_fill_rect((*game)->mini_map_image, px, py, 8, 8, 0x101010AA);
             j++;
         }
         i++;
     }
 
-    // draw player (convert world pixels -> mini-map pixels)
+    int player_mm_x = (int)(((*game)->player.position.x / (float)GRID_SIZE) * 8.0f);
+    int player_mm_y = (int)(((*game)->player.position.y / (float)GRID_SIZE) * 8.0f);
 
     mm_fill_rect((*game)->mini_map_image, player_mm_x - 2, player_mm_y - 2, 5, 5, 0xFF0000FF);
 
@@ -46,7 +42,7 @@ void    draw_mini_map(t_game **game)
     {
         int lx = player_mm_x + (int)(cosf(angle_rad) * k);
         int ly = player_mm_y - (int)(sinf(angle_rad) * k);
-        // if (lx >= 0 && lx < (int)(*game)->mini_map_image->width && ly >= 0 && ly < (int)(*game)->mini_map_image->height)
+        if (lx >= 0 && lx < (int)(*game)->mini_map_image->width && ly >= 0 && ly < (int)(*game)->mini_map_image->height)
             mlx_put_pixel((*game)->mini_map_image, lx, ly, 0xFF0000FF);
     }
 }
@@ -56,10 +52,6 @@ void    draw_mini_map(t_game **game)
 // {
 //     int i;
 //     int j;
-
-//     /* Render only a viewport centered on the player so the map moves under
-//        the player marker. This computes which tiles intersect the mini-map
-//        image and draws only those tiles, offset so the player stays centered. */
 
 //     const int tile_size = 8;
 //     int img_w = (int)(*game)->mini_map_image->width;
