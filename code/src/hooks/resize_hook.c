@@ -28,7 +28,7 @@ void rezise_window(int32_t width, int32_t heigth, void *param)
 	mlx_delete_image((*game)->mlx, (*game)->background);
 	(*game)->background = mlx_new_image((*game)->mlx, WW, WH);
 	mlx_delete_image((*game)->mlx, (*game)->mini_map_image);
-	(*game)->mini_map_image = mlx_new_image((*game)->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
+	(*game)->mini_map_image = mlx_new_image((*game)->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS); // or WW , WH
 
 	// put new image
 	mlx_image_to_window((*game)->mlx, (*game)->background, 0 ,0);

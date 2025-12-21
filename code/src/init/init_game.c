@@ -48,8 +48,8 @@ t_game *init_game(void)
 	game->graph->C = (t_rgb){ .rgb = {-1, -1, -1}};
 	game->graph->F = (t_rgb){ .rgb = {-1, -1, -1}};
 	game->mouse_y = -1;
-	game->mini_map_info.mini_height = WIDTH_WINDOWS / 5;
-	game->mini_map_info.mini_width = WIDTH_WINDOWS / 5;
+	// game->mini_map_info.mini_height = HEIGHT_WINDOWS;
+	// game->mini_map_info.mini_width = WIDTH_WINDOWS;
 	game->mlx = mlx_init(WIDTH_WINDOWS, HEIGHT_WINDOWS, "cub3d", true);
 	game->foreground = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
 	game->background = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);

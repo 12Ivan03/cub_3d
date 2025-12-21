@@ -28,7 +28,7 @@ void	start_game(void *param)
 
 	ft_memset(&t, 0, sizeof(t));
 	ft_bzero((*game)->foreground->pixels, (*game)->foreground->width * (*game)->foreground->height * 4);
-	ft_bzero((*game)->mini_map_image->pixels, WW / 5 * WW / 5 * sizeof(uint32_t));
+	ft_bzero((*game)->mini_map_image->pixels, (*game)->mini_map_image->width * (*game)->mini_map_image->height * sizeof(uint32_t));
 	while (ray < WW)
 	{
 		curr_ang = ((float)ray / (float)WW) * (float)(FOV) - (float)(FOV) / 2;

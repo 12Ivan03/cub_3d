@@ -26,24 +26,30 @@ void    draw_mini_map(t_game **game)
             if (cell == '1')
                 mm_fill_rect((*game)->mini_map_image, px, py, 8, 8, 0x777777FF);
             else
-                mm_fill_rect((*game)->mini_map_image, px, py, 8, 8, 0x101010AA);
+                mm_fill_rect((*game)->mini_map_image, px, py, 8, 8, 0x101000AA);
             j++;
         }
         i++;
     }
 
+    // put player 
     int player_mm_x = (int)(((*game)->player.position.x / (float)GRID_SIZE) * 8.0f);
     int player_mm_y = (int)(((*game)->player.position.y / (float)GRID_SIZE) * 8.0f);
 
     mm_fill_rect((*game)->mini_map_image, player_mm_x - 2, player_mm_y - 2, 5, 5, 0xFF0000FF);
 
+    // put view direction
+    int k;
     float angle_rad = (*game)->player.angle_alpha * M_PI / 180.0f;
-    for (int k = 0; k < 30; k++)
+
+    k = 0;
+    while (k < 30)
     {
         int lx = player_mm_x + (int)(cosf(angle_rad) * k);
         int ly = player_mm_y - (int)(sinf(angle_rad) * k);
         if (lx >= 0 && lx < (int)(*game)->mini_map_image->width && ly >= 0 && ly < (int)(*game)->mini_map_image->height)
             mlx_put_pixel((*game)->mini_map_image, lx, ly, 0xFF0000FF);
+        k++;
     }
 }
 

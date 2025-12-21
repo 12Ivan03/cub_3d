@@ -77,11 +77,11 @@ typedef struct s_graph
 	float		proj_dist;
 } t_graph;
 
-typedef struct s_mini_map
-{
-	int mini_height;
-	int mini_width;
-} t_mini_map;
+// typedef struct s_mini_map
+// {
+// 	int mini_height;
+// 	int mini_width;
+// } t_mini_map;
 
 
 typedef struct s_game
@@ -90,7 +90,7 @@ typedef struct s_game
 	mlx_image_t *foreground;
 	mlx_image_t *background;
 	mlx_image_t *mini_map_image;
-	t_mini_map	mini_map_info;
+	// t_mini_map	mini_map_info;
 	char	**map;
 	t_list	*copy_map;
 	t_player player;
