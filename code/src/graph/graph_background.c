@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 13:07:10 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/12 13:15:13 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/22 11:57:21 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,6 @@ int background_f_c_draw(t_game **game)
 	// printf("\nHELL");
 	// write(1, "\nHELL\n", 6);
 	// printf("\n Window:%d, %d", (*game)->width_window, (*game)->height_window);
-	
+
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:40:35 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/12 13:14:41 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/22 13:34:01 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,6 +116,7 @@ int	handle_map(t_game **game)
 	// for (int i = 0; i < (*game)->height; i++) {
 	// 	printf(">%s<\n", (*game)->map[i]);
 	// }
+	check_mini_map(game);
 	return 0;
 }
 

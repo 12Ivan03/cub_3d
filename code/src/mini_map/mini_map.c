@@ -1,63 +1,90 @@
 
 #include "cub3d.h"
 
-void mm_fill_rect(mlx_image_t *img, int x, int y, int w, int h, uint32_t c)
+void	check_mini_map(t_game **game)
 {
-    for (int yy = 0; yy < h; yy++)
-        for (int xx = 0; xx < w; xx++)
-            mlx_put_pixel(img, x + xx, y + yy, c);
+	int mini_h;
+	int mini_w;
+
+	mini_h = (*game)->height * (*game)->mini_map_info.tile;
+	mini_w = (*game)->height * (*game)->mini_map_info.tile;
+	if (mini_h > HEIGHT_WINDOWS - 100 || mini_w > WIDTH_WINDOWS - 50)
+		(*game)->mini_map_info.tile = 0;
+}
+
+void    mm_fill_rect(t_game **game, t_pixel corditate, int size)
+{
+    int x = corditate.dot.x;
+    int y = corditate.dot.y;
+    int32_t c = corditate.color;
+
+    for (int yy = 0; yy < size; yy++)
+        for (int xx = 0; xx < size; xx++)
+            mlx_put_pixel((*game)->mini_map_image, x + xx, y + yy, c);
 }
 
 void    draw_mini_map(t_game **game)
 {
-    int i;
-    int j;
+    int tile;
+    t_pixel cor;
+    t_pixel pixel;
+    int k;
+    float angle_rad;
 
+    tile = (*game)->mini_map_info.tile;
+    if (tile <= 0)
+        return;
+    cor.dot.x = (int)(((*game)->player.position.x / (float)GRID_SIZE) * (float)tile) - 2;
+    cor.dot.y = (int)(((*game)->player.position.y / (float)GRID_SIZE) * (float)tile) - 2;
+    cor.color = 0xFF0000FF;
+    mm_fill_rect(game, cor, 5); 
+    angle_rad = deg_to_rad((*game)->player.angle_alpha);
+    k = 0;
+    while (k < 30)
+    {
+        pixel.dot.x = cor.dot.x + (int)(cosf(angle_rad) * k) + 2;
+        pixel.dot.y = cor.dot.y - (int)(sinf(angle_rad) * k) + 2;
+        if (pixel.dot.x >= 0 && pixel.dot.x < (int)(*game)->mini_map_image->width && pixel.dot.y >= 0 && pixel.dot.y < (int)(*game)->mini_map_image->height)
+            mlx_put_pixel((*game)->mini_map_image, pixel.dot.x, pixel.dot.y, 0xFF0000FF);
+        k++;
+    }
+}
+
+void	draw_background_mini_map(t_game **game)
+{
+	int i;
+    int j;
+    char cell; 
+    t_pixel cordinate;
+
+    if ((*game)->mini_map_info.tile <= 0)
+        return;
     i = 0;
     while (i < (*game)->height)
     {
         j = 0;
         while (j < (*game)->width)
         {
-            int px = j * 8;
-            int py = i * 8;
+            cordinate.dot.x = j * (*game)->mini_map_info.tile;
+            cordinate.dot.y = i * (*game)->mini_map_info.tile;
 
-            char cell = (*game)->map[i][j];
+            cell = (*game)->map[i][j];
             if (cell == '1')
-                mm_fill_rect((*game)->mini_map_image, px, py, 8, 8, 0x777777FF);
+                cordinate.color = 0x777777FF;
             else
-                mm_fill_rect((*game)->mini_map_image, px, py, 8, 8, 0x101000AA);
+                cordinate.color = 0x101000AA;
+            mm_fill_rect(game, cordinate, (*game)->mini_map_info.tile);
             j++;
         }
         i++;
-    }
-
-    // put player 
-    int player_mm_x = (int)(((*game)->player.position.x / (float)GRID_SIZE) * 8.0f);
-    int player_mm_y = (int)(((*game)->player.position.y / (float)GRID_SIZE) * 8.0f);
-
-    mm_fill_rect((*game)->mini_map_image, player_mm_x - 2, player_mm_y - 2, 5, 5, 0xFF0000FF);
-
-    // put view direction
-    int k;
-    float angle_rad = (*game)->player.angle_alpha * M_PI / 180.0f;
-
-    k = 0;
-    while (k < 30)
-    {
-        int lx = player_mm_x + (int)(cosf(angle_rad) * k);
-        int ly = player_mm_y - (int)(sinf(angle_rad) * k);
-        if (lx >= 0 && lx < (int)(*game)->mini_map_image->width && ly >= 0 && ly < (int)(*game)->mini_map_image->height)
-            mlx_put_pixel((*game)->mini_map_image, lx, ly, 0xFF0000FF);
-        k++;
     }
 }
 
 
 // void    draw_mini_map(t_game **game)
 // {
-//     int i;
-//     int j;
+//     // int i;
+//     // int j;
 
 //     const int tile_size = 8;
 //     int img_w = (int)(*game)->mini_map_image->width;

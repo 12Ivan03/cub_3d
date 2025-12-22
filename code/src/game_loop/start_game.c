@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/19 12:08:22 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/22 12:38:10 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ void	start_game(void *param)
 	ft_memset(&t, 0, sizeof(t));
 	ft_bzero((*game)->foreground->pixels, (*game)->foreground->width * (*game)->foreground->height * 4);
 	ft_bzero((*game)->mini_map_image->pixels, (*game)->mini_map_image->width * (*game)->mini_map_image->height * sizeof(uint32_t));
+	draw_background_mini_map(game); // draws the mini map on the window.
+
 	while (ray < WW)
 	{
 		curr_ang = ((float)ray / (float)WW) * (float)(FOV) - (float)(FOV) / 2;
@@ -92,7 +94,7 @@ void	start_game(void *param)
 		}
 
 		draw_col(game, line, ray, curr_ang);
-		draw_mini_map(game);
+		draw_mini_map(game); // draw the payer  on the mini map
 		
 		ray++;
 	}

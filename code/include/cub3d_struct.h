@@ -14,7 +14,7 @@
 # define MINI_WINWOD_HEIGHT 200
 # define CELL_SIZE 100
 # define PROJ_DIST 400
-# define MOVE_SPEED 8.0f 
+# define MOVE_SPEED 4.0f 
 # define NO 90
 # define EA 0
 # define SO 270
@@ -22,7 +22,7 @@
 # define R 0
 # define G 1
 # define B 2
-# define ROTATION_AGNLE 1.0f
+# define ROTATION_AGNLE 0.5f
 # define IS_EMPTY_SPACE(c) ((c) == ' ' || (c) == '\t')
 # define FOV (*game)->fov
 # define WW (*game)->width_window
@@ -40,6 +40,12 @@ typedef struct s_coordinates
 	float	x;
 	float	y;
 }	t_coordinates;
+
+typedef struct s_pixel
+{
+	t_coordinates		dot;
+	int32_t				color;
+}	t_pixel;
 
 typedef struct	s_grid
 {
@@ -77,11 +83,10 @@ typedef struct s_graph
 	float		proj_dist;
 } t_graph;
 
-// typedef struct s_mini_map
-// {
-// 	int mini_height;
-// 	int mini_width;
-// } t_mini_map;
+typedef struct s_mini_map
+{
+	int tile;
+} t_mini_map;
 
 
 typedef struct s_game
@@ -90,7 +95,7 @@ typedef struct s_game
 	mlx_image_t *foreground;
 	mlx_image_t *background;
 	mlx_image_t *mini_map_image;
-	// t_mini_map	mini_map_info;
+	t_mini_map	mini_map_info;
 	char	**map;
 	t_list	*copy_map;
 	t_player player;

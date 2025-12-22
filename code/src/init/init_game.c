@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:02:42 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/19 12:41:32 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/22 13:36:41 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,11 @@ t_game *init_game(void)
 	game->graph->C = (t_rgb){ .rgb = {-1, -1, -1}};
 	game->graph->F = (t_rgb){ .rgb = {-1, -1, -1}};
 	game->mouse_y = -1;
-	// game->mini_map_info.mini_height = HEIGHT_WINDOWS;
-	// game->mini_map_info.mini_width = WIDTH_WINDOWS;
+	game->mini_map_info.tile = 10;
 	game->mlx = mlx_init(WIDTH_WINDOWS, HEIGHT_WINDOWS, "cub3d", true);
 	game->foreground = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
 	game->background = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
-	game->mini_map_image = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
+	game->mini_map_image = mlx_new_image(game->mlx, WIDTH_WINDOWS, WIDTH_WINDOWS);
 	if (game->mlx == NULL || game->foreground == NULL || \
 		game->background == NULL || game->mini_map_image  == NULL)
 		return NULL;

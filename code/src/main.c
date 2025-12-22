@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/19 12:01:13 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/22 12:00:47 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char *argv[])
 		return (error_handler(1));
 	game = init_game();
 	if (!game->mlx)
-		return (error_handler(6));
+		return (error_handler(6)); // free the struct game
 	if (!valid_file_name(argv[1], ".cub"))
 		if(read_file_content(argv, &game)) // || start_game(&game))
 			return(free_game(&game), 1);

@@ -60,6 +60,9 @@ int background_f_c_draw(t_game **game);
 
 // mini map
 void    draw_mini_map(t_game **game);
+void	mm_fill_rect(t_game **game, t_pixel corditate, int size);
+void	draw_background_mini_map(t_game **game);
+void	check_mini_map(t_game **game);
 
 // game
 void	start_game(void *param);
