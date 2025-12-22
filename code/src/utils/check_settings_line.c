@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:56:43 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/11/29 12:53:56 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/22 15:29:43 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,10 +72,11 @@ t_rgb extract_color(char *str)
 
 int	check_line(char *line, t_game **game)
 {
-	char *trim_line;
-	char *extract;
-	mlx_texture_t *tex;
-	t_rgb temp_col;
+	char			*trim_line;
+	char			*extract;
+	mlx_texture_t	*tex;
+	t_rgb 			temp_col;
+	int				i;
 	
 	trim_line = ft_strtrim(line, " ");
 	if (!trim_line)
@@ -83,7 +84,7 @@ int	check_line(char *line, t_game **game)
 	if (*trim_line == '\n')
 		return (free(trim_line), 0);
 		
-	int i = eval_dirs(trim_line);
+	i = eval_dirs(trim_line);
 	if (i == -1)
 		return (free(trim_line), 2);
 	extract = ft_strtrim(trim_line + 1 + (i < 4), " \n\r");
@@ -93,11 +94,10 @@ int	check_line(char *line, t_game **game)
 	
 	if (i < 4)
 	{
-		if (access(extract, R_OK) == -1 && !valid_file_name(extract, ".png"))
-        {
-            int err = errno;
-            return (free(extract), error_handler_msg(2, strerror(err)));
-        }
+		if (valid_file_name(extract, ".png") != 0)
+			return (free(extract), error_handler_msg(3, ".png"));
+		if (access(extract, R_OK) == -1)
+            return (free(extract), error_handler_msg(2, strerror(errno)));
 		tex = mlx_load_png(extract);
 		free(extract);		
 		if (!tex)
@@ -107,13 +107,12 @@ int	check_line(char *line, t_game **game)
 			(*game)->graph->walls[i] = mlx_texture_to_image((*game)->mlx, tex);
 			mlx_delete_texture(tex);
 			if (!(*game)->graph->walls[i])
-				return (error_handler_msg(2, "Failed attach image to texture"));	
+				return (error_handler_msg(2, "Failed attach image to texture"));
 		}
 		else
 			return (error_handler_msg(2, "Incorrect map file"));
 	}
-	
-	if (i >= 4 && i < 6)
+	else if (i >= 4 && i < 6)
 	{
 		temp_col = extract_color(extract);
 		if (i == 4)
@@ -122,8 +121,10 @@ int	check_line(char *line, t_game **game)
 			(*game)->graph->C = temp_col;
 		free(extract);	
 	}
+	else
+		free(extract);
 	
-	return 0;
+	return (0);
 }
 
 // "10 NWSE" 

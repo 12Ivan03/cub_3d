@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/22 12:00:47 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/22 15:08:21 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,16 +16,20 @@ int	main(int argc, char *argv[])
 {
 	t_game *game;
 	
-	setvbuf(stdout, NULL, _IONBF, 0);
+	// setvbuf(stdout, NULL, _IONBF, 0);
 	if (argc != 2)
 		return (error_handler(1));
 	game = init_game();
-	if (!game->mlx)
-		return (error_handler(6)); // free the struct game
-	if (!valid_file_name(argv[1], ".cub"))
-		if(read_file_content(argv, &game)) // || start_game(&game))
+	if (!game)
+		return (1);
+	if (valid_file_name(argv[1], ".cub") == 0)
+	{
+		if(read_file_content(argv, &game))
 			return(free_game(&game), 1);
-	if (background_f_c_draw(&game))// shoudl call it once!
+	}
+	else
+		return(free_game(&game), error_handler_msg(3, ".cub"));
+	if (background_f_c_draw(&game))
 		return (1);
 	mlx_key_hook(game->mlx, &key_stroks, &game);
 	mlx_cursor_hook(game->mlx, cursor_cb, &game);

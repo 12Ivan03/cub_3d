@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:40:35 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/22 13:34:01 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/22 14:46:24 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ int	handle_map(t_game **game)
 	(*game)->width = count_width(game);
 	(*game)->map = (char **)malloc((*game)->height* sizeof(char *));
 	if (!(*game)->map)
-		return (-1);
+		return (1);
 	while (i < (*game)->height)
 	{
 		// printf("1: i=%d \n", i);

@@ -19,10 +19,7 @@ int valid_file_name(char *argv, char *str)
 	c = ft_strnstr(argv, str, ft_strlen(argv));
 	if (c && c[ft_strlen(str)] == '\0')
 		return (0);
-
-	if (ft_strncmp(str, ".png", 4))
-		return (error_handler_msg(4, str));
-	return (error_handler_msg(3, str));
+	return (1);
 }
 
 int	open_file(char *file)
