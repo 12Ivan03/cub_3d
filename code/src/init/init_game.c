@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:02:42 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/22 14:28:06 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/22 17:16:08 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,23 +43,22 @@ t_game *init_game(void)
 	i = 0;
 	while (i < 4)
 		game->graph->walls[i++] = NULL;
-
-	game->graph->C = (t_rgb){ .rgb = {-1, -1, -1}};
-	game->graph->F = (t_rgb){ .rgb = {-1, -1, -1}};
+	game->graph->C = (t_rgb){.rgb = {-1, -1, -1}};
+	game->graph->F = (t_rgb){.rgb = {-1, -1, -1}};
 	game->mouse_y = -1;
 	game->mini_map_info.tile = 10;
 	game->mlx = mlx_init(WIDTH_WINDOWS, HEIGHT_WINDOWS, "cub3d", true);
 	if (!game->mlx)
-		return(free_game(&game), error_handler(7), NULL);
+		return (free_game(&game), error_handler(7), NULL);
 	game->foreground = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
 	game->background = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
 	game->mini_map_image = mlx_new_image(game->mlx, WIDTH_WINDOWS, HEIGHT_WINDOWS);
 	if (game->foreground == NULL || game->background == NULL \
 		|| game->mini_map_image  == NULL)
-		return(free_game(&game), error_handler(7), NULL);
+		return (free_game(&game), error_handler(7), NULL);
 	if (mlx_image_to_window(game->mlx, game->background, 0 ,0) || \
 		mlx_image_to_window(game->mlx, game->foreground, 0 ,0) || \
 		mlx_image_to_window(game->mlx, game->mini_map_image, 50, 20))
-		return(free_game(&game), error_handler(7), NULL);
+		return (free_game(&game), error_handler(7), NULL);
 	return (game);
 }
