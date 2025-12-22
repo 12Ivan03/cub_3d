@@ -6,14 +6,14 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:56:43 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/22 15:29:43 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/22 16:49:42 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
 int eval_dirs(char *trim_line) {
-	const char *dirs[6]= {"EA ", "NO ", "WE ", "SO ", "F ","C "};
+	const char *dirs[6]= {"EA ", "NO ", "WE ", "SO ", "F ","C "};// TODO:  add DO for doors
 
 	for (int i = 0; i < 4; i++) {
 		if (!ft_strncmp(trim_line, dirs[i], 3))
@@ -92,7 +92,7 @@ int	check_line(char *line, t_game **game)
 		return (free(trim_line), error_handler_msg(2, "Malloc error"));
 	free(trim_line);
 	
-	if (i < 4)
+	if (i < 4) // TODO:  || 6 )// for doors
 	{
 		if (valid_file_name(extract, ".png") != 0)
 			return (free(extract), error_handler_msg(3, ".png"));

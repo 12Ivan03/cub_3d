@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 17:25:03 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/11/29 14:14:52 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/22 16:52:38 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int error_handler(int er) {
 	
 	printf("Error\n");
 	if (er == 1) {
-		printf("Invalid arguments. Expected 2 arguments.\n");
+		printf("Invalid arguments. Expected 2 arguments\n");
 	} else if (er == 2)
 		printf("EOF: missing map\n");
 	else if (er == 3)
@@ -28,7 +28,9 @@ int error_handler(int er) {
 	else if (er == 6)
 		printf("An error occurred in the MXL42 library\n");
 	else if (er == 7)
-		printf("Unable to create MLX42 object.\n");
+		printf("Unable to create MLX42 object\n");
+	else if (er == 8)
+		printf("Invalid map configuration\n");
 	return 1;
 }
 
@@ -40,11 +42,11 @@ int error_handler_msg(int er, char *msg) {
 	if (er == 2)
 		printf("%s\n", msg);
 	if (er == 3)
-		printf("Invalid file extension. Expected a %s file.\n", msg);
+		printf("Invalid file extension. Expected a %s file\n", msg);
 	if (er == 4)
-		printf("Invalid texture file extension. Expected a %s file.\n", msg);
+		printf("Invalid texture file extension. Expected a %s file\n", msg);
 	if (er == 5)
-		printf("Invalid file information. Expected %s.\n", msg);
+		printf("Invalid file information. Expected %s\n", msg);
 
 
 	return 1;

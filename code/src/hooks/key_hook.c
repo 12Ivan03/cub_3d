@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:24:18 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/22 12:47:45 by ipavlov          ###   ########.fr       */
+/*   Updated: 2025/12/22 16:39:21 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,13 +108,8 @@ void	key_stroks(mlx_key_data_t keydata, void *params)
 	if (mlx_is_key_down((*game)->mlx, MLX_KEY_ESCAPE))
 		close_game(game);
 	// if (mlx_is_key_down((*game)->mlx, MLX_KEY_SPACE)) {
-		// hanlde_map(game);
-	// 	(*game)->mini_map_info.tile = -(*game)->mini_map_info.tile;
-	// if tile <= 0 
-	// 	hide map 
-	// else 
-	// 	show_map
-	// }
+		// handle_door(game);
+	
 }
 
 
