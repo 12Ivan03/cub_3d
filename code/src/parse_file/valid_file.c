@@ -38,7 +38,6 @@ int	valid_direc_fc(int fd, t_game **game)
 	int		check;
 
 	line = get_next_line(fd);
-	// printf("First line: %s", line);
 	while (line != NULL)
 	{
 		check = check_line(line, game);
@@ -48,16 +47,13 @@ int	valid_direc_fc(int fd, t_game **game)
 			break;
 		free(line);
 		line = get_next_line(fd);
-		// printf("loop line : %s", line);
 	}
 	if (check != 2)
 		return (error_handler(2));
 
 	if (eval_graph(game))
 		return(free(line), 1);
-
 	copy_map_to_game_struct(game, &line, fd);
-	
 	return 0;
 }
 
@@ -109,7 +105,7 @@ int	validate_map(t_game **game)
 	}
 	return (0);
 }
-// printf("H: %d, W: %d", (*game)->height, (*game)->width);
+
 int	validate_struct(t_game **game)
 {
 	if ((*game)->player.position.x == -1)// || (*game)->player.position.y == -1)

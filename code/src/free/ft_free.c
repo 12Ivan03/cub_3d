@@ -38,7 +38,6 @@ void	free_link_list(t_list *list)
 		free(tmp);
 		tmp = next;	
 	}
-	// free(list);
 }
 
 void	free_map(char ***arr, int i)
@@ -69,17 +68,3 @@ void	free_game(t_game **game)
 	free(*game);
 	*game = NULL;
 }
-
-/* t_game *init_game(void)
-{	
-	t_game *game;
-	game = malloc(sizeof(t_game));
-	ft_memset(game, 0, sizeof(game));
-	game->height = HEIGHT_WALL;
-	game->width = WIDTH_WALL;
-	game->fov = FOV;
-	game->height_window = HEIGHT_WINDOWS;
-	game->width_window = WIDTH_WINDOWS;
-	game->graph = malloc(sizeof(t_graph));
-	return (game);
-} */

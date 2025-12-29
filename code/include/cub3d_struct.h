@@ -8,10 +8,10 @@
 # define WIDTH_WALL 264
 # define GRID_SIZE 264
 # define INIT_FOV 60
-# define HEIGHT_WINDOWS 800
-# define WIDTH_WINDOWS 1000
-# define MINI_WINDOW_WIDTH 200
-# define MINI_WINWOD_HEIGHT 200
+# define HEIGHT_WIN 800
+# define WIDTH_WIN 1000
+# define MINI_W_WIN 200
+# define MINI_H_WIN 200
 # define CELL_SIZE 100
 # define PROJ_DIST 400
 # define MOVE_SPEED 4.0f 
@@ -23,6 +23,10 @@
 # define G 1
 # define B 2
 # define ROTATION_AGNLE 0.5f
+
+
+
+
 # define IS_EMPTY_SPACE(c) ((c) == ' ' || (c) == '\t')
 # define FOV (*game)->fov
 # define WW (*game)->width_window
