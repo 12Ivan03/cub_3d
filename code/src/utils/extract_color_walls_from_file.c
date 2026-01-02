@@ -12,18 +12,33 @@
 
 #include <cub3d.h>
 
+int	ft_comas(char *str)
+{
+	int	count;
+
+	count = 0;
+	while (str && ft_strchr(str, ','))
+	{
+		count++;
+		str = ft_strchr(str, ',') + 1;
+	}
+	if (count < 3)
+		return (1);
+	return (0);
+}
+
 t_rgb	extract_color(char *str)
 {
-	t_rgb	temp_color;
+	t_rgb	tmp_clr;
 	int		i;
 
 	i = 0;
-	if (!ft_strchr(str, ',') || ft_strchr(str, ',') == ft_strrchr(str, ','))
+	if (!ft_comas(str) || ft_strchr(str, ',') == ft_strrchr(str, ','))
 		return ((t_rgb){ .rgb = {-1,-1,-1}});
 	while (i < 3)
 	{
-		temp_color.rgb[i] = ft_atoi(str);
-		if (temp_color.rgb[i] < 0 || temp_color.rgb[i] > 255)
+		tmp_clr.rgb[i] = ft_atoi(str);
+		if (!ft_isdigit(str[0]) || tmp_clr.rgb[i] < 0 || tmp_clr.rgb[i] > 255)
 			return ((t_rgb){ .rgb = {-1,-1,-1}});
 		str = ft_strchr(str, ',');
 		if (i < 2 && !str)
@@ -32,7 +47,7 @@ t_rgb	extract_color(char *str)
 			str++;
 		i++;
 	}
-	return (temp_color);
+	return (tmp_clr);
 }
 
 int	wall_texture(t_game **game, char *extract, int i)

@@ -17,7 +17,7 @@ src/parse_file/eval_map.c \
 src/free/ft_free.c \
 src/hooks/key_hook.c \
 src/hooks/resize_hook.c \
-src/utils/extract_info_from_file.c \
+src/utils/extract_color_walls_from_file.c \
 src/utils/extract_map_line.c \
 src/utils/parse_and_config_line.c \
 src/init/init_game.c \
