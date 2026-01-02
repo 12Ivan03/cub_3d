@@ -54,6 +54,8 @@ int	read_process_map(t_game **game);
 int	check_line(char *line, t_game **game);
 int	check_map_line(t_game **game, char *line);
 int	copy_map_to_game_struct(t_game **game, char **line, int fd);
+int	celling_floow_texture(t_game **game, char *extract, int i);
+int	wall_texture(t_game **game, char *extract, int i);
 
 // math
 float	projection_distance(t_game **game);
