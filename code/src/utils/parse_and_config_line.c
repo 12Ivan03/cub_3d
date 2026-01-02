@@ -33,7 +33,7 @@ int eval_dirs(char *trim_line)
 	return (-1);
 }
 
-int	check_line(char *line, t_game **game)
+int	parse_and_config_line(char *line, t_game **game)
 {
 	char	*trim_line;
 	char	*extract;

@@ -22,7 +22,7 @@ t_rgb	extract_color(char *str)
 		return ((t_rgb){ .rgb = {-1,-1,-1}});
 	while (i < 3)
 	{
-		temp_color.rgb[i] = atoi(str);
+		temp_color.rgb[i] = ft_atoi(str);
 		if (temp_color.rgb[i] < 0 || temp_color.rgb[i] > 255)
 			return ((t_rgb){ .rgb = {-1,-1,-1}});
 		str = ft_strchr(str, ',');

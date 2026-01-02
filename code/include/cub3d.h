@@ -51,7 +51,7 @@ int	eval_cell(t_game **game, int x, int y, int dx, int dy);
 int	read_process_map(t_game **game);
 
 // utils
-int	check_line(char *line, t_game **game);
+int	parse_and_config_line(char *line, t_game **game);
 int	check_map_line(t_game **game, char *line);
 int	copy_map_to_game_struct(t_game **game, char **line, int fd);
 int	celling_floow_texture(t_game **game, char *extract, int i);
