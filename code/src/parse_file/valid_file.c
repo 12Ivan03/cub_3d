@@ -14,7 +14,7 @@
 
 int	valid_file_name(char *argv, char *str)
 {	
-	char *c;
+	char	*c;
 
 	c = ft_strnstr(argv, str, ft_strlen(argv));
 	if (c && c[ft_strlen(str)] == '\0')
@@ -24,11 +24,10 @@ int	valid_file_name(char *argv, char *str)
 
 int	open_file(char *file)
 {
-	int fd;
+	int	fd;
 
 	fd = open(file, O_RDONLY);
 	if (fd < 0)
 		return (-error_handler_msg(1, file));
 	return (fd);
 }
-

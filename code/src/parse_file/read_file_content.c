@@ -14,7 +14,7 @@
 
 int	read_file_content(char *argv[], t_game **game) {
 
-	int fd;
+	int	fd;
 
 	fd = open_file(argv[1]);
 	if (fd == -1)
