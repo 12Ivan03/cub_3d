@@ -14,22 +14,22 @@
 
 int	copy_map_to_game_struct(t_game **game, char **line, int fd)
 {
-	int check = 0;
-	
+	int	check = 0;
+
 	while ((*line) != NULL)
 	{
 		check = check_map_line(game, *line);
 		free(*line);
 		(*line) = get_next_line(fd);
 	}
-	return check;
+	return (check);
 }
 
 int	check_map_line(t_game **game, char *line)
 {
 
-	t_list *tmp_map;
-	char *temp_line;
+	t_list	*tmp_map;
+	char	*temp_line;
 
 	temp_line = ft_strtrim(line, "\n");
 	if (!temp_line)

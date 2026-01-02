@@ -13,89 +13,65 @@
 #include <cub3d.h>
 
 int eval_dirs(char *trim_line) {
-	const char *dirs[6]= {"EA ", "NO ", "WE ", "SO ", "F ","C "};// TODO:  add DO for doors
+	/* TODO: add DO for doors */
+	const char	*dirs[6]= {"EA ", "NO ", "WE ", "SO ", "F ","C "};
+	int			i;
 
-	for (int i = 0; i < 4; i++) {
+	i = 0;
+	while (i < 4) {
 		if (!ft_strncmp(trim_line, dirs[i], 3))
 			return (i);
+		i++;
 	}
-	for (int i = 4; i < 6; i++) {
+	i = 4;
+	while (i < 6) {
 		if (!ft_strncmp(trim_line, dirs[i], 2))
 			return (i);
+		i++;
 	}
 	return (-1);
 }
 
 t_rgb extract_color(char *str)
 {
-	t_rgb temp_color;
-	char *substr;
-	char *cstr;
-	int pos;
+	t_rgb	temp_color;
+	char	*substr;
+	char	*cstr;
+	int		pos;
+	int		i;
 
+	i = 0;
 	cstr = str;
-	// printf("HERE -> %p\n", str);
 	if (ft_strchr(cstr, ',') == ft_strrchr(cstr, ','))
-		return ((t_rgb){ .rgb = {-1,-1,-1}}); // just return rgb... its already define as -1-1-1we have ap roblem!!!
-	for (int i = 0; i < 3; i++)
+		return ((t_rgb){ .rgb = {-1,-1,-1}});
+	while (i < 3)
 	{
-		// printf("HERE%d\n",i);
 		if (ft_strchr(cstr, ',') != NULL)
 		{
 			pos = ft_strchr(cstr, ',') - cstr;
-			// printf("strstr -> <%p>\n", ft_strchr(cstr, ','));
-			// printf("pos: %d\n", pos);
 			substr = ft_substr(cstr, 0, pos);
-			// printf("Substr -> %s\n", substr);
 			temp_color.rgb[i] = ft_atoi(substr);
 			free(substr);
 			if (temp_color.rgb[i] > 255 || temp_color.rgb[i] < 0)
 				return ((t_rgb){ .rgb = {-1,-1,-1}});
 			cstr += (pos + 1);
-			// printf("TEMO_COLOR PRINTSNGFJD ______> %d\n",temp_color.rgb[i]);
 		}
 		else
 		{
 			temp_color.rgb[i] = ft_atoi(cstr);
-			// free(cstr);
 			if (temp_color.rgb[i] > 255)
 				return ((t_rgb){ .rgb = {-1,-1,-1}});
-			// printf("TEMO_COLOR PRINTSNGFJD ______> %d\n",temp_color.rgb[i]);
 		}
+		i++;
 	}
-		// printf("HERE%d\n",i);
-	// 	printf("leaving HERE\n");
-	// printf("HERE -> %p\n", str);
-	
 	return (temp_color);
 }
 
-int	check_line(char *line, t_game **game)
+int	check_distribute_info_to_struct(t_game **game, char *extract, int i)
 {
-	char			*trim_line;
-	char			*extract;
 	mlx_texture_t	*tex;
-	t_rgb 			temp_col;
-	int				i;
-	
-	// trim the line
-	trim_line = ft_strtrim(line, " ");
-	if (!trim_line)
-		return (error_handler_msg(2, "Malloc error"));
-	if (*trim_line == '\n')
-		return (free(trim_line), 0);
-	
+	t_rgb			temp_col;
 
-	// extract the into after the NSWE+FC
-	i = eval_dirs(trim_line);
-	if (i == -1)
-		return (free(trim_line), 2);
-	extract = ft_strtrim(trim_line + 1 + (i < 4), " \n\r");
-	if (!extract)
-		return (free(trim_line), error_handler_msg(2, "Malloc error"));
-	free(trim_line);
-	
-	// attach the into to the struct
 	if (i < 4) // TODO:  || 6 )// for doors
 	{
 		if (valid_file_name(extract, ".png") != 0)
@@ -128,6 +104,29 @@ int	check_line(char *line, t_game **game)
 	else
 		free(extract);
 	
+	return (0);
+}
+
+int	check_line(char *line, t_game **game)
+{
+	char			*trim_line;
+	char			*extract;
+	int				i;
+	
+	trim_line = ft_strtrim(line, " ");
+	if (!trim_line)
+		return (error_handler_msg(2, "Malloc error"));
+	if (*trim_line == '\n')
+		return (free(trim_line), 0);
+	i = eval_dirs(trim_line);
+	if (i == -1)
+		return (free(trim_line), 2);
+	extract = ft_strtrim(trim_line + 1 + (i < 4), " \n\r");
+	if (!extract)
+		return (free(trim_line), error_handler_msg(2, "Malloc error"));
+	free(trim_line);
+	if (check_distribute_info_to_struct(game, extract, i) != 0)
+		return (1);
 	return (0);
 }
 
