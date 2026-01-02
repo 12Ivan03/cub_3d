@@ -18,8 +18,8 @@
 // src
 
 // error handler 
-int error_handler(int er);
-int error_handler_msg(int er, char *msg);
+int	error_handler(int er);
+int	error_handler_msg(int er, char *msg);
 
 // free 
 void	free_game(t_game **game);
@@ -32,16 +32,23 @@ t_game	*init_game(void);
 
 // hooks
 void	key_stroks(mlx_key_data_t keydata, void *params);
-void rezise_window(int32_t width, int32_t heigth, void *param);
-void cursor_cb(double xpos, double ypos, void *param);
+void	rezise_window(int32_t width, int32_t heigth, void *param);
+void	cursor_cb(double xpos, double ypos, void *param);
 
 
 // parse_file
 int	valid_file_name(char *argv, char *str);
 int	read_file_content(char *argv[], t_game **game);
 int	eval_graph(t_game **game);
+int	open_file(char *file);
+int	valid_direc_fc(int fd, t_game **game);
+int	validate_map(t_game **game);
+int	validate_struct(t_game **game);
+int	validate_struct(t_game **game);
+int	validate_map(t_game **game);
+int	eval_cell(t_game **game, int x, int y, int dx, int dy);
 //----> map proccesing
-int	handle_map(t_game **game);
+int	read_process_map(t_game **game);
 
 // utils
 int	check_line(char *line, t_game **game);
@@ -56,16 +63,15 @@ float	deg_to_rad(float angle);
 
 // graph
 int	draw_col(t_game **game, t_line line, int ray_x, float curr_ang);
-int background_f_c_draw(t_game **game);
+int	background_f_c_draw(t_game **game);
 
 // mini map
-void    draw_mini_map(t_game **game);
+void	draw_mini_map(t_game **game);
 void	mm_fill_rect(t_game **game, t_pixel corditate, int size);
 void	draw_background_mini_map(t_game **game);
 void	check_mini_map(t_game **game);
 
 // game
 void	start_game(void *param);
-
 
 #endif

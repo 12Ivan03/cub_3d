@@ -12,7 +12,24 @@
 
 #include <cub3d.h>
 
-void ft_free_any(void **free_val)
+void	free_game_graph(t_game **game);
+void	ft_free_any(void **free_val);
+void	free_link_list(t_list *list);
+void	free_map(char ***arr, int i);
+
+void	free_game(t_game **game)
+{
+	if ((*game)->graph != NULL)
+		free_game_graph(game);
+	if ((*game)->copy_map != NULL)
+		free_link_list((*game)->copy_map);
+	if ((*game)->map != NULL)
+		free_map(&(*game)->map, (*game)->height);
+	free(*game);
+	*game = NULL;
+}
+
+void	ft_free_any(void **free_val)
 {
 	if (free_val == NULL)
 		return ;
@@ -55,16 +72,4 @@ void	free_map(char ***arr, int i)
 		free(*arr);
 		*arr = NULL;
 	}
-}
-
-void	free_game(t_game **game)
-{
-	if ((*game)->graph != NULL)
-		free_game_graph(game);
-	if ((*game)->copy_map != NULL)
-		free_link_list((*game)->copy_map);
-	if ((*game)->map != NULL)
-		free_map(&(*game)->map, (*game)->height);
-	free(*game);
-	*game = NULL;
 }

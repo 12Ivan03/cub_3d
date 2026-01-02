@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_settings_line.c                              :+:      :+:    :+:   */
+/*   extract_info_from_file.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -78,12 +78,15 @@ int	check_line(char *line, t_game **game)
 	t_rgb 			temp_col;
 	int				i;
 	
+	// trim the line
 	trim_line = ft_strtrim(line, " ");
 	if (!trim_line)
 		return (error_handler_msg(2, "Malloc error"));
 	if (*trim_line == '\n')
 		return (free(trim_line), 0);
-		
+	
+
+	// extract the into after the NSWE+FC
 	i = eval_dirs(trim_line);
 	if (i == -1)
 		return (free(trim_line), 2);
@@ -92,6 +95,7 @@ int	check_line(char *line, t_game **game)
 		return (free(trim_line), error_handler_msg(2, "Malloc error"));
 	free(trim_line);
 	
+	// attach the into to the struct
 	if (i < 4) // TODO:  || 6 )// for doors
 	{
 		if (valid_file_name(extract, ".png") != 0)

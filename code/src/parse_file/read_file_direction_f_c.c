@@ -12,23 +12,28 @@
 
 #include <cub3d.h>
 
-int	valid_file_name(char *argv, char *str)
-{	
-	char *c;
 
-	c = ft_strnstr(argv, str, ft_strlen(argv));
-	if (c && c[ft_strlen(str)] == '\0')
-		return (0);
-	return (1);
-}
-
-int	open_file(char *file)
+int	valid_direc_fc(int fd, t_game **game)
 {
-	int fd;
+	char	*line;
+	int		check;
 
-	fd = open(file, O_RDONLY);
-	if (fd < 0)
-		return (-error_handler_msg(1, file));
-	return (fd);
+	line = get_next_line(fd);
+	while (line != NULL)
+	{
+		check = check_line(line, game);
+		if (check == 1)
+			return (free(line), 1);
+		else if (check == 2)
+			break;
+		free(line);
+		line = get_next_line(fd);
+	}
+	if (check != 2)
+		return (error_handler(2));
+
+	if (eval_graph(game))
+		return(free(line), 1);
+	copy_map_to_game_struct(game, &line, fd);
+	return 0;
 }
-

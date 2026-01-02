@@ -34,6 +34,7 @@
 # define PLAYER (*game)->player
 # define WL_H (*game)->height_wall
 # define WL_W (*game)->width_wall
+
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif

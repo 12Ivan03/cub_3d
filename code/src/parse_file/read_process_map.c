@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   handle_map.c                                       :+:      :+:    :+:   */
+/*   read_process_map.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -76,7 +76,7 @@ int	eval_map_line(char *arr)
 	return (0);
 }
 
-int	handle_map(t_game **game)
+int	read_process_map(t_game **game)
 {
 	int	i;
 	int j;
@@ -91,7 +91,6 @@ int	handle_map(t_game **game)
 		return (1);
 	while (i < (*game)->height)
 	{
-		// printf("1: i=%d \n", i);
 		(*game)->map[i] = (char *)ft_calloc(((*game)->width + 1), 1);
 		if (!(*game)->map[i])
 			return (free_map(&(*game)->map, i), error_handler(4));
@@ -99,7 +98,6 @@ int	handle_map(t_game **game)
 		j = find_start_position(game, i);
 		if (j != -1)
 		{
-			// printf("3: i=%d <> j=%d\n", i, j);
 			if ((*game)->player.position.x != -1 || (*game)->player.position.y != -1)
 				return (free_map(&(*game)->map, i + 1), error_handler(8)); // TODO:  add error message here if we try to set the player position (second time) not once!
 			set_position(game, j, i, (*game)->map[i][j]);
@@ -107,29 +105,9 @@ int	handle_map(t_game **game)
 		}
 		if (eval_map_line((*game)->map[i]))
 			return (free_map(&(*game)->map, i + 1), error_handler(8));  // TODO:  add error message here; justt incorrect map line
-		// printf("%s\n", (*game)->map[i]);
 		iter = iter->next;
 		i++;
 	}
-	// for (int i = 0; i < (*game)->height; i++) {
-	// 	printf(">%s<\n", (*game)->map[i]);
-	// }
 	check_mini_map(game);
 	return 0;
 }
-
-// {
-// 	// t_list *iter = (*game)->copy_map; 
-// 	// while (iter != NULL) {
-// 	// 	printf("%s\n",(char *)iter->content);
-// 	// 	iter = iter->next;
-// 	// }	
-	
-// 	for (int i = 0; i < (*game)->height; i++) {
-// 		printf(">%s<\n", (*game)->map[i]);
-// 	}
-// 	printf("height: %d\n", (*game)->height );
-// 	printf("width: %d\n", (*game)->width );
-// 	printf("X: %d\n", (*game)->player.position.x );
-// 	printf("Y: %d\n", (*game)->player.position.y );
-// }
