@@ -34,11 +34,11 @@ int	background_f_c_draw(t_game **game)
 	ceil_col = put_color((*game)->graph->C);
 	floor_col = put_color((*game)->graph->F);
 	y = 0;
-	while(y < WH)
+	while(y < (*game)->height_window)
 	{
-		col = (y < WH / 2) ? ceil_col : floor_col;
+		col = (y < (*game)->height_window / 2) ? ceil_col : floor_col;
 		x = 0;
-		while(x < WW)
+		while(x < (*game)->width_window)
 		{
 			mlx_put_pixel((*game)->background, x, y, col);
 			x++;

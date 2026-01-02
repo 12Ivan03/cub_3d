@@ -21,13 +21,10 @@ int	main(int argc, char *argv[])
 	game = init_game();
 	if (!game)
 		return (1);
-	if (valid_file_name(argv[1], ".cub") == 0)
-	{
-		if (parse_file_content(argv, &game))
-			return (free_game(&game), 1);
-	}
-	else
+	if (valid_file_name(argv[1], ".cub") != 0)
 		return (free_game(&game), error_handler_msg(3, ".cub"));
+	if (parse_file_content(argv, &game))
+		return (free_game(&game), 1);
 	if (background_f_c_draw(&game))
 		return (1);
 	mlx_key_hook(game->mlx, &key_stroks, &game);
@@ -47,7 +44,7 @@ int	main(int argc, char *argv[])
 // # src/parse_file/valid_file.c \
 // # src/parse_file/eval_graph.c \
 // # src/parse_file/read_process_map.c \
-// # src/parse_file/parse_file_content.c \
+// # src/parse_file/read_file_content.c \
 // # src/parse_file/read_file_direction_f_c.c \
 // # src/free/ft_free.c \
 // # src/hooks/key_hook.c \

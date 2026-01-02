@@ -92,7 +92,7 @@ static bool	game_create_attach_image(t_game **game)
 		return (false);
 	if (mlx_image_to_window((*game)->mlx, (*game)->foreground, 0 ,0))
 		return (false);
-	if (mlx_image_to_window((*game)->mlx, (*game)->mini_map_image, 50, 20))
+	if (mlx_image_to_window((*game)->mlx, (*game)->mini_map_image, 20, 20))
 		return (false);
 	return (true);
 }

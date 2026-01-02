@@ -19,14 +19,14 @@ int	parse_file_content(char *argv[], t_game **game) {
 	fd = open_file(argv[1]);
 	if (fd == -1)
 		return (1);
-	if (valid_direc_fc(fd, game))
+	if (read_validate_direc_fc(fd, game))
 		return (close(fd), 1);
 	close(fd);
 	if (read_process_map(game)) 
 		return (1);
 	if (validate_struct(game))
 		return (1);
-	if (validate_map(game))
+	if (validate_map(game)) // Discuss with Alina! eval_map -> eval_cell
 		return (error_handler(5));
 	return (0);
 }

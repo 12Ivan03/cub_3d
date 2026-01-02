@@ -13,7 +13,7 @@
 #include <cub3d.h>
 
 
-int	valid_direc_fc(int fd, t_game **game)
+int	read_validate_direc_fc(int fd, t_game **game)
 {
 	char	*line;
 	int		check;

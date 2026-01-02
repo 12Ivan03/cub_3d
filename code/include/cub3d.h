@@ -39,7 +39,7 @@ int	valid_file_name(char *argv, char *str);
 int	parse_file_content(char *argv[], t_game **game);
 int	eval_graph(t_game **game);
 int	open_file(char *file);
-int	valid_direc_fc(int fd, t_game **game);
+int	read_validate_direc_fc(int fd, t_game **game);
 int	validate_map(t_game **game);
 int	validate_struct(t_game **game);
 int	validate_struct(t_game **game);
