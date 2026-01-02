@@ -23,7 +23,7 @@ int	main(int argc, char *argv[])
 		return (1);
 	if (valid_file_name(argv[1], ".cub") == 0)
 	{
-		if (read_file_content(argv, &game))
+		if (parse_file_content(argv, &game))
 			return (free_game(&game), 1);
 	}
 	else
@@ -47,7 +47,7 @@ int	main(int argc, char *argv[])
 // # src/parse_file/valid_file.c \
 // # src/parse_file/eval_graph.c \
 // # src/parse_file/read_process_map.c \
-// # src/parse_file/read_file_content.c \
+// # src/parse_file/parse_file_content.c \
 // # src/parse_file/read_file_direction_f_c.c \
 // # src/free/ft_free.c \
 // # src/hooks/key_hook.c \

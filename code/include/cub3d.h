@@ -28,8 +28,6 @@ void	free_map(char ***arr, int i);
 // init
 t_game	*init_game(void);
 
-// lib
-
 // hooks
 void	key_stroks(mlx_key_data_t keydata, void *params);
 void	rezise_window(int32_t width, int32_t heigth, void *param);
@@ -38,7 +36,7 @@ void	cursor_cb(double xpos, double ypos, void *param);
 
 // parse_file
 int	valid_file_name(char *argv, char *str);
-int	read_file_content(char *argv[], t_game **game);
+int	parse_file_content(char *argv[], t_game **game);
 int	eval_graph(t_game **game);
 int	open_file(char *file);
 int	valid_direc_fc(int fd, t_game **game);
@@ -56,6 +54,11 @@ int	check_map_line(t_game **game, char *line);
 int	copy_map_to_game_struct(t_game **game, char **line, int fd);
 int	celling_floow_texture(t_game **game, char *extract, int i);
 int	wall_texture(t_game **game, char *extract, int i);
+int	eval_map_line(char *arr);
+int set_position(t_game **game,  int y);
+int	find_start_position(t_game **game, int i);
+int	count_height(t_game **game);
+int	count_width(t_game **game);
 
 // math
 float	projection_distance(t_game **game);

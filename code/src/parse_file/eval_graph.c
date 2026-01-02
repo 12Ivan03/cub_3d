@@ -15,7 +15,7 @@
 int	check_rgb(t_rgb rgb, char *msg)
 {
 	int	result;
-	int i;
+	int	i;
 
 	i = 0;
 	while (i < 3)
@@ -58,7 +58,6 @@ int	eval_graph(t_game **game)
 // int	eval_graph(t_game **game)
 // {	
 // 	int	result;
-
 // 	result = 0;
 // 	for (int i = 0; i < 3; i++)
 // 		if ((*game)->graph->F.rgb[i] == -1 && (*game)->graph->F.rgb[i] < 256)

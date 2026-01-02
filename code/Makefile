@@ -11,7 +11,7 @@ src/main.c \
 src/parse_file/valid_file.c \
 src/parse_file/eval_graph.c \
 src/parse_file/process_map.c \
-src/parse_file/read_file_content.c \
+src/parse_file/parse_file_content.c \
 src/parse_file/read_file_direction_f_c.c \
 src/parse_file/eval_map.c \
 src/free/ft_free.c \
@@ -20,6 +20,7 @@ src/hooks/resize_hook.c \
 src/utils/extract_color_walls_from_file.c \
 src/utils/extract_map_line.c \
 src/utils/parse_and_config_line.c \
+src/utils/process_map_utils.c \
 src/init/init_game.c \
 src/math/game_math.c \
 src/game_loop/start_game.c \

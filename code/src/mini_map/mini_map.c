@@ -8,7 +8,7 @@ void	check_mini_map(t_game **game)
 
 	mini_h = (*game)->height * (*game)->mini_map_info.tile;
 	mini_w = (*game)->height * (*game)->mini_map_info.tile;
-	if (mini_h > HEIGHT_WIN - 100 || mini_w > WIDTH_WIN - 50)
+	if (mini_h > HEIGHT_WIN - 50 || mini_w > WIDTH_WIN - 50)
 		(*game)->mini_map_info.tile = 0;
 }
 

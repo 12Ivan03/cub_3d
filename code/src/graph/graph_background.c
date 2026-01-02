@@ -12,27 +12,31 @@
 
 #include "cub3d.h"
 
-int background_f_c_draw(t_game **game)
+uint32_t	put_color(t_rgb rgb)
 {
-	uint32_t ceil_col;
-    uint32_t floor_col;
-	int y;
-	int x;
+	uint32_t	tmp;
+
+	tmp = (((uint32_t)(rgb.rgb[0]) << 24) | ((uint32_t)(rgb.rgb[1]) << 16) | \
+		((uint32_t)(rgb.rgb[2]) << 8) | 0xFF);
+	return (tmp);
+}
+
+int	background_f_c_draw(t_game **game)
+{
+	uint32_t	ceil_col;
+    uint32_t	floor_col;
+	uint32_t	col;
+	int			y;
+	int			x;
 
 	if (!(*game)->background)
 		return (error_handler(7));
-	
-	ceil_col = (((uint32_t)((*game)->graph->C.rgb[0]) << 24) |
-                 ((uint32_t)((*game)->graph->C.rgb[1]) << 16) |
-                 ((uint32_t)((*game)->graph->C.rgb[2]) << 8) |
-				0xFF);
-    floor_col = (((uint32_t)((*game)->graph->F.rgb[0]) << 24) |
-                  ((uint32_t)((*game)->graph->F.rgb[1]) << 16) |
-                  ((uint32_t)((*game)->graph->F.rgb[2]) << 8) | 0xFF);
+	ceil_col = put_color((*game)->graph->C);
+	floor_col = put_color((*game)->graph->F);
 	y = 0;
 	while(y < WH)
 	{
-		uint32_t col = (y < WH / 2) ? ceil_col : floor_col;
+		col = (y < WH / 2) ? ceil_col : floor_col;
 		x = 0;
 		while(x < WW)
 		{
@@ -40,7 +44,6 @@ int background_f_c_draw(t_game **game)
 			x++;
 		}
 		y++;
-    }
-	
+	}
 	return (0);
 }

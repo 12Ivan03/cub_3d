@@ -12,101 +12,30 @@
 
 #include <cub3d.h>
 
-int	count_width(t_game **game)
-{
-	int 	counter;
-	t_list	*tmp;
-	int		len;
-
-	counter = 0;
-	tmp = (*game)->copy_map; 
-	while (tmp != NULL)
-	{
-		len = ft_strlen((char *)(tmp->content));
-		if (counter <= len)
-			counter = len;
-		tmp = tmp->next;
-	}
-	return (counter);
-}
-
-int	count_height(t_game **game)
-{
-	return (ft_lstsize((*game)->copy_map));
-}
-
-int	find_start_position(t_game **game, int i)
-{
-	int	j;
-
-	j = 0;
-	while (j < (*game)->width && (*game)->map[i][j] != 0)
-	{
-		if (ft_strchr("NWSE", (*game)->map[i][j]))
-			return (j);
-		j++;
-	}
-	return (-1);
-}
-
-void set_position(t_game **game, int x, int y, char angle)
-{
-	(*game)->player.position.x = (x + 0.5) * GRID_SIZE;
-	(*game)->player.position.y = (y + 0.5) * GRID_SIZE;
-	(*game)->player.angle_alpha = \
-		EA * (angle == 'E') + \
-		NO * (angle == 'N') + \
-		WE * (angle == 'W') + \
-		SO * (angle == 'S');
-}
-
-int	eval_map_line(char *arr)
-{
-	int	j;
-	int	len;
-
-	j = 0;
-	len = ft_strlen(arr);
-	while (j < len && arr[j] != 0)
-	{
-		if (!ft_strchr("NWSE10 ", arr[j]))// TODO:  add 2 for doors in map
-			return (1);
-		j++;
-	}
-	return (0);
-}
-
 int	read_process_map(t_game **game)
 {
-	int	i;
-	int j;
-	t_list *iter;
+	int		i;
+	int		j;
+	t_list	*iter;
 	
-	i = 0;
+	i = -1;
 	iter = (*game)->copy_map;
 	(*game)->height = count_height(game);
 	(*game)->width = count_width(game);
 	(*game)->map = (char **)malloc((*game)->height* sizeof(char *));
 	if (!(*game)->map)
 		return (1);
-	while (i < (*game)->height)
+	while (++i < (*game)->height)
 	{
 		(*game)->map[i] = (char *)ft_calloc(((*game)->width + 1), 1);
 		if (!(*game)->map[i])
 			return (free_map(&(*game)->map, i), error_handler(4));
 		ft_strlcat((*game)->map[i], (char *)iter->content, (*game)->width + 1);
-		j = find_start_position(game, i);
-		if (j != -1)
-		{
-			if ((*game)->player.position.x != -1 || (*game)->player.position.y != -1)
-				return (free_map(&(*game)->map, i + 1), error_handler(8)); // TODO:  add error message here if we try to set the player position (second time) not once!
-			set_position(game, j, i, (*game)->map[i][j]);
-			(*game)->map[i][j] = '0';
-		}
+		if (set_position(game, i))
+			return (error_handler(8));
 		if (eval_map_line((*game)->map[i]))
-			return (free_map(&(*game)->map, i + 1), error_handler(8));  // TODO:  add error message here; justt incorrect map line
+			return (free_map(&(*game)->map, i + 1), error_handler(8));
 		iter = iter->next;
-		i++;
 	}
 	check_mini_map(game);
 	return 0;

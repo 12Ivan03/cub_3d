@@ -12,7 +12,7 @@
 
 #include "cub3d.h"
 
-int	read_file_content(char *argv[], t_game **game) {
+int	parse_file_content(char *argv[], t_game **game) {
 
 	int	fd;
 
