@@ -25,10 +25,11 @@
 # define ROTATION_AGNLE 0.5f
 # define MINI_MAP_EMPTY_COLOR 0x101000AA
 # define MINI_MAP_WALL_COLOR 0x777777FF
+# define MINI_MAP_PLAYER_COLOR 0X10F7F0A1
+// 0xFF1010FF
 
 
 
-# define IS_EMPTY_SPACE(c) ((c) == ' ' || (c) == '\t')
 # define FOV (*game)->fov
 # define WW (*game)->width_window
 # define WH (*game)->height_window

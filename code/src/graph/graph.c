@@ -14,7 +14,6 @@
 
 int32_t	take_pixel(t_game **game, int wall, int x, int y)
 {
-	// int32_t	color;
 	uint8_t	*p;
 
 	p = &(*game)->graph->walls[wall]->pixels[4 * (y * (*game)->graph->walls[wall]->width + x)];
