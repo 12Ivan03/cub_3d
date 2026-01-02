@@ -16,6 +16,7 @@ src/parse_file/read_file_direction_f_c.c \
 src/parse_file/eval_map.c \
 src/free/ft_free.c \
 src/hooks/key_hook.c \
+src/hooks/key_hook_helper.c \
 src/hooks/resize_hook.c \
 src/utils/extract_color_walls_from_file.c \
 src/utils/extract_map_line.c \

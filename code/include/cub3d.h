@@ -32,6 +32,12 @@ t_game	*init_game(void);
 void	key_stroks(mlx_key_data_t keydata, void *params);
 void	rezise_window(int32_t width, int32_t heigth, void *param);
 void	cursor_cb(double xpos, double ypos, void *param);
+void    cursor_cb(double xpos, double ypos, void *param);
+void	key_down(t_game **game);
+void	key_up(t_game **game);
+void	key_left(t_game **game);
+void	key_right(t_game **game);
+int     is_walkable(t_game **game, float x, float y);
 
 
 // parse_file
@@ -45,7 +51,6 @@ int	validate_struct(t_game **game);
 int	validate_struct(t_game **game);
 int	validate_map(t_game **game);
 int	eval_cell(t_game **game, int x, int y, int dx, int dy);
-//----> map proccesing
 int	read_process_map(t_game **game);
 
 // utils

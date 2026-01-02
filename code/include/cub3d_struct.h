@@ -14,7 +14,7 @@
 # define MINI_H_WIN 200
 # define CELL_SIZE 100
 # define PROJ_DIST 400
-# define MOVE_SPEED 4.0f 
+# define MOVE_SPEED 10.0f 
 # define NO 90
 # define EA 0
 # define SO 270
@@ -23,7 +23,8 @@
 # define G 1
 # define B 2
 # define ROTATION_AGNLE 0.5f
-
+# define MINI_MAP_EMPTY_COLOR 0x101000AA
+# define MINI_MAP_WALL_COLOR 0x777777FF
 
 
 

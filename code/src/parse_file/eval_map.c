@@ -63,7 +63,7 @@ int	validate_map(t_game **game)
 
 int	validate_struct(t_game **game)
 {
-	if ((*game)->player.position.x == -1)// || (*game)->player.position.y == -1)
+	if ((*game)->player.position.x == -1)
 		return (error_handler_msg(5, "a player position"));
 	if ((*game)->graph->C.rgb[0] == -1 || (*game)->graph->F.rgb[0] == -1)
 		return (error_handler_msg(5, "colors"));

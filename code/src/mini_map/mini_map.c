@@ -52,10 +52,10 @@ void	draw_mini_map(t_game **game)
 
 void	draw_background_mini_map(t_game **game)
 {
-	int i;
-	int j;
-	char cell; 
-	t_pixel cordinate;
+	int		i;
+	int		j;
+	char	cell; 
+	t_pixel	cordinate;
 
 	if ((*game)->mini_map_info.tile <= 0)
 		return;
@@ -67,12 +67,11 @@ void	draw_background_mini_map(t_game **game)
 		{
 			cordinate.dot.x = j * (*game)->mini_map_info.tile;
 			cordinate.dot.y = i * (*game)->mini_map_info.tile;
-
 			cell = (*game)->map[i][j];
 			if (cell == '1')
-				cordinate.color = 0x777777FF;
+				cordinate.color = MINI_MAP_WALL_COLOR;
 			else
-				cordinate.color = 0x101000AA;
+				cordinate.color = MINI_MAP_EMPTY_COLOR;
 			mm_fill_rect(game, cordinate, (*game)->mini_map_info.tile);
 			j++;
 		}
