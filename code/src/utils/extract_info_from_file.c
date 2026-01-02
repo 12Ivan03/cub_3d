@@ -69,7 +69,6 @@ int	celling_floow_texture(t_game **game, char *extract, int i)
 	if (i == 5)
 		(*game)->graph->C = temp_col;
 	free(extract);	
-
 	return (0);
 }
 
