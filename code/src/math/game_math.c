@@ -20,12 +20,12 @@ float	projection_distance(t_game **game)
 	return (res);
 }
 
-float distance(t_coordinates a, t_coordinates b)
+float	distance(t_coordinates a, t_coordinates b)
 {
 	return (sqrtf((a.x - b.x) * (a.x - b.x) + (a.y - b.y) * (a.y - b.y)));
 }
 
-void check_angle(float *angle)
+void	check_angle(float *angle)
 {
 	if (*angle < 0.0f)
 		*angle +=360.0f;
@@ -33,9 +33,7 @@ void check_angle(float *angle)
 		*angle -=360.0f;
 }
 
-float deg_to_rad(float angle)
+float	deg_to_rad(float angle)
 {
-	// return (tanf(angle * (float)M_PI / 180.0f));
 	return (angle * (float)M_PI / 180.0f);
 }
-

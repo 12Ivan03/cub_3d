@@ -12,14 +12,7 @@
 
 #include "cub3d.h"
 
-uint32_t	put_color(t_rgb rgb)
-{
-	uint32_t	tmp;
-
-	tmp = (((uint32_t)(rgb.rgb[0]) << 24) | ((uint32_t)(rgb.rgb[1]) << 16) | \
-		((uint32_t)(rgb.rgb[2]) << 8) | 0xFF);
-	return (tmp);
-}
+uint32_t	put_color(t_rgb rgb);
 
 int	background_f_c_draw(t_game **game)
 {
@@ -34,16 +27,25 @@ int	background_f_c_draw(t_game **game)
 	ceil_col = put_color((*game)->graph->C);
 	floor_col = put_color((*game)->graph->F);
 	y = 0;
-	while(y < (*game)->height_window)
+	while (y < (*game)->height_window)
 	{
-		col = (y < (*game)->height_window / 2) ? ceil_col : floor_col;
-		x = 0;
-		while(x < (*game)->width_window)
-		{
+		if (y < (*game)->height_window / 2) 
+			col = ceil_col;
+		else
+			col = floor_col;
+		x = -1;
+		while (++x < (*game)->width_window)
 			mlx_put_pixel((*game)->background, x, y, col);
-			x++;
-		}
 		y++;
 	}
 	return (0);
+}
+
+uint32_t	put_color(t_rgb rgb)
+{
+	uint32_t	tmp;
+
+	tmp = (((uint32_t)(rgb.rgb[0]) << 24) | ((uint32_t)(rgb.rgb[1]) << 16) | \
+		((uint32_t)(rgb.rgb[2]) << 8) | 0xFF);
+	return (tmp);
 }

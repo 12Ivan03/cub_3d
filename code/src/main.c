@@ -37,25 +37,3 @@ int	main(int argc, char *argv[])
 		free_game(&game);
 	return (0);
 }
-	
-
-// # SRC_FILES = src/error_handler/error_handler.c \
-// # src/main.c \
-// # src/parse_file/valid_file.c \
-// # src/parse_file/eval_graph.c \
-// # src/parse_file/read_process_map.c \
-// # src/parse_file/read_file_content.c \
-// # src/parse_file/read_file_direction_f_c.c \
-// # src/free/ft_free.c \
-// # src/hooks/key_hook.c \
-// # src/hooks/resize_hook.c \
-// # src/utils/extract_info_from_file.c \
-// # src/utils/check_map_line.c \
-// # src/init/init_game.c \
-// # src/math/game_math.c \
-// # src/game_loop/start_game.c \
-// # src/graph/graph.c \
-// # src/graph/graph_background.c \
-// # src/mini_map/mini_map.c \
-// # lib/get_next_line/get_next_line.c \
-// # lib/get_next_line/get_next_line_utils.c \
