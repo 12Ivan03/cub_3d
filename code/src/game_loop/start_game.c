@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   start_game.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
+/*   By: aerokhin <aerokhin@student.codam.nl>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/22 12:38:10 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/08 15:24:43 by aerokhin         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ void	start_game(void *param)
 	float			curr_ang;
 	t_line			line;
 	t_grid			t;
-	float			dist;
+	// float			dist;
 
 	game = (t_game **)param;
 	ray = 0;
@@ -39,14 +39,14 @@ void	start_game(void *param)
 
 		//  horizontal intersection
 		if (line.angle < 180.0f && line.angle > 0.0f)  // Ray looking up
-			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE - 1.0f;
+			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE;
 		else  // Ray looking down
 			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
 		line.a.x = PLAYER.position.x - (line.a.y - PLAYER.position.y) / tanf(deg_to_rad(line.angle));
 		
 		// vertical intersection
 		if (line.angle > 90.0f && line.angle < 270.0f)  // Ray looking left
-			line.b.x = floorf(PLAYER.position.x / GRID_SIZE) * GRID_SIZE - 1.0f;
+			line.b.x = floorf(PLAYER.position.x / GRID_SIZE) * GRID_SIZE;
 		else  // Ray looking right
 			line.b.x = floorf(PLAYER.position.x / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
 		line.b.y = PLAYER.position.y - (line.b.x - PLAYER.position.x) * tanf(deg_to_rad(line.angle));
@@ -55,17 +55,21 @@ void	start_game(void *param)
 		{
 			if (distance(PLAYER.position, line.a) <= distance(PLAYER.position, line.b))
 			{
-				t.x = (int)(line.a.x / GRID_SIZE);
-				t.y = (int)(line.a.y / GRID_SIZE);
-				dist = distance(PLAYER.position, line.a);
-				line.hit =  1 + 2 * (line.angle <= 180.0f && line.angle >= 0.0f); // 1 = North, 3 = South
+				t.x = (int)floorf(line.a.x / GRID_SIZE);
+				t.y = (int)floorf(line.a.y / GRID_SIZE);
+				// Looking up: check cell above (subtract 1 from y)
+				if (line.angle < 180.0f && line.angle > 0.0f)
+					t.y -= 1;
+				line.hit = 1 + 2 * (line.angle < 180.0f && line.angle > 0.0f); // 1 = North, 3 = South
 			}
 			else
 			{
-				t.x = (int)(line.b.x / GRID_SIZE);
-				t.y = (int)(line.b.y / GRID_SIZE);
-				dist = distance(PLAYER.position, line.b);
-				line.hit = (line.angle >= 90.0f && line.angle <= 270.0f) * 2; // 2 = West, 0 = East
+				t.x = (int)floorf(line.b.x / GRID_SIZE);
+				t.y = (int)floorf(line.b.y / GRID_SIZE);
+				// Looking left: check cell to the left (subtract 1 from x)
+				if (line.angle > 90.0f && line.angle < 270.0f)
+					t.x -= 1;
+				line.hit = (line.angle > 90.0f && line.angle < 270.0f) * 2; // 2 = West, 0 = East
 			}
 			
 			// Check bounds
