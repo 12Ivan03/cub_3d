@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:56:43 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/09 12:19:22 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/09 15:57:57 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,14 +15,19 @@
 int	ft_comas(char *str)
 {
 	int	count;
+	int	i;
 
+	i = 0;
 	count = 0;
-	while (str && ft_strchr(str, ','))
+	while (str[i])
 	{
-		count++;
-		str = ft_strchr(str, ',') + 1;
+		if (str[i] != ',' && !ft_isdigit(str[i]))
+			return (1);
+		if (str[i] == ',')
+			count++;
+		i++;
 	}
-	if (count < 3)
+	if (count != 2)
 		return (1);
 	return (0);
 }
@@ -33,7 +38,7 @@ t_rgb	extract_color(char *str)
 	int		i;
 
 	i = 0;
-	if (!ft_comas(str) || ft_strchr(str, ',') == ft_strrchr(str, ','))
+	if (ft_comas(str))
 		return ((t_rgb){.rgb = {-1, -1, -1}});
 	while (i < 3)
 	{
@@ -70,7 +75,8 @@ int	wall_texture(t_game **game, char *extract, int i)
 			return (error_handler_msg(2, "Failed attach image to texture"));
 	}
 	else
-		return (error_handler_msg(2, "Incorrect map file"));
+		return (mlx_delete_texture(tex), \
+error_handler_msg(2, "Incorrect map file"));
 	return (0);
 }
 
@@ -79,11 +85,19 @@ int	celling_floow_texture(t_game **game, char *extract, int i)
 	t_rgb	temp_col;
 
 	temp_col = extract_color(extract);
-	if (i == 4)
-		(*game)->graph->F = temp_col;
-	if (i == 5)
-		(*game)->graph->C = temp_col;
 	free(extract);
+	if (i == 4)
+	{
+		if ((*game)->graph->F.rgb[0] != -1)
+			return (error_handler(8));
+		(*game)->graph->F = temp_col;
+	}
+	if (i == 5)
+	{
+		if ((*game)->graph->C.rgb[0] != -1)
+			return (error_handler(8));
+		(*game)->graph->C = temp_col;
+	}
 	return (0);
 }
 
