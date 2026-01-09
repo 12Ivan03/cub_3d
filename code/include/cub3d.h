@@ -60,8 +60,8 @@ int	copy_map_to_game_struct(t_game **game, char **line, int fd);
 int	celling_floow_texture(t_game **game, char *extract, int i);
 int	wall_texture(t_game **game, char *extract, int i);
 int	eval_map_line(char *arr);
-int set_position(t_game **game,  int y);
-int	find_start_position(t_game **game, int i);
+int set_position(t_game **game, int y);
+int	find_start_position(t_game **game, int i, int j);
 int	count_height(t_game **game);
 int	count_width(t_game **game);
 

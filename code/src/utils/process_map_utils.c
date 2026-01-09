@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 14:40:35 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/09 12:27:24 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/09 16:44:32 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,11 +35,11 @@ int	count_height(t_game **game)
 	return (ft_lstsize((*game)->copy_map));
 }
 
-int	find_start_position(t_game **game, int i)
+int	find_start_position(t_game **game, int i, int j)
 {
-	int	j;
+	// int	j;
 
-	j = 0;
+	// j = 0;
 	while (j < (*game)->width && (*game)->map[i][j] != 0)
 	{
 		if (ft_strchr("NWSE", (*game)->map[i][j]))
@@ -54,7 +54,9 @@ int	set_position(t_game **game, int y)
 	char	angle;
 	int		x;
 
-	x = find_start_position(game, y);
+	x = find_start_position(game, y, 0);
+	if (find_start_position(game, y, x + 1) != -1)
+		return (free_map(&(*game)->map, y + 1), 1);
 	if (x != -1)
 	{
 		if ((*game)->player.position.x != -1 || \

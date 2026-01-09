@@ -6,13 +6,13 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/09 15:05:48 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/09 16:38:44 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	eval_cell(t_game **game, int x, int y, int d) // 0: 0,1; 1: 1,0
+int	eval_cell(t_game **game, int x, int y, int d)
 {
 	if ((y == 0 || x == 0) && (*game)->map[x][y] == '0')
 		return (1);
@@ -42,7 +42,7 @@ int	validate_map(t_game **game)
 		j = 0;
 		while (j < (*game)->width)
 		{
-			if (eval_cell(game, i, j, 0)) // 0.1
+			if (eval_cell(game, i, j, 0))
 				return (1);
 			j++;
 		}
@@ -54,7 +54,7 @@ int	validate_map(t_game **game)
 		j = 0;
 		while (j < (*game)->height)
 		{
-			if (eval_cell(game, j, i, 1)) //1,0
+			if (eval_cell(game, j, i, 1))
 				return (1);
 			j++;
 		}
