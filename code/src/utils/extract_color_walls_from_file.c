@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   extract_info_from_file.c                           :+:      :+:    :+:   */
+/*   extract_color_walls_from_file.c                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:56:43 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/22 16:49:42 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/09 12:19:22 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,15 +34,15 @@ t_rgb	extract_color(char *str)
 
 	i = 0;
 	if (!ft_comas(str) || ft_strchr(str, ',') == ft_strrchr(str, ','))
-		return ((t_rgb){ .rgb = {-1,-1,-1}});
+		return ((t_rgb){.rgb = {-1, -1, -1}});
 	while (i < 3)
 	{
 		tmp_clr.rgb[i] = ft_atoi(str);
 		if (!ft_isdigit(str[0]) || tmp_clr.rgb[i] < 0 || tmp_clr.rgb[i] > 255)
-			return ((t_rgb){ .rgb = {-1,-1,-1}});
+			return ((t_rgb){.rgb = {-1, -1, -1}});
 		str = ft_strchr(str, ',');
 		if (i < 2 && !str)
-			return ((t_rgb){ .rgb = {-1,-1,-1}});
+			return ((t_rgb){.rgb = {-1, -1, -1}});
 		if (str)
 			str++;
 		i++;
@@ -59,7 +59,7 @@ int	wall_texture(t_game **game, char *extract, int i)
 	if (access(extract, R_OK) == -1)
 		return (free(extract), error_handler_msg(2, strerror(errno)));
 	tex = mlx_load_png(extract);
-	free(extract);		
+	free(extract);
 	if (!tex)
 		return (error_handler_msg(2, "Failed to load png"));
 	if ((*game)->graph->walls[i] == NULL)
@@ -83,7 +83,7 @@ int	celling_floow_texture(t_game **game, char *extract, int i)
 		(*game)->graph->F = temp_col;
 	if (i == 5)
 		(*game)->graph->C = temp_col;
-	free(extract);	
+	free(extract);
 	return (0);
 }
 

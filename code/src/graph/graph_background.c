@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 13:07:10 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/22 14:20:50 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/09 12:28:11 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ uint32_t	put_color(t_rgb rgb);
 int	background_f_c_draw(t_game **game)
 {
 	uint32_t	ceil_col;
-    uint32_t	floor_col;
+	uint32_t	floor_col;
 	uint32_t	col;
 	int			y;
 	int			x;
@@ -29,7 +29,7 @@ int	background_f_c_draw(t_game **game)
 	y = 0;
 	while (y < (*game)->height_window)
 	{
-		if (y < (*game)->height_window / 2) 
+		if (y < (*game)->height_window / 2)
 			col = ceil_col;
 		else
 			col = floor_col;
@@ -46,6 +46,6 @@ uint32_t	put_color(t_rgb rgb)
 	uint32_t	tmp;
 
 	tmp = (((uint32_t)(rgb.rgb[0]) << 24) | ((uint32_t)(rgb.rgb[1]) << 16) | \
-		((uint32_t)(rgb.rgb[2]) << 8) | 0xFF);
+((uint32_t)(rgb.rgb[2]) << 8) | 0xFF);
 	return (tmp);
 }

@@ -1,38 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   eval_map.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/22 17:15:21 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/09 12:13:02 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <cub3d.h>
 
-int	eval_cell(t_game **game, int x, int y, int dx, int dy)// TODO: should be only 4 values!!!
+int	eval_cell(t_game **game, int x, int y, int dx, int dy)
 {
-	if ((y == 0 || x == 0) && (*game)->map[x][y] == '0') // TODO:  || == '2'
+	if ((y == 0 || x == 0) && (*game)->map[x][y] == '0')
 		return (1);
 	if (dx == 1)
-		if ((x > 0) && (*game)->map[x][y] == '0') // TODO:  || == '2'
+		if ((x > 0) && (*game)->map[x][y] == '0')
 			if ((*game)->map[x - dx][y - dy] == ' ' || x == (*game)->height - 1)
 				return (1);
 	if (dy == 1)
-		if (y > 0 && (*game)->map[x][y] == '0') // TODO:  || == '2'
+		if (y > 0 && (*game)->map[x][y] == '0')
 			if ((*game)->map[x - dx][y - dy] == ' ' || \
-				(*game)->map[x + dx][y + dy] == ' ' || \
-				(*game)->map[x + dx][y + dy] == '\0')
+(*game)->map[x + dx][y + dy] == ' ' || (*game)->map[x + dx][y + dy] == '\0')
 				return (1);
 	return (0);
 }
 
 int	validate_map(t_game **game)
 {
-	int i; 
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < (*game)->height)

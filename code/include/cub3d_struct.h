@@ -101,7 +101,7 @@ typedef struct s_game
 	mlx_t	*mlx;
 	mlx_image_t *foreground;
 	mlx_image_t *background;
-	mlx_image_t *mini_map_image;
+	mlx_image_t *min_map_img;
 	t_mini_map	mini_map_info;
 	char	**map;
 	t_list	*copy_map;

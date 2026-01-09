@@ -6,30 +6,31 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/09 14:16:00 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/22 12:13:05 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/09 12:06:24 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void rezise_window(int32_t width, int32_t heigth, void *param)
+void	rezise_window(int32_t width, int32_t heigth, void *param)
 {
-	t_game **game;
+	t_game	**game;
 
 	game = (t_game **)param;
-	(*game)->height_window = heigth;	
-	(*game)->width_window = width;	
+	(*game)->height_window = heigth;
+	(*game)->width_window = width;
 	mlx_delete_image((*game)->mlx, (*game)->foreground);
 	(*game)->foreground = mlx_new_image((*game)->mlx, (*game)->width_window, \
-													(*game)->height_window);	
+(*game)->height_window);
 	mlx_delete_image((*game)->mlx, (*game)->background);
 	(*game)->background = mlx_new_image((*game)->mlx, (*game)->width_window, \
-													(*game)->height_window);
-	mlx_delete_image((*game)->mlx, (*game)->mini_map_image);
-	(*game)->mini_map_image = mlx_new_image((*game)->mlx, WIDTH_WIN, HEIGHT_WIN);
-	mlx_image_to_window((*game)->mlx, (*game)->background, 0 ,0);
-	mlx_image_to_window((*game)->mlx, (*game)->foreground, 0 ,0);
-	mlx_image_to_window((*game)->mlx, (*game)->mini_map_image, 20, 20);
+(*game)->height_window);
+	mlx_delete_image((*game)->mlx, (*game)->min_map_img);
+	(*game)->min_map_img = mlx_new_image((*game)->mlx, \
+WIDTH_WIN, HEIGHT_WIN);
+	mlx_image_to_window((*game)->mlx, (*game)->background, 0, 0);
+	mlx_image_to_window((*game)->mlx, (*game)->foreground, 0, 0);
+	mlx_image_to_window((*game)->mlx, (*game)->min_map_img, 20, 20);
 	background_f_c_draw(game);
 	start_game(game);
 }

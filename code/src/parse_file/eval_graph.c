@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:33:32 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/21 12:37:21 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/09 12:12:20 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	check_rgb(t_rgb rgb, char *msg)
 {
-	int	result;
 	int	i;
 
 	i = 0;
@@ -42,7 +41,7 @@ int	check_walls(mlx_image_t **walls, char *msg)
 }
 
 int	eval_graph(t_game **game)
-{	
+{
 	int	result;
 
 	result = 0;

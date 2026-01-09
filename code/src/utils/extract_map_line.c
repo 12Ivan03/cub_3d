@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_line.c                                   :+:      :+:    :+:   */
+/*   extract_map_line.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:37:27 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/20 14:43:19 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/09 12:19:58 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,9 @@
 
 int	copy_map_to_game_struct(t_game **game, char **line, int fd)
 {
-	int	check = 0;
+	int	check;
 
+	check = 0;
 	while ((*line) != NULL)
 	{
 		check = check_map_line(game, *line);
@@ -27,7 +28,6 @@ int	copy_map_to_game_struct(t_game **game, char **line, int fd)
 
 int	check_map_line(t_game **game, char *line)
 {
-
 	t_list	*tmp_map;
 	char	*temp_line;
 

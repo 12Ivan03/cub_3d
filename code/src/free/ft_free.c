@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 12:58:54 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/10/21 11:49:29 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/09 11:44:03 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,8 +44,8 @@ void	free_game_graph(t_game **game)
 
 void	free_link_list(t_list *list)
 {
-	t_list *tmp;
-	t_list *next;
+	t_list	*tmp;
+	t_list	*next;
 
 	tmp = list;
 	while (tmp != NULL)
@@ -53,7 +53,7 @@ void	free_link_list(t_list *list)
 		next = tmp->next;
 		free(tmp->content);
 		free(tmp);
-		tmp = next;	
+		tmp = next;
 	}
 }
 

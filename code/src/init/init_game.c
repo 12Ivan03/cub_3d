@@ -6,23 +6,24 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 16:02:42 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/22 17:16:08 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/09 12:08:10 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-static void game_init_default(t_game **game);
+
+static void	game_init_default(t_game **game);
 static bool	graph_init_default(t_game **game);
 static bool	game_create_mlx(t_game **game);
 static bool	game_create_attach_image(t_game **game);
 
 t_game	*init_game(void)
-{	
-	t_game *game;
+{
+	t_game	*game;
 
 	game = malloc(sizeof(*game));
 	if (!game)
-		return NULL;
+		return (NULL);
 	ft_memset(game, 0, sizeof(*game));
 	game_init_default(&game);
 	if (!graph_init_default(&game))
@@ -56,15 +57,15 @@ static void	game_init_default(t_game **game)
 
 static bool	graph_init_default(t_game **game)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	(*game)->graph = malloc(sizeof(*(*game)->graph));
 	if (!(*game)->graph)
 		return (false);
 	ft_memset((*game)->graph, 0, sizeof(*(*game)->graph));
 	(*game)->graph->proj_dist = \
-					(WIDTH_WIN / 2) / tan(deg_to_rad((*game)->fov / 2));
+(WIDTH_WIN / 2) / tan(deg_to_rad((*game)->fov / 2));
 	while (i < 4)
 		(*game)->graph->walls[i++] = NULL;
 	(*game)->graph->C = (t_rgb){.rgb = {-1, -1, -1}};
@@ -84,16 +85,15 @@ static bool	game_create_attach_image(t_game **game)
 {
 	(*game)->foreground = mlx_new_image((*game)->mlx, WIDTH_WIN, HEIGHT_WIN);
 	(*game)->background = mlx_new_image((*game)->mlx, WIDTH_WIN, HEIGHT_WIN);
-	(*game)->mini_map_image = mlx_new_image((*game)->mlx, WIDTH_WIN, HEIGHT_WIN);
+	(*game)->min_map_img = mlx_new_image((*game)->mlx, WIDTH_WIN, HEIGHT_WIN);
 	if ((*game)->foreground == NULL || (*game)->background == NULL \
-		|| (*game)->mini_map_image  == NULL)
+|| (*game)->min_map_img == NULL)
 		return (false);
-	if (mlx_image_to_window((*game)->mlx, (*game)->background, 0 ,0))
+	if (mlx_image_to_window((*game)->mlx, (*game)->background, 0, 0))
 		return (false);
-	if (mlx_image_to_window((*game)->mlx, (*game)->foreground, 0 ,0))
+	if (mlx_image_to_window((*game)->mlx, (*game)->foreground, 0, 0))
 		return (false);
-	if (mlx_image_to_window((*game)->mlx, (*game)->mini_map_image, 20, 20))
+	if (mlx_image_to_window((*game)->mlx, (*game)->min_map_img, 20, 20))
 		return (false);
 	return (true);
 }
-

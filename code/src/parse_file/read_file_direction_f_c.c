@@ -12,7 +12,6 @@
 
 #include <cub3d.h>
 
-
 int	read_validate_direc_fc(int fd, t_game **game)
 {
 	char	*line;
@@ -25,14 +24,14 @@ int	read_validate_direc_fc(int fd, t_game **game)
 		if (check == 1)
 			return (free(line), 1);
 		else if (check == 2)
-			break;
+			break ;
 		free(line);
 		line = get_next_line(fd);
 	}
 	if (check != 2)
 		return (error_handler(2));
 	if (eval_graph(game))
-		return(free(line), 1);
+		return (free(line), 1);
 	copy_map_to_game_struct(game, &line, fd);
-	return 0;
+	return (0);
 }

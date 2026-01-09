@@ -13,7 +13,7 @@
 #include <cub3d.h>
 
 int	valid_file_name(char *argv, char *str)
-{	
+{
 	char	*c;
 
 	c = ft_strnstr(argv, str, ft_strlen(argv));
