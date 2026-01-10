@@ -31,37 +31,43 @@ int	eval_cell(t_game **game, int x, int y, int d)
 	return (0);
 }
 
-int	validate_map(t_game **game)
+int	scan_map(t_game **game, int outer, int inner, int cell)
 {
 	int	i;
 	int	j;
 
 	i = 0;
-	while (i < (*game)->height)
+	while (i < outer)
 	{
 		j = 0;
-		while (j < (*game)->width)
+		while (j < inner)
 		{
-			if (eval_cell(game, i, j, 0))
-				return (1);
-			j++;
-		}
-		i++;
-	}
-	i = 0;
-	while (i < (*game)->width)
-	{
-		j = 0;
-		while (j < (*game)->height)
-		{
-			if (eval_cell(game, j, i, 1))
-				return (1);
+			if (cell == 0)
+			{
+				if (eval_cell(game, i, j, cell))
+					return (1);
+			}
+			else 
+			{
+				if (eval_cell(game, j, i, cell))
+					return (1);
+			}
 			j++;
 		}
 		i++;
 	}
 	return (0);
 }
+
+int	validate_map(t_game **game)
+{
+	if (scan_map(game, (*game)->height, (*game)->width, 0))
+		return (1);
+	if (scan_map(game, (*game)->width, (*game)->height, 1))
+		return (1);
+	return (0);
+}
+	
 
 int	validate_struct(t_game **game)
 {
