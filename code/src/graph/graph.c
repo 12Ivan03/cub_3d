@@ -12,6 +12,23 @@
 
 #include "cub3d.h"
 
+void	compute_wall_slice(t_game **game, t_draw_line* dl, \
+t_player_state *plr, int colonm_point)
+{
+	dl->pos.x = colonm_point;
+	if (dl->pos.x < 0)
+		dl->pos.x = 0;
+	if (dl->pos.x >= (*game)->graph->walls[plr->line.hit]->width)
+		dl->pos.x = (*game)->graph->walls[plr->line.hit]->width - 1;
+	dl->start_y = ((*game)->height_window - dl->height) / 2;
+	dl->end_y = ((*game)->height_window + dl->height) / 2;
+	if (dl->start_y < 0)
+		dl->start_y = 0;
+	if (dl->end_y > (*game)->height_window)
+		dl->end_y = (*game)->height_window;
+
+}
+
 int32_t	take_pixel(t_game **game, int wall, int x, int y)
 {
 	uint8_t	*p;
@@ -22,29 +39,21 @@ pixels[4 * (y * (*game)->graph->walls[wall]->width + x)];
 (int32_t)p[2] << 8 | (int32_t)p[3]);
 }
 
-void	draw_line(t_game **game, t_player_state *plr, int colonm_point, float dist)
+void	draw_line(t_game **game, t_player_state *plr, int clm_point, float dist)
 {
 	t_draw_line		dl;
 	int				i;
+	int				w_min_h;
 
+	w_min_h= ((*game)->height_window - dl.height);
 	if (dist < 0.001f)
 		dist = 0.001f;
 	dl.height = (int)(HEIGHT_WALL / dist * (*game)->graph->proj_dist);
-	dl.pos.x = colonm_point;
-	if (dl.pos.x < 0)
-		dl.pos.x = 0;
-	if (dl.pos.x >= (*game)->graph->walls[plr->line.hit]->width)
-		dl.pos.x = (*game)->graph->walls[plr->line.hit]->width - 1;
-	dl.start_y = ((*game)->height_window - dl.height) / 2;
-	dl.end_y = ((*game)->height_window + dl.height) / 2;
-	if (dl.start_y < 0)
-		dl.start_y = 0;
-	if (dl.end_y > (*game)->height_window)
-		dl.end_y = (*game)->height_window;
+	compute_wall_slice(game, &dl, plr, clm_point);
 	i = dl.start_y;
 	while (i < dl.end_y)
 	{
-		dl.ratio = (float)(i - ((*game)->height_window - dl.height) / 2) / (float)dl.height;
+		dl.ratio = (float)(i - w_min_h / 2) / (float)dl.height;
 		dl.pos.y = (int)(dl.ratio * (*game)->graph->walls[plr->line.hit]->height);
 		if (dl.pos.y < 0)
 			dl.pos.y = 0;
