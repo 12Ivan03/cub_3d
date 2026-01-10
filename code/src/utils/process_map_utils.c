@@ -37,9 +37,6 @@ int	count_height(t_game **game)
 
 int	find_start_position(t_game **game, int i, int j)
 {
-	// int	j;
-
-	// j = 0;
 	while (j < (*game)->width && (*game)->map[i][j] != 0)
 	{
 		if (ft_strchr("NWSE", (*game)->map[i][j]))
