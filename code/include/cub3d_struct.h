@@ -2,8 +2,6 @@
 #ifndef CUB3D_STRUCT_H
 # define CUB3D_STRUCT_H
 
-# include "../lib/MLX42/include/MLX42/MLX42.h"
-
 # define HEIGHT_WALL 264
 # define WIDTH_WALL 264
 # define GRID_SIZE 264
@@ -22,33 +20,21 @@
 # define R 0
 # define G 1
 # define B 2
-# define ROTATION_AGNLE 0.5f
+# define ROTATION_AGNLE 1.5f
 # define MINI_MAP_EMPTY_COLOR 0x101000AA
 # define MINI_MAP_WALL_COLOR 0x777777FF
-# define MINI_MAP_PLAYER_COLOR 0X10F7F0A1
-// 0xFF1010FF
-
-
-
-# define FOV (*game)->fov
-# define WW (*game)->width_window
-# define WH (*game)->height_window
-# define PLAYER (*game)->player
-# define WL_H (*game)->height_wall
-# define WL_W (*game)->width_wall
-
+# define MINI_MAP_PLAYER_COLOR 0X10F7F0A1 // 0xFF1010FF
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif
 
-
-typedef struct s_coordinates
+typedef struct	s_coordinates
 {
 	float	x;
 	float	y;
 }	t_coordinates;
 
-typedef struct s_pixel
+typedef struct	s_pixel
 {
 	t_coordinates		dot;
 	int32_t				color;
@@ -60,7 +46,7 @@ typedef struct	s_grid
 	int	y;
 }	t_grid;
 
-typedef struct s_line
+typedef struct	s_line
 {
 	t_coordinates	a;
 	t_coordinates	b;
@@ -68,7 +54,7 @@ typedef struct s_line
 	int				hit;
 }	t_line;
 
-typedef struct s_player {
+typedef struct	s_player {
 	
 	float angle_alpha;
 	t_coordinates position;
@@ -77,12 +63,12 @@ typedef struct s_player {
 
 } t_player;
 
-typedef struct s_rgb
+typedef struct	s_rgb
 {
 	int rgb[3];
 } t_rgb;
 
-typedef struct s_graph
+typedef struct	s_graph
 {
 	t_rgb 		F;
 	t_rgb 		C;
@@ -90,13 +76,32 @@ typedef struct s_graph
 	float		proj_dist;
 } t_graph;
 
-typedef struct s_mini_map
+typedef struct	s_mini_map
 {
 	int tile;
 } t_mini_map;
 
+typedef struct	s_player_state
+{
+	t_line			line;
+	t_grid			t;
+	int		ray;
+	float	curr_ang;
+	float	step_y;
+	float	step_x;
+}	t_player_state;
 
-typedef struct s_game
+typedef struct	s_draw_line
+{
+	int				height;
+	int				start_y;
+	int				end_y;
+	float			ratio;
+	t_coordinates	pos;
+}	t_draw_line;
+
+
+typedef struct	s_game
 {
 	mlx_t	*mlx;
 	mlx_image_t *foreground;

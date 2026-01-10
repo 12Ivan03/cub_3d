@@ -22,69 +22,65 @@ pixels[4 * (y * (*game)->graph->walls[wall]->width + x)];
 (int32_t)p[2] << 8 | (int32_t)p[3]);
 }
 
-void	draw_line(t_game **game, t_line line, int colonm_point, float dist, int ray_x)
+void	draw_line(t_game **game, t_player_state *plr, int colonm_point, float dist)
 {
+	t_draw_line		dl;
 	int				i;
-	int				height;
-	int				start_y;
-	int				end_y;
-	float			ratio;
-	t_coordinates	pos;
 
 	if (dist < 0.001f)
 		dist = 0.001f;
-	height = (int)(HEIGHT_WALL / dist * (*game)->graph->proj_dist);
-	pos.x = colonm_point;
-	if (pos.x < 0)
-		pos.x = 0;
-	if (pos.x >= (*game)->graph->walls[line.hit]->width)
-		pos.x = (*game)->graph->walls[line.hit]->width - 1;
-	start_y = (WH - height) / 2;
-	end_y = (WH + height) / 2;
-	if (start_y < 0)
-		start_y = 0;
-	if (end_y > WH)
-		end_y = WH;
-	i = start_y;
-	while (i < end_y)
+	dl.height = (int)(HEIGHT_WALL / dist * (*game)->graph->proj_dist);
+	dl.pos.x = colonm_point;
+	if (dl.pos.x < 0)
+		dl.pos.x = 0;
+	if (dl.pos.x >= (*game)->graph->walls[plr->line.hit]->width)
+		dl.pos.x = (*game)->graph->walls[plr->line.hit]->width - 1;
+	dl.start_y = ((*game)->height_window - dl.height) / 2;
+	dl.end_y = ((*game)->height_window + dl.height) / 2;
+	if (dl.start_y < 0)
+		dl.start_y = 0;
+	if (dl.end_y > (*game)->height_window)
+		dl.end_y = (*game)->height_window;
+	i = dl.start_y;
+	while (i < dl.end_y)
 	{
-		ratio = (float)(i - (WH - height) / 2) / (float)height;
-		pos.y = (int)(ratio * (*game)->graph->walls[line.hit]->height);
-		if (pos.y < 0)
-			pos.y = 0;
-		if (pos.y >= (*game)->graph->walls[line.hit]->height)
-			pos.y = (*game)->graph->walls[line.hit]->height - 1;
-		mlx_put_pixel((*game)->foreground, ray_x, i, \
-take_pixel(game, line.hit, pos.x, pos.y));
+		dl.ratio = (float)(i - ((*game)->height_window - dl.height) / 2) / (float)dl.height;
+		dl.pos.y = (int)(dl.ratio * (*game)->graph->walls[plr->line.hit]->height);
+		if (dl.pos.y < 0)
+			dl.pos.y = 0;
+		if (dl.pos.y >= (*game)->graph->walls[plr->line.hit]->height)
+			dl.pos.y = (*game)->graph->walls[plr->line.hit]->height - 1;
+		mlx_put_pixel((*game)->foreground, plr->ray, i, \
+take_pixel(game, plr->line.hit, dl.pos.x, dl.pos.y));
 		i++;
 	}
 }
 
-int	draw_col(t_game **game, t_line line, int ray_x, float curr_ang)
+int	draw_col(t_game **game, t_player_state *plr)
 {
 	int		colonm_point;
 	float	colonm_num;
 	float	dist;
 
-	if (line.hit % 2 != 0)
+	if (plr->line.hit % 2 != 0)
 	{
-		colonm_num = ((line.a.x - floor((line.a.x + 0.00f) / GRID_SIZE) \
+		colonm_num = ((plr->line.a.x - floor((plr->line.a.x + 0.00f) / GRID_SIZE) \
 * GRID_SIZE) / GRID_SIZE);
-		dist = distance(PLAYER.position, line.a);
+		dist = distance((*game)->player.position, plr->line.a);
 	}
 	else
 	{
-		colonm_num = ((line.b.y - floor((line.b.y + 0.00f) / GRID_SIZE) \
+		colonm_num = ((plr->line.b.y - floor((plr->line.b.y + 0.00f) / GRID_SIZE) \
 * GRID_SIZE) / GRID_SIZE);
-		dist = distance(PLAYER.position, line.b);
+		dist = distance((*game)->player.position, plr->line.b);
 	}
-	dist = dist * cosf(deg_to_rad(curr_ang));
-	colonm_point = floor((colonm_num * (line.hit <= 1) + (1 - colonm_num) \
-* (line.hit >= 2)) * (*game)->graph->walls[line.hit]->width);
+	dist = dist * cosf(deg_to_rad(plr->curr_ang));
+	colonm_point = floor((colonm_num * (plr->line.hit <= 1) + (1 - colonm_num) \
+* (plr->line.hit >= 2)) * (*game)->graph->walls[plr->line.hit]->width);
 	if (colonm_point < 0)
 		colonm_point = 0;
-	if (colonm_point >= (int)(*game)->graph->walls[line.hit]->width)
-		colonm_point = (int)(*game)->graph->walls[line.hit]->width - 1;
-	draw_line(game, line, colonm_point, dist, ray_x);
+	if (colonm_point >= (int)(*game)->graph->walls[plr->line.hit]->width)
+		colonm_point = (int)(*game)->graph->walls[plr->line.hit]->width - 1;
+	draw_line(game, plr, colonm_point, dist);
 	return (0);
 }

@@ -14,78 +14,118 @@
 #include "cub3d.h"
 #include <math.h>
 
+void	ray_hit_points(t_game **game, t_player_state *plr);
+void	compute_ray_angle(t_game **game, t_player_state *plr);
+void	select_ray_hit(t_game **game, t_player_state *plr);
+void	advance_ray_intersection(t_game **game, t_player_state *plr);
+
 void	start_game(void *param)
 {
 	t_game			**game;
-	t_line			line;
-	t_grid			t;
-	int				ray;
-	float			curr_ang;
-	float			step_y;
-	float			step_x;
+	t_player_state	plr;
 
-	step_y = 0;
-	step_x = 0;
 	game = (t_game **)param;
-	ray = 0;
-	ft_memset(&t, 0, sizeof(t));
-	ft_bzero((*game)->foreground->pixels, (*game)->foreground->width * (*game)->foreground->height * 4);
-	ft_bzero((*game)->min_map_img->pixels, (*game)->min_map_img->width * (*game)->min_map_img->height * sizeof(uint32_t));
+	plr_init(&plr, game);
 	draw_background_mini_map(game);
-	while (ray < WW)
+	while (plr.ray < (*game)->width_window)
 	{
-		curr_ang = ((float)ray / (float)WW) * (float)(FOV) - (float)(FOV) / 2;
-		line.angle = PLAYER.angle_alpha - curr_ang;
-		check_angle(&line.angle);
-		if (line.angle < 180.0f && line.angle > 0.0f)
-			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE;
-		else
-			line.a.y = floor(PLAYER.position.y / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
-		line.a.x = PLAYER.position.x - (line.a.y - PLAYER.position.y) / tanf(deg_to_rad(line.angle));
-		if (line.angle > 90.0f && line.angle < 270.0f)
-			line.b.x = floorf(PLAYER.position.x / GRID_SIZE) * GRID_SIZE;
-		else
-			line.b.x = floorf(PLAYER.position.x / GRID_SIZE) * GRID_SIZE + GRID_SIZE;
-		line.b.y = PLAYER.position.y - (line.b.x - PLAYER.position.x) * tanf(deg_to_rad(line.angle));
+		compute_ray_angle(game, &plr);
+		ray_hit_points(game, &plr);
 		while (1)
 		{
-			if (distance(PLAYER.position, line.a) <= distance(PLAYER.position, line.b))
-			{
-				t.x = (int)floorf(line.a.x / GRID_SIZE);
-				t.y = (int)floorf(line.a.y / GRID_SIZE);
-				if (line.angle < 180.0f && line.angle > 0.0f)
-					t.y -= 1;
-				line.hit = 1 + 2 * (line.angle < 180.0f && line.angle > 0.0f);
-			}
-			else
-			{
-				t.x = (int)floorf(line.b.x / GRID_SIZE);
-				t.y = (int)floorf(line.b.y / GRID_SIZE);
-				if (line.angle > 90.0f && line.angle < 270.0f)
-					t.x -= 1;
-				line.hit = (line.angle > 90.0f && line.angle < 270.0f) * 2;
-			}
-			if (t.x < 0 || t.x >= (*game)->width || t.y < 0 || t.y >= (*game)->height)
+			select_ray_hit(game, &plr);
+			if (plr.t.x < 0 || plr.t.x >= (*game)->width || \
+plr.t.y < 0 || plr.t.y >= (*game)->height)
 				break ;
-			if ((*game)->map[t.y][t.x] == '1')
+			if ((*game)->map[plr.t.y][plr.t.x] == '1')
 				break ;
-			if (distance(PLAYER.position, line.a) < distance(PLAYER.position, line.b))
-			{
-				step_y = GRID_SIZE * (1 - 2 * (line.angle < 180.0f));
-				step_x = -step_y / tanf(deg_to_rad(line.angle));
-				line.a.y += step_y;
-				line.a.x += step_x;
-			}
-			else
-			{
-				step_x = GRID_SIZE * (1 - 2 * (line.angle >= 90.0f && line.angle < 270.0f));
-				step_y = -step_x * tanf(deg_to_rad(line.angle));
-				line.b.x += step_x;
-				line.b.y += step_y;
-			}
+			advance_ray_intersection(game, &plr);
 		}
-		draw_col(game, line, ray, curr_ang);
+		draw_col(game, &plr);
 		draw_mini_map(game);
-		ray++;
+		plr.ray++;
+	}
+}
+
+void	ray_hit_points(t_game **game, t_player_state *plr)
+{
+	int		grid;
+	float	plr_y;
+	float	plr_x;
+	float	tang_plr_ang;
+	
+	grid = GRID_SIZE;
+	plr_y = (*game)->player.position.y;
+	plr_x = (*game)->player.position.x;
+	tang_plr_ang = tanf(deg_to_rad(plr->line.angle));
+	if (plr->line.angle < 180.0f && plr->line.angle > 0.0f)
+		plr->line.a.y = floor(plr_y / grid) * grid;
+	else
+		plr->line.a.y = floor(plr_y / grid) * grid + grid;
+	plr->line.a.x = plr_x - (plr->line.a.y - plr_y) / tang_plr_ang;
+	if (plr->line.angle > 90.0f && plr->line.angle < 270.0f)
+		plr->line.b.x = floorf(plr_x / grid) * grid;
+	else
+		plr->line.b.x = floorf(plr_x / grid) * grid + grid;
+	plr->line.b.y = plr_y - (plr->line.b.x - plr_x) * tang_plr_ang;	
+}
+
+void	compute_ray_angle(t_game **game, t_player_state *plr)
+{
+	plr->curr_ang = ((float)plr->ray / (float)(*game)->width_window) * \
+(float)((*game)->fov) - (float)((*game)->fov) / 2;
+	plr->line.angle = (*game)->player.angle_alpha - plr->curr_ang;
+	check_angle(&plr->line.angle);
+}
+
+void	select_ray_hit(t_game **game, t_player_state *plr)
+{
+	float	dist_to_horz;
+	float	dist_to_vert;
+	
+	dist_to_horz = distance((*game)->player.position, plr->line.a);
+	dist_to_vert = distance((*game)->player.position, plr->line.b);
+	if (dist_to_horz <= dist_to_vert)
+	{
+		plr->t.x = (int)floorf(plr->line.a.x / GRID_SIZE);
+		plr->t.y = (int)floorf(plr->line.a.y / GRID_SIZE);
+		if (plr->line.angle < 180.0f && plr->line.angle > 0.0f)
+			plr->t.y -= 1;
+		plr->line.hit = 1 + 2 * \
+(plr->line.angle < 180.0f && plr->line.angle > 0.0f);
+	}
+	else
+	{
+		plr->t.x = (int)floorf(plr->line.b.x / GRID_SIZE);
+		plr->t.y = (int)floorf(plr->line.b.y / GRID_SIZE);
+		if (plr->line.angle > 90.0f && plr->line.angle < 270.0f)
+			plr->t.x -= 1;
+		plr->line.hit = \
+(plr->line.angle > 90.0f && plr->line.angle < 270.0f) * 2;
+	}
+}
+
+void	advance_ray_intersection(t_game **game, t_player_state *plr)
+{
+	float	dist_to_horz;
+	float	dist_to_vert;
+	float	ang;
+	
+	dist_to_horz = distance((*game)->player.position, plr->line.a);
+	dist_to_vert = distance((*game)->player.position, plr->line.b);
+	ang = plr->line.angle;
+	if (dist_to_horz < dist_to_vert)
+	{
+		plr->step_y = GRID_SIZE * (1 - 2 * (ang < 180.0f));
+		plr->step_x = -plr->step_y / tanf(deg_to_rad(ang));
+		plr->line.a.y += plr->step_y;
+		plr->line.a.x += plr->step_x;
+	}
+	else
+	{
+		plr->step_x = GRID_SIZE * (1 - 2 * (ang >= 90.0f && ang < 270.0f));
+		plr->step_y = -plr->step_x * tanf(deg_to_rad(ang));
+		plr->line.b.x += plr->step_x;
+		plr->line.b.y += plr->step_y;
 	}
 }

@@ -14,7 +14,6 @@
 # include "cub3d_struct.h" 
 # include "math.h"
 
-
 // src
 
 // error handler 
@@ -27,6 +26,7 @@ void	free_map(char ***arr, int i);
 
 // init
 t_game	*init_game(void);
+void	plr_init(t_player_state *plr, t_game **game);
 
 // hooks
 void	key_stroks(mlx_key_data_t keydata, void *params);
@@ -72,7 +72,7 @@ void	check_angle(float *angle);
 float	deg_to_rad(float angle);
 
 // graph
-int	draw_col(t_game **game, t_line line, int ray_x, float curr_ang);
+int	draw_col(t_game **game, t_player_state *plr);
 int	background_f_c_draw(t_game **game);
 
 // mini map
