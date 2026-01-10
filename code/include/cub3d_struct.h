@@ -56,35 +56,34 @@ typedef struct	s_line
 
 typedef struct	s_player {
 	
-	float angle_alpha;
-	t_coordinates position;
-	int x_grid; // x/64 = floor(res); 
-	int y_grid; // y/64 = floor(res);
-
+	float			angle_alpha;
+	t_coordinates	position;
+	int				x_grid;
+	int				y_grid;
 } t_player;
 
 typedef struct	s_rgb
 {
-	int rgb[3];
+	int	rgb[3];
 } t_rgb;
 
 typedef struct	s_graph
 {
-	t_rgb 		F;
-	t_rgb 		C;
+	t_rgb		F;
+	t_rgb		C;
 	mlx_image_t	*walls[4];
 	float		proj_dist;
 } t_graph;
 
 typedef struct	s_mini_map
 {
-	int tile;
+	int	tile;
 } t_mini_map;
 
 typedef struct	s_player_state
 {
-	t_line			line;
-	t_grid			t;
+	t_line	line;
+	t_grid	t;
 	int		ray;
 	float	curr_ang;
 	float	step_y;
@@ -100,28 +99,26 @@ typedef struct	s_draw_line
 	t_coordinates	pos;
 }	t_draw_line;
 
-
 typedef struct	s_game
 {
-	mlx_t	*mlx;
-	mlx_image_t *foreground;
-	mlx_image_t *background;
-	mlx_image_t *min_map_img;
+	mlx_t		*mlx;
+	mlx_image_t	*foreground;
+	mlx_image_t	*background;
+	mlx_image_t	*min_map_img;
 	t_mini_map	mini_map_info;
-	char	**map;
-	t_list	*copy_map;
-	t_player player;
-	int		height;
-	int		width;
-	int 	height_wall;
-	int 	width_wall;
-	int		fov;
-	int		height_window;
-	int		width_window;
-	float	move_speed;
-	double	mouse_y;
-	t_graph	*graph;
-
+	char		**map;
+	t_list		*copy_map;
+	t_player	player;
+	int			height;
+	int			width;
+	int 		height_wall;
+	int 		width_wall;
+	int			fov;
+	int			height_window;
+	int			width_window;
+	float		move_speed;
+	double		mouse_y;
+	t_graph		*graph;
 } t_game;
 
 #endif
