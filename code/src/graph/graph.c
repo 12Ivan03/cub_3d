@@ -26,7 +26,6 @@ t_player_state *plr, int colonm_point)
 		dl->start_y = 0;
 	if (dl->end_y > (*game)->height_window)
 		dl->end_y = (*game)->height_window;
-
 }
 
 int32_t	take_pixel(t_game **game, int wall, int x, int y)
