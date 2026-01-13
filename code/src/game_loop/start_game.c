@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/09 13:07:57 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/13 11:12:08 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ void	ray_hit_points(t_game **game, t_player_state *plr)
 	float	plr_y;
 	float	plr_x;
 	float	tang_plr_ang;
-	
+
 	grid = GRID_SIZE;
 	plr_y = (*game)->player.position.y;
 	plr_x = (*game)->player.position.x;
@@ -67,7 +67,7 @@ void	ray_hit_points(t_game **game, t_player_state *plr)
 		plr->line.b.x = floorf(plr_x / grid) * grid;
 	else
 		plr->line.b.x = floorf(plr_x / grid) * grid + grid;
-	plr->line.b.y = plr_y - (plr->line.b.x - plr_x) * tang_plr_ang;	
+	plr->line.b.y = plr_y - (plr->line.b.x - plr_x) * tang_plr_ang;
 }
 
 void	compute_ray_angle(t_game **game, t_player_state *plr)
@@ -82,7 +82,7 @@ void	select_ray_hit(t_game **game, t_player_state *plr)
 {
 	float	dist_to_horz;
 	float	dist_to_vert;
-	
+
 	dist_to_horz = distance((*game)->player.position, plr->line.a);
 	dist_to_vert = distance((*game)->player.position, plr->line.b);
 	if (dist_to_horz <= dist_to_vert)
@@ -110,7 +110,7 @@ void	advance_ray_intersection(t_game **game, t_player_state *plr)
 	float	dist_to_horz;
 	float	dist_to_vert;
 	float	ang;
-	
+
 	dist_to_horz = distance((*game)->player.position, plr->line.a);
 	dist_to_vert = distance((*game)->player.position, plr->line.b);
 	ang = plr->line.angle;

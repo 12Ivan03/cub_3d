@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   start_game.c                                       :+:      :+:    :+:   */
+/*   init_structs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/09 13:07:57 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/13 11:14:45 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,4 +30,4 @@ void	plr_init(t_player_state *plr, t_game **game)
 (*game)->foreground->height * 4);
 	ft_bzero((*game)->min_map_img->pixels, (*game)->min_map_img->width * \
 (*game)->min_map_img->height * sizeof(uint32_t));
-};
+}

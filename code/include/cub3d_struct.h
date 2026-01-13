@@ -20,7 +20,7 @@
 # define R 0
 # define G 1
 # define B 2
-# define ROTATION_AGNLE 1.5f
+# define ROTATION_AGNLE 0.5f
 # define MINI_MAP_EMPTY_COLOR 0x101000AA
 # define MINI_MAP_WALL_COLOR 0x777777FF
 # define MINI_MAP_PLAYER_COLOR 0X10F7F0A1 // 0xFF1010FF
@@ -28,25 +28,25 @@
 #  define M_PI 3.14159265358979323846
 # endif
 
-typedef struct	s_coordinates
+typedef struct s_coordinates
 {
 	float	x;
 	float	y;
 }	t_coordinates;
 
-typedef struct	s_pixel
+typedef struct s_pixel
 {
 	t_coordinates		dot;
 	int32_t				color;
 }	t_pixel;
 
-typedef struct	s_grid
+typedef struct s_grid
 {
 	int	x;
 	int	y;
 }	t_grid;
 
-typedef struct	s_line
+typedef struct s_line
 {
 	t_coordinates	a;
 	t_coordinates	b;
@@ -54,33 +54,32 @@ typedef struct	s_line
 	int				hit;
 }	t_line;
 
-typedef struct	s_player {
-	
+typedef struct s_player {
 	float			angle_alpha;
 	t_coordinates	position;
 	int				x_grid;
 	int				y_grid;
-} t_player;
+}	t_player;
 
-typedef struct	s_rgb
+typedef struct s_rgb
 {
 	int	rgb[3];
-} t_rgb;
+}	t_rgb;
 
-typedef struct	s_graph
+typedef struct s_graph
 {
 	t_rgb		F;
 	t_rgb		C;
 	mlx_image_t	*walls[4];
 	float		proj_dist;
-} t_graph;
+}	t_graph;
 
-typedef struct	s_mini_map
+typedef struct s_mini_map
 {
 	int	tile;
-} t_mini_map;
+}	t_mini_map;
 
-typedef struct	s_player_state
+typedef struct s_player_state
 {
 	t_line	line;
 	t_grid	t;
@@ -90,7 +89,7 @@ typedef struct	s_player_state
 	float	step_x;
 }	t_player_state;
 
-typedef struct	s_draw_line
+typedef struct s_draw_line
 {
 	int				height;
 	int				start_y;
@@ -99,7 +98,7 @@ typedef struct	s_draw_line
 	t_coordinates	pos;
 }	t_draw_line;
 
-typedef struct	s_game
+typedef struct s_game
 {
 	mlx_t		*mlx;
 	mlx_image_t	*foreground;
@@ -111,14 +110,14 @@ typedef struct	s_game
 	t_player	player;
 	int			height;
 	int			width;
-	int 		height_wall;
-	int 		width_wall;
+	int			height_wall;
+	int			width_wall;
 	int			fov;
 	int			height_window;
 	int			width_window;
 	float		move_speed;
 	double		mouse_y;
 	t_graph		*graph;
-} t_game;
+}	t_game;
 
 #endif

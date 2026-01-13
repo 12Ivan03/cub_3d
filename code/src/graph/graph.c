@@ -6,13 +6,13 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:49:52 by aerokhin          #+#    #+#             */
-/*   Updated: 2026/01/09 13:07:16 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/13 11:13:37 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	compute_wall_slice(t_game **game, t_draw_line* dl, \
+void	compute_wall_slice(t_game **game, t_draw_line *dl, \
 t_player_state *plr, int colonm_point)
 {
 	dl->pos.x = colonm_point;
@@ -44,7 +44,7 @@ void	draw_line(t_game **game, t_player_state *plr, int clm_point, float dist)
 	int				i;
 	int				w_min_h;
 
-	w_min_h= ((*game)->height_window - dl.height);
+	w_min_h = ((*game)->height_window - dl.height);
 	if (dist < 0.001f)
 		dist = 0.001f;
 	dl.height = (int)(HEIGHT_WALL / dist * (*game)->graph->proj_dist);
@@ -53,7 +53,8 @@ void	draw_line(t_game **game, t_player_state *plr, int clm_point, float dist)
 	while (i < dl.end_y)
 	{
 		dl.ratio = (float)(i - w_min_h / 2) / (float)dl.height;
-		dl.pos.y = (int)(dl.ratio * (*game)->graph->walls[plr->line.hit]->height);
+		dl.pos.y = (int)(dl.ratio * \
+(*game)->graph->walls[plr->line.hit]->height);
 		if (dl.pos.y < 0)
 			dl.pos.y = 0;
 		if (dl.pos.y >= (*game)->graph->walls[plr->line.hit]->height)
@@ -72,14 +73,14 @@ int	draw_col(t_game **game, t_player_state *plr)
 
 	if (plr->line.hit % 2 != 0)
 	{
-		colonm_num = ((plr->line.a.x - floor((plr->line.a.x + 0.00f) / GRID_SIZE) \
-* GRID_SIZE) / GRID_SIZE);
+		colonm_num = ((plr->line.a.x - \
+floor((plr->line.a.x + 0.00f) / GRID_SIZE) * GRID_SIZE) / GRID_SIZE);
 		dist = distance((*game)->player.position, plr->line.a);
 	}
 	else
 	{
-		colonm_num = ((plr->line.b.y - floor((plr->line.b.y + 0.00f) / GRID_SIZE) \
-* GRID_SIZE) / GRID_SIZE);
+		colonm_num = ((plr->line.b.y - \
+floor((plr->line.b.y + 0.00f) / GRID_SIZE) * GRID_SIZE) / GRID_SIZE);
 		dist = distance((*game)->player.position, plr->line.b);
 	}
 	dist = dist * cosf(deg_to_rad(plr->curr_ang));

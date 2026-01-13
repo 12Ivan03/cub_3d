@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/09 16:38:44 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/13 11:15:24 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ int	scan_map(t_game **game, int outer, int inner, int cell)
 				if (eval_cell(game, i, j, cell))
 					return (1);
 			}
-			else 
+			else
 			{
 				if (eval_cell(game, j, i, cell))
 					return (1);
@@ -67,7 +67,6 @@ int	validate_map(t_game **game)
 		return (1);
 	return (0);
 }
-	
 
 int	validate_struct(t_game **game)
 {
