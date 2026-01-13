@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 11:19:45 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/13 11:24:46 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/13 14:21:50 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@
 # define ROTATION_AGNLE 0.5f
 # define MINI_MAP_EMPTY_COLOR 0x101000AA
 # define MINI_MAP_WALL_COLOR 0x777777FF
-# define MINI_MAP_PLAYER_COLOR 0X10F7F0A1 // 0xFF1010FF
+# define MINI_MAP_PLAYER_COLOR 0X10F7F0A1 // 0xFF1010FF - red
 # ifndef M_PI
 #  define M_PI 3.14159265358979323846
 # endif

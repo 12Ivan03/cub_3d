@@ -43,7 +43,7 @@ LIBFT = $(LIB_DIR)/libft.a
 MLX_DIR = ./lib/MLX42
 MLX_LIB = $(MLX_DIR)/build/libmlx42.a
 
-all: MLX_CREATE $(NAME)
+all: $(NAME)
 
 %.o: %.c
 	$(CC) $(CFLAGS) -c $^ -o $@
@@ -51,10 +51,10 @@ all: MLX_CREATE $(NAME)
 $(LIBFT):
 	$(MAKE) -C $(LIB_DIR)
 
-MLX_CREATE:
-	cd ./lib/MLX42 && cmake -B build && cmake --build build -j4
+$(MLX_LIB):
+	cd $(MLX_DIR) && cmake -B build && cmake --build build -j4
 
-$(NAME): $(OBJ_FILES) $(LIBFT) 
+$(NAME): $(OBJ_FILES) $(LIBFT) $(MLX_LIB) $(MLX_DIR)/src/* 
 	$(CC) $(CFLAGS) $(OBJ_FILES) $(LIBFT) $(MLX_FLAGS) -o $(NAME)
 
 clean:
@@ -67,4 +67,4 @@ fclean: clean
 
 re: clean fclean all
 
-PHONY: clean fclean alls
+PHONY: clean fclean all
