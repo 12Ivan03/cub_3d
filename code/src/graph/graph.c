@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 15:49:52 by aerokhin          #+#    #+#             */
-/*   Updated: 2026/01/13 11:13:37 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/13 13:58:21 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,10 +44,10 @@ void	draw_line(t_game **game, t_player_state *plr, int clm_point, float dist)
 	int				i;
 	int				w_min_h;
 
-	w_min_h = ((*game)->height_window - dl.height);
 	if (dist < 0.001f)
-		dist = 0.001f;
+	dist = 0.001f;
 	dl.height = (int)(HEIGHT_WALL / dist * (*game)->graph->proj_dist);
+	w_min_h = ((*game)->height_window - dl.height);
 	compute_wall_slice(game, &dl, plr, clm_point);
 	i = dl.start_y;
 	while (i < dl.end_y)

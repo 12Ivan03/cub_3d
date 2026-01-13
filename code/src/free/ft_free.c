@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 12:58:54 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/09 11:44:03 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/13 14:00:08 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	free_game(t_game **game)
 		free_link_list((*game)->copy_map);
 	if ((*game)->map != NULL)
 		free_map(&(*game)->map, (*game)->height);
+	if ((*game)->mlx != NULL)
+		mlx_terminate((*game)->mlx);
 	free(*game);
 	*game = NULL;
 }
