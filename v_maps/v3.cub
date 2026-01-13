@@ -1,17 +1,19 @@
-NO ../texture/nort.png
-SO ../texture/south.png
+NO ../texture/red_brick_2.png
+SO ../texture/red_brick_3.png
 
 
 
 
-WE ../texture/west.png
-EA ../texture/east.png
+WE ../texture/red_brick_4.png
+EA ../texture/red_brick_1.png
 
 
 
 
-F 220,100,0
-C 225,30,0
+
+
+F 80,80,80
+C 30,50,40
 
 
 

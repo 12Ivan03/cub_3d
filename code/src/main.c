@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2025/12/22 17:15:21 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/13 15:52:07 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	main(int argc, char *argv[])
 	mlx_resize_hook(game->mlx, rezise_window, &game);
 	mlx_loop_hook(game->mlx, &start_game, &game);
 	mlx_loop(game->mlx);
-	mlx_terminate(game->mlx);
 	if (game != NULL)
 		free_game(&game);
 	return (0);
