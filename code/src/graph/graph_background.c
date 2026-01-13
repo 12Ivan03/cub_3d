@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/29 13:07:10 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/09 12:28:11 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/13 11:21:19 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,8 @@ int	background_f_c_draw(t_game **game)
 
 	if (!(*game)->background)
 		return (error_handler(7));
-	ceil_col = put_color((*game)->graph->C);
-	floor_col = put_color((*game)->graph->F);
+	ceil_col = put_color((*game)->graph->g_c);
+	floor_col = put_color((*game)->graph->g_f);
 	y = 0;
 	while (y < (*game)->height_window)
 	{

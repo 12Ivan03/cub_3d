@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/13 11:15:24 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/13 11:21:42 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	validate_struct(t_game **game)
 {
 	if ((*game)->player.position.x == -1)
 		return (error_handler_msg(5, "a player position"));
-	if ((*game)->graph->C.rgb[0] == -1 || (*game)->graph->F.rgb[0] == -1)
+	if ((*game)->graph->g_c.rgb[0] == -1 || (*game)->graph->g_f.rgb[0] == -1)
 		return (error_handler_msg(5, "colors"));
 	return (0);
 }

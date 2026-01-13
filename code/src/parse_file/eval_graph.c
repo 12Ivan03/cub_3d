@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/17 16:33:32 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/09 12:12:20 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/13 11:21:26 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,9 +45,9 @@ int	eval_graph(t_game **game)
 	int	result;
 
 	result = 0;
-	if (check_rgb((*game)->graph->F, "Missing floor colours"))
+	if (check_rgb((*game)->graph->g_f, "Missing floor colours"))
 		result = 1;
-	if (check_rgb((*game)->graph->C, "Missing celing colours"))
+	if (check_rgb((*game)->graph->g_c, "Missing celing colours"))
 		result = 1;
 	if (check_walls((*game)->graph->walls, "Missing path for wall"))
 		result = 1;

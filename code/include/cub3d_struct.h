@@ -1,3 +1,14 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cub3d_struct.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2026/01/13 11:19:45 by ipavlov           #+#    #+#             */
+/*   Updated: 2026/01/13 11:24:46 by ipavlov          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
 
 #ifndef CUB3D_STRUCT_H
 # define CUB3D_STRUCT_H
@@ -12,7 +23,7 @@
 # define MINI_H_WIN 200
 # define CELL_SIZE 100
 # define PROJ_DIST 400
-# define MOVE_SPEED 15.0f 
+# define MOVE_SPEED 5.0f 
 # define NO 90
 # define EA 0
 # define SO 270
@@ -54,7 +65,8 @@ typedef struct s_line
 	int				hit;
 }	t_line;
 
-typedef struct s_player {
+typedef struct s_player
+{
 	float			angle_alpha;
 	t_coordinates	position;
 	int				x_grid;
@@ -68,8 +80,8 @@ typedef struct s_rgb
 
 typedef struct s_graph
 {
-	t_rgb		F;
-	t_rgb		C;
+	t_rgb		g_f;
+	t_rgb		g_c;
 	mlx_image_t	*walls[4];
 	float		proj_dist;
 }	t_graph;

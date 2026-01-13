@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:56:43 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/09 15:57:57 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/13 11:21:57 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,15 +88,15 @@ int	celling_floow_texture(t_game **game, char *extract, int i)
 	free(extract);
 	if (i == 4)
 	{
-		if ((*game)->graph->F.rgb[0] != -1)
+		if ((*game)->graph->g_f.rgb[0] != -1)
 			return (error_handler(8));
-		(*game)->graph->F = temp_col;
+		(*game)->graph->g_f = temp_col;
 	}
 	if (i == 5)
 	{
-		if ((*game)->graph->C.rgb[0] != -1)
+		if ((*game)->graph->g_c.rgb[0] != -1)
 			return (error_handler(8));
-		(*game)->graph->C = temp_col;
+		(*game)->graph->g_c = temp_col;
 	}
 	return (0);
 }
