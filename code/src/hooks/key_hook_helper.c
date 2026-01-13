@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:24:18 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/09 12:28:32 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/13 11:40:46 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	cursor_cb(double xpos, double ypos, void *param)
 		(*game)->mouse_y = xpos;
 	if (mlx_is_mouse_down((*game)->mlx, MLX_MOUSE_BUTTON_LEFT))
 	{
-		if ((*game)->mouse_y < xpos)
+		if ((*game)->mouse_y < xpos || xpos > 3780)
 		{
 			(*game)->player.angle_alpha -= ROTATION_AGNLE;
 			(*game)->mouse_y = xpos;
