@@ -26,10 +26,17 @@ int	read_process_map(t_game **game)
 		return (1);
 	while (++i < (*game)->height)
 	{
-		(*game)->map[i] = (char *)ft_calloc(((*game)->width + 1), 1);
+		// printf("iter->content   -> %s\n",(char *)iter->content);
+		(*game)->map[i] = (char *)malloc((*game)->width + 1);
 		if (!(*game)->map[i])
 			return (free_map(&(*game)->map, i), error_handler(4));
-		ft_strlcat((*game)->map[i], (char *)iter->content, (*game)->width + 1);
+		ft_memset((*game)->map[i], ' ', (*game)->width);
+		(*game)->map[i][(*game)->width] = '\0';
+		ft_memcpy((*game)->map[i], iter->content, (*game)->width);
+		// printf("(*game)->map[i] -> %s\n", (*game)->map[i]);
+		// put in extract_map_line -> in utils
+		// if (convert_map_in_two_d_arr())
+		// 	return (error_handler(4)) <- remove the error from malloc check...
 		if (set_position(game, i))
 			return (error_handler(8));
 		if (eval_map_line((*game)->map[i]))
