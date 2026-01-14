@@ -59,7 +59,7 @@ int		validate_map(t_game **game);
 int		validate_struct(t_game **game);
 int		validate_struct(t_game **game);
 int		validate_map(t_game **game);
-int		eval_cell(t_game **game, int x, int y, int d);
+int		eval_cell(t_game **game, int x, int y);
 int		read_process_map(t_game **game);
 
 // utils

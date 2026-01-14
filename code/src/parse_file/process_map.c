@@ -21,6 +21,7 @@ int	read_process_map(t_game **game)
 	iter = (*game)->copy_map;
 	(*game)->height = count_height(game);
 	(*game)->width = count_width(game);
+	// printf("(*game)->width: %d\n", (*game)->width );
 	(*game)->map = (char **)malloc((*game)->height * sizeof(char *));
 	if (!(*game)->map)
 		return (1);
@@ -32,8 +33,8 @@ int	read_process_map(t_game **game)
 			return (free_map(&(*game)->map, i), error_handler(4));
 		ft_memset((*game)->map[i], ' ', (*game)->width);
 		(*game)->map[i][(*game)->width] = '\0';
-		ft_memcpy((*game)->map[i], iter->content, (*game)->width);
-		// printf("(*game)->map[i] -> %s\n", (*game)->map[i]);
+		ft_memcpy((*game)->map[i], iter->content, ft_strlen(iter->content));
+		// printf("(*game)->map[i] -> >%s<\n", (*game)->map[i]);
 		// put in extract_map_line -> in utils
 		// if (convert_map_in_two_d_arr())
 		// 	return (error_handler(4)) <- remove the error from malloc check...
