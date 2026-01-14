@@ -66,7 +66,7 @@ void	cursor_cb(double xpos, double ypos, void *param)
 		(*game)->mouse_y = xpos;
 	if (mlx_is_mouse_down((*game)->mlx, MLX_MOUSE_BUTTON_LEFT))
 	{
-		if ((*game)->mouse_y < xpos || xpos > 3780)
+		if ((*game)->mouse_y < xpos || xpos > WIDTH_WIN)
 		{
 			(*game)->player.angle_alpha -= ROTATION_AGNLE;
 			(*game)->mouse_y = xpos;
