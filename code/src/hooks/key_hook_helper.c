@@ -79,3 +79,23 @@ void	cursor_cb(double xpos, double ypos, void *param)
 		check_angle(&(*game)->player.angle_alpha);
 	}
 }
+
+// void	cursor_cb(double xpos, double ypos, void *param)
+// {
+// 	t_game	*g = *(t_game **)param;
+// 	(void)ypos;
+// 	if (!mlx_is_mouse_down(g->mlx, MLX_MOUSE_BUTTON_LEFT))
+// 		return;
+// 	const double cx = g->mlx->width  / 2.0;
+// 	const double cy = g->mlx->height / 2.0;
+// 	// dx > 0 means mouse moved right; rotate right/left however your engine defines it
+// 	double dx = xpos - cx;
+// 	// small deadzone to avoid jitter
+// 	if (dx > 0.5)
+// 		g->player.angle_alpha -= ROTATION_AGNLE;
+// 	else if (dx < -0.5)
+// 		g->player.angle_alpha += ROTATION_AGNLE;
+// 	check_angle(&g->player.angle_alpha);
+// 	// recenter so we never hit screen edges
+// 	mlx_set_mouse_pos(g->mlx, (int32_t)cx, (int32_t)cy);
+// }
