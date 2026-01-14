@@ -71,6 +71,7 @@
 // 	return (0);
 // }
 
+// --> rewrite logic... 
 // int	validate_map(t_game **game)
 // {
 
