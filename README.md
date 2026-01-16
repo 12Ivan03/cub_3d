@@ -306,7 +306,6 @@ C 100,100,255    # Ceiling color (RGB)
 | `S` | Player start (facing South) |
 | `E` | Player start (facing East) |
 | `W` | Player start (facing West) |
-| ` ` | Void (outside map) |
 
 **Map Rules:**
 - Map must be surrounded by walls (`1`)
@@ -384,21 +383,6 @@ Line-by-line file reading utility.
 
 ---
 
-## Error Codes
-
-| Code | Description |
-|------|-------------|
-| 1 | Invalid arguments (expected 2) |
-| 2 | EOF: missing map |
-| 3 | Invalid file extension |
-| 4 | Memory allocation error |
-| 5 | Map validation failed (open map) |
-| 6 | MLX42 library error |
-| 7 | Unable to create MLX42 object |
-| 8 | Invalid map configuration |
-
----
-
 ## Test Maps
 
 ### Valid Maps (`v_maps/`)
@@ -454,5 +438,5 @@ This project is part of the 42 School curriculum. Feel free to use it for learni
 ## Acknowledgments
 
 - [42 School](https://42.fr/) for the project subject
+- [CODAM](https://codam.nl/) for the CODAM project subject and many of our piers
 - [Lode's Computer Graphics Tutorial](https://lodev.org/cgtutor/raycasting.html) for raycasting explanations
-- [Wolfenstein 3D](https://en.wikipedia.org/wiki/Wolfenstein_3D) for the original inspiration
