@@ -1,0 +1,31 @@
+
+NO ../texture/nort.png
+SO ../texture/south.png
+
+
+
+
+WE ../texture/west.png
+EA ../texture/east.png
+
+
+
+
+F 100,100,0
+C 225,30,0
+
+       1
+      101
+     10001
+    1000001
+    100001
+     10001
+      101
+       1
+       1
+      101
+     10001
+    100N001
+     10001
+      101
+       1

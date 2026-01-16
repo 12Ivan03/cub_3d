@@ -17,6 +17,7 @@ int	read_validate_direc_fc(int fd, t_game **game)
 	char	*line;
 	int		check;
 
+	check = -1;
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
