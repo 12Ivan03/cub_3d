@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/13 11:21:42 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/16 11:16:01 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	eval_cell(t_game **game, int i, int j)
 {
-	int h;
-	int w;
+	int	h;
+	int	w;
 
 	h = (*game)->height;
 	w = (*game)->width;
@@ -24,8 +24,8 @@ int	eval_cell(t_game **game, int i, int j)
 		if (i == 0 || j == 0 || i == h - 1 || j == w - 1)
 			return (1);
 		else if (\
-(*game)->map[i][j + 1] ==  ' ' || (*game)->map[i][j - 1] ==  ' ' || \
-(*game)->map[i + 1][j] ==  ' ' || (*game)->map[i - 1][j] ==  ' ')
+(*game)->map[i][j + 1] == ' ' || (*game)->map[i][j - 1] == ' ' || \
+(*game)->map[i + 1][j] == ' ' || (*game)->map[i - 1][j] == ' ')
 		{
 			return (1);
 		}
@@ -35,9 +35,8 @@ int	eval_cell(t_game **game, int i, int j)
 
 int	validate_map(t_game **game)
 {
-
-	int i;
-	int j;
+	int	i;
+	int	j;
 
 	i = 0;
 	while (i < (*game)->height)
@@ -70,13 +69,13 @@ int	validate_struct(t_game **game)
 // 	if (d == 0)
 // 	{
 // 		if ((x > 0) && (*game)->map[x][y] == '0')
-// 			if ((*game)->map[x][y - 1] == ' ' || x == (*game)->height - 1 \
+// 			if ((*game)->map[x][y - 1] == ' ' || x == (*game)->height - 1 
 // || (*game)->map[x][y + 1] == ' ' || (*game)->map[x][y + 1] == '\0')
 // 				return (1);
 // 	}
 // 	else
 // 		if (y > 0 && (*game)->map[x][y] == '0')
-// 			if ((*game)->map[x - 1][y] == ' ' || \
+// 			if ((*game)->map[x - 1][y] == ' ' || 
 // (*game)->map[x + 1][y] == ' ' || (*game)->map[x + 1][y] == '\0')
 // 				return (1);
 // 	return (0);

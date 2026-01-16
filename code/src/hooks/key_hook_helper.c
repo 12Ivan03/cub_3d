@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/12/05 12:24:18 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/13 12:00:00 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/16 11:14:23 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,14 +88,11 @@ void	cursor_cb(double xpos, double ypos, void *param)
 // 		return;
 // 	const double cx = g->mlx->width  / 2.0;
 // 	const double cy = g->mlx->height / 2.0;
-// 	// dx > 0 means mouse moved right; rotate right/left however your engine defines it
 // 	double dx = xpos - cx;
-// 	// small deadzone to avoid jitter
 // 	if (dx > 0.5)
 // 		g->player.angle_alpha -= ROTATION_AGNLE;
 // 	else if (dx < -0.5)
 // 		g->player.angle_alpha += ROTATION_AGNLE;
 // 	check_angle(&g->player.angle_alpha);
-// 	// recenter so we never hit screen edges
 // 	mlx_set_mouse_pos(g->mlx, (int32_t)cx, (int32_t)cy);
 // }

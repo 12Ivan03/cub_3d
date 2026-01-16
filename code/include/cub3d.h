@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 11:18:59 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/13 14:19:20 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/16 11:27:40 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ int		validate_struct(t_game **game);
 int		validate_map(t_game **game);
 int		eval_cell(t_game **game, int x, int y);
 int		read_process_map(t_game **game);
+int		allocate_and_fill_map_row(t_game **game, int i, t_list *iter);
 
 // utils
 int		parse_and_config_line(char *line, t_game **game);

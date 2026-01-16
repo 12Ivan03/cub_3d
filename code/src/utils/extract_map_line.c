@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/20 13:37:27 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/09 12:19:58 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/16 11:27:32 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,4 +37,15 @@ int	check_map_line(t_game **game, char *line)
 	tmp_map = ft_lstnew(temp_line);
 	ft_lstadd_back(&((*game)->copy_map), tmp_map);
 	return (1);
+}
+
+int	allocate_and_fill_map_row(t_game **game, int i, t_list *iter)
+{
+	(*game)->map[i] = (char *)malloc((*game)->width + 1);
+	if (!(*game)->map[i])
+		return (free_map(&(*game)->map, i), error_handler(4));
+	ft_memset((*game)->map[i], ' ', (*game)->width);
+	(*game)->map[i][(*game)->width] = '\0';
+	ft_memcpy((*game)->map[i], iter->content, ft_strlen(iter->content));
+	return (0);
 }
