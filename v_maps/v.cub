@@ -1,13 +1,16 @@
 NO ../texture/nort.png
 SO ../texture/south.png
 WE ../texture/west.png
+
+
+
 EA ../texture/east.png
+
 C 253,201,169
 F 220,100,30
 
 
-1111111
-1011000011
-1000N000001
-10100001111
-11111111
+111
+1N1
+101
+111

@@ -34,6 +34,8 @@ int	read_validate_direc_fc(int fd, t_game **game)
 		return (close_gnl_fd(fd, &line), error_handler(8));
 	if (eval_graph(game))
 		return (close_gnl_fd(fd, &line), 1);
-	copy_map_to_game_struct(game, &line, fd);
+	// copy_map_to_game_struct(game, &line, fd);
+	if (copy_map_to_game_struct(game, &line, fd))
+		return (close_gnl_fd(fd, &line), 1);
 	return (0);
 }
