@@ -22,16 +22,18 @@ int	read_validate_direc_fc(int fd, t_game **game)
 	{
 		check = parse_and_config_line(line, game);
 		if (check == 1)
-			return (free(line), 1);
-		else if (check == 2)
+			return (close_gnl_fd(fd, &line), 1);
+		else if (check == 2 || check == 3)
 			break ;
 		free(line);
 		line = get_next_line(fd);
 	}
-	if (check != 2)
+	if (check != 2 && check != 3)
 		return (error_handler(2));
+	if (check == 2)
+		return (close_gnl_fd(fd, &line), error_handler(8));
 	if (eval_graph(game))
-		return (free(line), 1);
+		return (close_gnl_fd(fd, &line), 1);
 	copy_map_to_game_struct(game, &line, fd);
 	return (0);
 }

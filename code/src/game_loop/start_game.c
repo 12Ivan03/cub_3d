@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/04 13:27:46 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/13 11:12:08 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/16 13:22:24 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,7 @@ void	select_ray_hit(t_game **game, t_player_state *plr)
 		plr->t.y = (int)floorf(plr->line.a.y / GRID_SIZE);
 		if (plr->line.angle < 180.0f && plr->line.angle > 0.0f)
 			plr->t.y -= 1;
-		plr->line.hit = 1 + 2 * \
+		plr->line.hit = 3 - 2 * \
 (plr->line.angle < 180.0f && plr->line.angle > 0.0f);
 	}
 	else

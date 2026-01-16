@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/14 15:56:43 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/09 12:20:50 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/16 13:11:54 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	eval_dirs(char *trim_line)
 {
-	const char	*dirs[6] = {"EA ", "NO ", "WE ", "SO ", "F ", "C "};
+	const char	*dirs[7] = {"EA ", "NO ", "WE ", "SO ", "F ", "C ", "1"};
 	int			i;
 
 	i = 0;
@@ -31,6 +31,8 @@ int	eval_dirs(char *trim_line)
 			return (i);
 		i++;
 	}
+	if (trim_line[0] == '1')
+		return (6);
 	return (-1);
 }
 
@@ -56,6 +58,8 @@ int	parse_and_config_line(char *line, t_game **game)
 		return (wall_texture(game, extract, i));
 	else if (i >= 4 && i < 6)
 		return (celling_floow_texture(game, extract, i));
+	else if (i == 6)
+		return (free(extract), 3);
 	else
 		free(extract);
 	return (0);

@@ -1,5 +1,5 @@
 CC = cc 
-CFLAGS = -I. -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIB_DIR) -I$(MLX_DIR)/include -g3 -fsanitize=address
+CFLAGS = -I. -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIB_DIR) -I$(MLX_DIR)/include -g3 #-fsanitize=address
 MLX_FLAGS = ./lib/MLX42/build/libmlx42.a -I./lib/MLX42/include -ldl -lglfw -pthread -lm 
 # MLX_FLAGS = ./lib/MLX42/build/libmlx42.a \
 #             -L/opt/homebrew/lib -lglfw -pthread -lm \
@@ -21,6 +21,7 @@ src/utils/extract_color_walls_from_file.c \
 src/utils/extract_map_line.c \
 src/utils/parse_and_config_line.c \
 src/utils/process_map_utils.c \
+src/utils/close_gnl_fd.c \
 src/init/init_game.c \
 src/init/init_structs.c \
 src/math/game_math.c \

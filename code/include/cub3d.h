@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/01/13 11:18:59 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/16 11:27:40 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/16 12:59:14 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,6 +74,7 @@ int		set_position(t_game **game, int y);
 int		find_start_position(t_game **game, int i, int j);
 int		count_height(t_game **game);
 int		count_width(t_game **game);
+void	close_gnl_fd(int fd, char **line);
 
 // math
 float	projection_distance(t_game **game);
