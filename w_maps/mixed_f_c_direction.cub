@@ -1,12 +1,12 @@
 F 220,100,0
 C 225,30,0
 
-NO ./path_to_the_north_texture
-SO ./path_to_the_south_texture
-WE ./path_to_the_west_texture
-EA ./path_to_the_east_texture
-FL ./path_to_the_floor_texture
-DO ./path_to_the_door_texture
+NO ../texture/nort.png
+SO ../texture/nort.png
+WE ../texture/nort.png
+EA ../texture/nort.png
+FL ../texture/nort.png
+DO ../texture/nort.png
 
         1000000000110000000000001
         1011000001110000000000001
