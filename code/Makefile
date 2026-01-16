@@ -1,5 +1,5 @@
 CC = cc 
-CFLAGS = -I. -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIB_DIR) -I$(MLX_DIR)/include -g3 -fsanitize=address
+CFLAGS = -I. -Wall -Werror -Wextra -I$(INC_DIR) -I$(LIB_DIR) -I$(MLX_DIR)/include -g3 #-fsanitize=address
 MLX_FLAGS = ./lib/MLX42/build/libmlx42.a -I./lib/MLX42/include -ldl -lglfw -pthread -lm 
 # MLX_FLAGS = ./lib/MLX42/build/libmlx42.a \
 #             -L/opt/homebrew/lib -lglfw -pthread -lm \
@@ -34,7 +34,7 @@ lib/get_next_line/get_next_line_utils.c \
 
 OBJ_FILES = $(SRC_FILES:.c=.o)
 
-NAME = cub3d
+NAME = cub3D
 
 INC_DIR = ./include
 LIB_DIR = ./lib/libft
