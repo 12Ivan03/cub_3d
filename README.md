@@ -441,7 +441,7 @@ make re
 ## Authors
 
 - **ipavlov** - [@12Ivan03](https://github.com/12Ivan03)
-- **aerokhin** - Codam Student
+- **aerokhina** - [@agerokhina](https://github.com/agerokhina)
 
 ---
 
