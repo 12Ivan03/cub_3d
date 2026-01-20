@@ -6,7 +6,7 @@
 /*   By: ipavlov <ipavlov@student.codam.nl>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/13 11:46:07 by ipavlov           #+#    #+#             */
-/*   Updated: 2026/01/13 15:52:07 by ipavlov          ###   ########.fr       */
+/*   Updated: 2026/01/20 13:53:33 by ipavlov          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	main(int argc, char *argv[])
 	game = init_game();
 	if (!game)
 		return (1);
-	if (valid_file_name(argv[1], ".cub") != 0)
+	if (valid_file_name(argv[1], ".cub"))
 		return (free_game(&game), error_handler_msg(3, ".cub"));
 	if (parse_file_content(argv, &game))
 		return (free_game(&game), 1);
