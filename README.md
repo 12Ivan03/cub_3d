@@ -320,11 +320,9 @@ C 100,100,255    # Ceiling color (RGB)
 |-----|--------|
 | `W` / `↑` | Move forward |
 | `S` / `↓` | Move backward |
-| `A` | Strafe left |
-| `D` | Strafe right |
-| `←` | Rotate left |
-| `→` | Rotate right |
-| `Mouse` | Look around |
+| `A` / `←` | Rotate left |
+| `D` / `→` | Rotate right |
+| `Mouse` + `lf-btn`  | Look around |
 | `ESC` | Exit game |
 
 ---
